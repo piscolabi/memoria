@@ -1,0 +1,310 @@
+:root {
+    --primary-hue: 270deg;          /* Morado */
+    --primary-saturation: 75%;
+    --primary-lightness: 65%;
+    --primary-background-color: 28 26 36;  /* Fondo gris oscuro con tinte morado */
+  }
+  
+  html {
+    --tw-bg-opacity: 1;
+    background-color: rgb(24 22 31 / var(--tw-bg-opacity));
+  }
+  
+  .steps h3:is(html[class~="dark"] *):before {
+    --tw-border-opacity: 1;
+    border-color: rgb(var(--primary-background-color) / var(--tw-border-opacity));
+    --tw-bg-opacity: 1;
+    background-color: rgb(48 44 63 / var(--tw-bg-opacity));
+  }
+  
+  @media (max-width: 767px) {
+    .sidebar-container:is(html[class~="dark"] *) {
+      --tw-bg-opacity: 1;
+      background-color: rgb(var(--primary-background-color) / var(--tw-bg-opacity));
+    }
+  }
+  
+  @supports (
+    ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px)))
+  ) {
+    .nav-container-blur:is(html[class~="dark"] *) {
+      background-color: rgb(var(--primary-background-color) / 0.85) !important;
+    }
+  }
+  
+  body:is(html[class~="dark"] *) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(var(--primary-background-color) / var(--tw-bg-opacity));
+  }
+  
+  .dark\:hx-bg-dark:is(html[class~="dark"] *) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(var(--primary-background-color) / var(--tw-bg-opacity));
+  }
+  
+  .dark\:hx-bg-dark\/50:is(html[class~="dark"] *) {
+    background-color: rgb(var(--primary-background-color) / 0.5);
+  }
+  
+  .dark\:focus\:hx-bg-dark:focus:is(html[class~="dark"] *) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(var(--primary-background-color) / var(--tw-bg-opacity));
+  }
+  
+  .dark\:hx-bg-neutral-900:is(html[class~="dark"] *) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(24 22 31 / var(--tw-bg-opacity));
+  }
+  
+  .dark\:hx-border-neutral-800:is(html[class~="dark"] *) {
+    --tw-border-opacity: 1;
+    border-color: rgb(82 76 104 / var(--tw-border-opacity));
+  }
+  
+  .dark\:hx-shadow-\[0_-12px_16px_\#111\]:is(html[class~="dark"] *) {
+    --tw-shadow: 0 -12px 16px rgb(var(--primary-background-color)); 
+    --tw-shadow-colored: 0 -12px 16px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+  
+  /* Botones con fondo morado pero texto blanco */
+  .dark .hx-bg-primary-600:is(html[class~="dark"] *) {
+    background-color: hsl(var(--primary-hue) var(--primary-saturation) 45%);
+    color: white !important;
+  }
+  
+  .dark .hx-bg-primary-500:is(html[class~="dark"] *) {
+    background-color: hsl(var(--primary-hue) var(--primary-saturation) 55%);
+    color: white !important;
+  }
+  
+  /* Hacer que los textos específicos sean blancos */
+  .dark .hx-text-primary-600:is(html[class~="dark"] *) {
+    color: white !important;
+  }
+  
+  /* Enlaces específicos en el contenido principal (mantener morados) */
+  .dark .hx-prose a:is(html[class~="dark"] *) {
+    color: hsl(var(--primary-hue) var(--primary-saturation) 75%);
+    text-decoration-color: hsla(var(--primary-hue), var(--primary-saturation), 60%, 0.4);
+  }
+  
+  /* Navegación, tabs y botones con texto blanco */
+  .dark .navbar a:is(html[class~="dark"] *),
+  .dark .navbar-item a:is(html[class~="dark"] *),
+  .dark .menu-item a:is(html[class~="dark"] *),
+  .dark .tabs a:is(html[class~="dark"] *),
+  .dark .button:is(html[class~="dark"] *),
+  .dark button:is(html[class~="dark"] *),
+  .dark .nav-link:is(html[class~="dark"] *),
+  .dark .navbar-link:is(html[class~="dark"] *),
+  .dark .sidebar a:is(html[class~="dark"] *),
+  .dark .sidebar-link:is(html[class~="dark"] *),
+  .dark .hextra-navbar a:is(html[class~="dark"] *),
+  .dark header a:is(html[class~="dark"] *),
+  .dark footer a:is(html[class~="dark"] *) {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  
+  /* Regra máis específica para os SVGs dentro de cards */
+  .card svg path,
+  .card svg rect,
+  .card svg circle,
+  .card svg polygon,
+  .card-icon svg path,
+  .card-icon svg rect,
+  .card-icon svg circle,
+  .card-icon svg polygon {
+    fill: transparent !important;
+    stroke: currentColor !important;
+    stroke-width: 1.5 !important;
+  }
+
+  /* Para asegurarnos de que os SVGs en si mesmos teñen os atributos correctos */
+  .card svg,
+  .card-icon svg {
+    fill: transparent !important;
+    stroke: currentColor !important;
+  }
+
+  
+  /* Asegurar que el texto normal sea blanco */
+  .dark .hx-prose p:is(html[class~="dark"] *),
+  .dark .hx-prose li:is(html[class~="dark"] *),
+  .dark .hx-prose span:is(html[class~="dark"] *),
+  .dark .hx-text-gray-800:is(html[class~="dark"] *),
+  .dark .hx-text-gray-900:is(html[class~="dark"] *) {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  
+  /* Regla general para asegurar que el texto sea blanco */
+  .dark .hx-prose:is(html[class~="dark"] *) {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  /* Forzar texto blanco en elementos de navegación */
+  .dark .sidebar-title:is(html[class~="dark"] *),
+  .dark .menu-title:is(html[class~="dark"] *),
+  .dark .navbar-title:is(html[class~="dark"] *) {
+    color: white !important;
+  }
+  
+  .dark .hx-hover\:hx-bg-primary-700:hover:is(html[class~="dark"] *) {
+    background-color: hsl(var(--primary-hue) var(--primary-saturation) 40%);
+  }
+  
+  /** custom minimum height **/
+  .hx-max-h-\[calc\(100vh-var\(--navbar-height\)-env\(safe-area-inset-bottom\)\)\] {
+    max-height: calc(85vh - var(--navbar-height) - env(safe-area-inset-bottom));
+  }
+  .hx-min-h-\[calc\(100vh-var\(--navbar-height\)\)\] {
+    min-height: calc(85vh - var(--navbar-height));
+  }
+  @media (min-width: 768px) {
+    .md\:hx-h-\[calc\(100vh-var\(--navbar-height\)-var\(--menu-height\)\)\] {
+      height: calc(85vh - var(--navbar-height) - var(--menu-height));
+    }
+    .md\:hx-max-h-\[min\(calc\(100vh-5rem-env\(safe-area-inset-bottom\)\)\2c 400px\)\] {
+      max-height: min(calc(85vh - 5rem - env(safe-area-inset-bottom)),400px);
+    }
+  }
+  
+  /** enlaces personalizados **/
+  .memoria-links {
+    --tw-text-opacity: 1;
+    color: hsl(var(--primary-hue) var(--primary-saturation) calc(calc(var(--primary-lightness) / 50) * 45) / var(--tw-text-opacity));
+    text-decoration-line: underline;
+    text-decoration-thickness: from-font;
+    text-underline-position: from-font;
+  }
+  .memoria-links:hover {
+    text-decoration-line: none;
+    color: hsl(var(--primary-hue) var(--primary-saturation) 80%);
+  }
+  
+  /** bloques de código **/
+  .hextra-code-block pre:is(html[class~="dark"] *) {
+    background-color: hsl(275deg 15% 20% / 0.4);
+    border: 1px solid hsl(275deg 15% 30% / 0.2);
+  }
+  .hextra-code-block pre {
+    background-color: hsl(275deg 15% 95% / 0.05);
+  }
+  
+  /** key shortcodes **/
+  .badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  a.badge:hover, a.badge:focus {
+    text-decoration: none;
+  }
+  
+  .badge:empty {
+    display: none;
+  }
+  
+  .badge-warning {
+    text-transform: capitalize;
+    color: #212529;
+    background-color: #ffc107;
+  }
+  
+  a.badge-warning:hover, a.badge-warning:focus {
+    color: #212529;
+    background-color: #d39e00;
+  }
+  
+  a.badge-warning:focus, a.badge-warning.focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5);
+  }
+  
+  /* Badges personalizados en morado */
+  .badge-purple {
+    color: #fff;
+    background-color: hsl(var(--primary-hue) var(--primary-saturation) 50%);
+  }
+  
+  a.badge-purple:hover, a.badge-purple:focus {
+    color: #fff;
+    background-color: hsl(var(--primary-hue) var(--primary-saturation) 40%);
+  }
+  
+  a.badge-purple:focus, a.badge-purple.focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem hsla(var(--primary-hue), var(--primary-saturation), 50%, 0.5);
+  }
+  
+  /** zoom images **/
+  .medium-zoom-overlay {
+    --tw-bg-opacity: 1;
+    background-color: rgb(22 20 29 / var(--tw-bg-opacity)) !important;
+  }
+  
+  /* Elementos de navegación y sidebar */
+  .dark .sidebar-active-item:is(html[class~="dark"] *) {
+    background-color: hsla(var(--primary-hue), 30%, 25%, 0.3);
+    border-left: 2px solid hsl(var(--primary-hue) var(--primary-saturation) 60%);
+  }
+  
+  /* Títulos con acento morado claro */
+  .dark .hx-prose h1:is(html[class~="dark"] *),
+  .dark .hx-prose h2:is(html[class~="dark"] *),
+  .dark .hx-prose h3:is(html[class~="dark"] *) {
+    color: hsl(var(--primary-hue) 15% 85%);
+  }
+  
+  /* Bordes de tablas y elementos */
+  .dark .hx-border-neutral-700:is(html[class~="dark"] *) {
+    border-color: hsla(var(--primary-hue), 15%, 30%, 0.6);
+  }
+  
+  /* Botón de búsqueda y elementos de UI */
+  .dark .search-button:is(html[class~="dark"] *) {
+    background-color: rgb(40 38 48 / var(--tw-bg-opacity));
+    border: 1px solid hsla(var(--primary-hue), 20%, 40%, 0.2);
+    color: white !important;
+  }
+  
+  /* Scrollbar personalizada */
+  .dark ::-webkit-scrollbar-thumb:is(html[class~="dark"] *) {
+    background-color: hsla(var(--primary-hue), 30%, 40%, 0.5);
+    border-radius: 4px;
+  }
+  
+  .dark ::-webkit-scrollbar-track:is(html[class~="dark"] *) {
+    background-color: hsla(var(--primary-hue), 20%, 20%, 0.2);
+  }
+  
+  .dark ::-webkit-scrollbar:is(html[class~="dark"] *) {
+    width: 8px;
+    height: 8px;
+  }
+  
+  /* Efecto de resaltado para selección de texto */
+  .dark ::selection:is(html[class~="dark"] *) {
+    background-color: hsla(var(--primary-hue), 70%, 50%, 0.3);
+    color: white;
+  }
+  
+  /* Mejoras adicionales para el modo oscuro */
+  .dark .card:is(html[class~="dark"] *),
+  .dark .hx-bg-neutral-50:is(html[class~="dark"] *) {
+    background-color: hsla(var(--primary-hue), 15%, 18%, 0.4);
+    border: 1px solid hsla(var(--primary-hue), 20%, 30%, 0.1);
+  }
+  
+  .dark .card:hover:is(html[class~="dark"] *) {
+    border-color: hsla(var(--primary-hue), 50%, 60%, 0.3);
+    box-shadow: 0 4px 12px hsla(var(--primary-hue), 30%, 10%, 0.5);
+  }
