@@ -38,6 +38,8 @@ markup:
 
 
 enableInlineShortcodes: true
+enablePasswordProtection: true
+
 
 menu:
   main:
@@ -85,7 +87,7 @@ params:
     displayTitle: true
     displayLogo: true
     logo:
-      path: images/logo5_light.svg
+      path: images/logo6.svg
       dark: images/logo5.svg
       width: 50
       height: 52

@@ -1,0 +1,32 @@
+<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg" width="80" height="80">
+  <defs>
+    <linearGradient id="gradientFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9333EA" />
+      <stop offset="50%" stop-color="#4338CA" />
+      <stop offset="100%" stop-color="#DB2777" />
+    </linearGradient>
+    <mask id="hexHole">
+      <rect width="100%" height="100%" fill="white"/>
+      <path fill="black" d="M90,45 L50,65 L50,115 L90,135 L130,115 L130,65 Z" />
+    </mask>
+    <clipPath id="hexClip">
+      <path d="M90,25 L30,55 L30,125 L90,155 L150,125 L150,55 Z" />
+    </clipPath>
+  </defs>
+  
+  <path fill="url(#gradientFill)" d="M90,25 L30,55 L30,125 L90,155 L150,125 L150,55 Z" mask="url(#hexHole)" />
+  
+  <path fill="none" stroke="#8831D7" stroke-width="2" d="M90,45 L50,65 L50,115 L90,135 L130,115 L130,65 Z" />
+  
+  <g clip-path="url(#hexClip)">
+    <path d="M90,15 L90,45" stroke="#8831D7" stroke-width="2" />
+    <path d="M20,45 L50,65" stroke="#8831D7" stroke-width="2" />
+    <path d="M160,45 L130,65" stroke="#8831D7" stroke-width="2" />
+    <path d="M20,135 L50,115" stroke="#8831D7" stroke-width="2" />
+    <path d="M160,135 L130,115" stroke="#8831D7" stroke-width="2" />
+    <path d="M90,165 L90,135" stroke="#8831D7" stroke-width="2" />
+  </g>
+  
+  <circle cx="90" cy="90" r="7" fill="#8831D7" />
+  <circle cx="90" cy="90" r="3.5" fill="#4338CA" />
+</svg>

@@ -4,6 +4,7 @@ toc: false
 ---
 
 ## Sobre Este Proxecto
+{{< icon name="lock-closed" >}}
 
 <div class="hx-mt-8"></div>
 

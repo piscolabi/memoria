@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+  <head>
+    {{- partial "head.html" . -}}
+    
+    <!-- Ocultar o contido inicialmente se non está autenticado -->
+    <script>
+      if (sessionStorage.getItem('siteAuthenticated') !== 'true') {
+        document.write('<style>#site-content{display:none;}</style>');
+      }
+    </script>
+  </head>
+  <body dir="{{ .Site.Language.LanguageDirection | default `ltr` }}">
+    <div id="site-content">
+      {{- partial "navbar.html" . -}}
+      {{- block "main" . }}{{ end -}}
+      {{- if or (eq .Site.Params.footer.enable nil) (.Site.Params.footer.enable) }}
+        {{ partial "footer.html" . }}
+      {{ end }}
+    </div>
+    {{ partial "scripts.html" . }}
+    
+    <!-- Scripts de protección con contrasinal -->
+    <script src="/js/auth-template.js"></script>
+    <script src="/js/password-protection.js"></script>
+  </body>
+</html>
