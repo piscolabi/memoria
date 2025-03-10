@@ -1,0 +1,56 @@
+<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradientFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A855F7" />
+      <stop offset="25%" stop-color="#9333EA" />
+      <stop offset="50%" stop-color="#6366F1" />
+      <stop offset="75%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#EC4899" />
+    </linearGradient>
+    
+    <!-- Definimos a máscara para o buraco central -->
+    <mask id="hexHole">
+      <rect width="100%" height="100%" fill="white"/>
+      <path fill="black" d="M90,45 L50,65 L50,115 L90,135 L130,115 L130,65 Z" />
+    </mask>
+    
+    <!-- Definimos un clip-path para recortar exactamente ao hexágono exterior -->
+    <clipPath id="hexClip">
+      <path d="M90,25 L30,55 L30,125 L90,155 L150,125 L150,55 Z" />
+    </clipPath>
+  </defs>
+  
+  <!-- Primeiro debuxamos o hexágono exterior co gradiente e o buraco -->
+  <path fill="url(#gradientFill)" d="M90,25 L30,55 L30,125 L90,155 L150,125 L150,55 Z" mask="url(#hexHole)" />
+  
+  <!-- Agora debuxamos o hexágono interior -->
+  <path fill="none" stroke="#64748B" stroke-width="2" d="M90,45 L50,65 L50,115 L90,135 L130,115 L130,65 Z" />
+  
+  <!-- Agora debuxamos as liñas de división, pero recortadas polo hexágono exterior -->
+  <g clip-path="url(#hexClip)">
+    <!-- Liña vertical superior -->
+    <path d="M90,15 L90,45" stroke="#64748B" stroke-width="2" />
+    
+    <!-- Liña superior esquerda -->
+    <path d="M20,45 L50,65" stroke="#64748B" stroke-width="2" />
+    
+    <!-- Liña superior dereita -->
+    <path d="M160,45 L130,65" stroke="#64748B" stroke-width="2" />
+    
+    <!-- Liña inferior esquerda -->
+    <path d="M20,135 L50,115" stroke="#64748B" stroke-width="2" />
+    
+    <!-- Liña inferior dereita -->
+    <path d="M160,135 L130,115" stroke="#64748B" stroke-width="2" />
+    
+    <!-- Liña vertical inferior -->
+    <path d="M90,165 L90,135" stroke="#64748B" stroke-width="2" />
+  </g>
+  
+  <!-- Punto central -->
+  <circle cx="90" cy="90" r="7" fill="#64748B" opacity="0.8" />
+  <circle cx="90" cy="90" r="3.5" fill="#8B5CF6" opacity="0.6" />
+  
+  <!-- Contorno exterior para definir mellor o hexágono -->
+  <path fill="none" stroke="#64748B" stroke-width="2" d="M90,25 L30,55 L30,125 L90,155 L150,125 L150,55 Z" />
+</svg>

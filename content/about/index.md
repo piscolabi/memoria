@@ -97,7 +97,7 @@ Este proxecto foi creado utilizando as seguintes tecnoloxías:
     style="background: linear-gradient(135deg, rgba(255, 56, 56, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(255, 56, 56, 0.1);"
   >}}
   {{< hextra/feature-card
-    title="Tema Hextra"
+    title="Hextra"
     subtitle="Tema moderno para documentación e blogs en Hugo"
     link="https://github.com/imfing/hextra"
     style="background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(147, 51, 234, 0.1);"
