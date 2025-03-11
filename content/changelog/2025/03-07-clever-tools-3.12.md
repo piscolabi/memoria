@@ -13,6 +13,8 @@ authors:
     image: https://github.com/hsablonniere.png?size=40
 description: Two new big features to play with
 excludeSearch: true
+sidebar:
+  exclude: true
 ---
 
 [Clever Tools 3.12](https://github.com/CleverCloud/clever-tools/releases/tag/3.12.0) is available. It includes some bug fixes and two new experimental features, available through feature flags.

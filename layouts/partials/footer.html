@@ -32,6 +32,13 @@
         </div>
       </div>
     {{- end -}}
+
+    <!-- Carga do JavaScript personalizado -->
+    {{ $customJS := resources.Get "js/custom.js" }}
+    {{ with $customJS }}
+      {{ $script := . | resources.Minify | resources.Fingerprint "sha512" }}
+      <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" crossorigin="anonymous"></script>
+    {{ end }}
 </footer>
 
 {{- define "theme-credit" -}}
