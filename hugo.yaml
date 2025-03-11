@@ -21,7 +21,7 @@ languages:
     languageName: Galego
     languageCode: gl
     weight: 1
-    title:   whataheeelll
+    title:   memorIA
 
 markup:
   highlight:
@@ -65,20 +65,20 @@ menu:
       params:
         icon: github
 
-  sidebar:
-    - identifier: mais
-      name: Máis
-      params:
-        type: separator
-      weight: 1
-    - identifier: about
-      name: "About"
-      pageRef: "/about"
-      weight: 2
-    - identifier: hugoDocs
-      name: "Hugo Docs ↗"
-      url: "https://gohugo.io/documentation/"
-      weight: 3
+  # sidebar:
+  #   - identifier: mais
+  #     name: Máis
+  #     params:
+  #       type: separator
+  #     weight: 1
+  #   - identifier: about
+  #     name: "About"
+  #     pageRef: "/about"
+  #     weight: 2
+  #   - identifier: hugoDocs
+  #     name: "Hugo Docs ↗"
+  #     url: "https://gohugo.io/documentation/"
+  #     weight: 3
 
 params:
   description: probiña da web jejje

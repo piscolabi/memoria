@@ -4,7 +4,7 @@ toc: false
 ---
 
 ## Sobre Este Proxecto
-{{< icon name="lock-closed" >}}
+<!-- {{< icon name="lock-closed" >}} -->
 
 <div class="hx-mt-8"></div>
 
@@ -16,7 +16,9 @@ toc: false
 
 <div class="hx-mt-8"></div>
 
-Este proxecto nace como unha biblioteca dixital de recursos educativos, apuntes e materiais de estudo organizados de forma accesible e intuitiva. O obxectivo principal é facilitar o acceso ao coñecemento e proporcionar unha plataforma onde estudantes e profesionais poidan atopar información relevante e actualizada sobre diversas materias.
+O proxecto busca crear unha biblioteca dixital de recursos educativos, apuntes e materiais de estudo, organizada de maneira accesible e intuitiva. O principal obxectivo é facilitar o acceso ao coñecemento, ofrecendo unha plataforma onde os estudantes poidan atopar información relevante e actualizada sobre diversas materias.
+
+> The idea that knowledge should be kept secret is the opposite of the spirit of science - Richard Stallman
 
 <div class="hx-mt-8"></div>
 
@@ -36,32 +38,7 @@ Este proxecto nace como unha biblioteca dixital de recursos educativos, apuntes 
 
 <div class="hx-mt-8"></div>
 
-Mantéñote ao día con todas as novidades, actualizacións e melloras do proxecto. Visita a nosa sección de [Changelog](/changelog) para consultar as últimas actualizacións e novos contidos engadidos.
-
-<div class="hx-mt-12"></div>
-
-## Reportar Erros e Suxerir Ideas
-
-<div class="hx-mt-8"></div>
-
-A túa opinión é fundamental para mellorar este proxecto. Se atopaches algún erro ou tes suxestións para mellorar:
-
-<div class="hx-mt-8"></div>
-
-{{< hextra/feature-grid >}}
-  {{< hextra/feature-card
-    title="Abrir unha Issue"
-    icon="github"
-    link="https://github.com/teuperfil/nome-do-proxecto/issues/new"
-    subtitle="Reporta erros ou solicita novas funcionalidades"
-  >}}
-  {{< hextra/feature-card
-    title="Enviar Suxestión"
-    icon="chat-alt"
-    link="mailto:teu-email@exemplo.com"
-    subtitle="Comparte as túas ideas para mellorar o proxecto"
-  >}}
-{{< /hextra/feature-grid >}}
+A sección de [Cambios](/changelog) está para consultar as últimas actualizacións, todas as novidades e melloras do proxecto.
 
 <div class="hx-mt-12"></div>
 
@@ -71,14 +48,31 @@ A túa opinión é fundamental para mellorar este proxecto. Se atopaches algún 
 
 Existen varias formas de contribuír a este proxecto:
 
-1. **Correccións de contido**: Axuda a mellorar a precisión dos apuntes e recursos
+1. **Correccións de contido**: Axudan a mellorar a precisión dos apuntes e recursos
 2. **Novos materiais**: Comparte os teus apuntes ou recursos educativos
 3. **Melloras técnicas**: Colabora no desenvolvemento e deseño da plataforma
-4. **Difusión**: Comparte este proxecto con outras persoas que poidan atopar útil
+4. **Difusión**: Comparte o proxecto con outras persoas que poidan atopar útil
+
+<div class="hx-mt-8"></div>
+
+{{< hextra/feature-grid cols="2">}}
+  {{< hextra/feature-card
+    title="Abrir unha Issue"
+    icon="github"
+    link="https://github.com/piscolabi/memoria/issues/new"
+    subtitle="Reporta erros ou solicita novas funcionalidades"
+  >}}
+  {{< hextra/feature-card
+    title="Enviar Arquivos"
+    icon="upload"
+    link="https://forms.office.com/e/BHinGvvqV3"
+    subtitle="Comparte arquivos para mellorar o proxecto"
+  >}}
+{{< /hextra/feature-grid >}}
 
 <div class="hx-mt-6"></div>
 
-Para contribuír con contido ou código, podes facer un fork do [repositorio](https://github.com/teuperfil/nome-do-proxecto) e enviar un Pull Request coas túas modificacións.
+Para contribuír con código directamente, podes facer un fork do [repositorio](https://github.com/piscolabi/memoria) e enviar un Pull Request coas túas modificacións.
 
 <div class="hx-mt-12"></div>
 
@@ -93,7 +87,7 @@ Este proxecto foi creado utilizando as seguintes tecnoloxías:
 {{< hextra/feature-grid >}}
   {{< hextra/feature-card
     title="Hugo"
-    subtitle="Framework de xeración de sitios estáticos en Go"
+    subtitle="Framework de xeración de páxinas estáticas en Go"
     link="https://gohugo.io/"
     style="background: linear-gradient(135deg, rgba(255, 56, 56, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(255, 56, 56, 0.1);"
   >}}

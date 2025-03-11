@@ -1,93 +1,54 @@
 ---
 linkTitle: "Docs"
-title: "Índice de Asignaturas"
+title: "Índice xeral - repositorio académico"
 toc: true
 ---
 
-<div class="hx-mt-8"></div>
+<div class="hx-mt-16"></div>
 
-## 1º Curso
-
-<div class="hx-mt-6"></div>
-
-### 2º Cuadrimestre (actual)
-
-<div class="hx-mt-4"></div>
-
-{{< hextra/feature-grid >}}
+{{< hextra/feature-grid cols="4" >}}
   {{< hextra/feature-card
-    title="Adquisición de Sinal"
-    subtitle="Fundamentos de procesamento e adquisición de sinais"
-    link="/docs/asignaturas/primeiro/2c/adqsin"
-    style="background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(147, 51, 234, 0.1);"
+    title="Primeiro Curso"
+    subtitle="Fundamentos de IA, matemáticas e programación"
+    link="/docs/primeiro/"
+    icon="academic-cap"
+    style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);"
   >}}
   {{< hextra/feature-card
-    title="Estatística"
-    subtitle="Probabilidade e estatística aplicada"
-    link="/docs/asignaturas/primeiro/2c/estatistica"
-    style="background: linear-gradient(135deg, rgba(67, 56, 202, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(67, 56, 202, 0.1);"
+    title="Segundo Curso"
+    subtitle="Profundización en modelos de IA e tecnoloxías da información"
+    link="/docs/segundo/"
+    icon="puzzle"
+    style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);"
   >}}
   {{< hextra/feature-card
-    title="Lóxica"
-    subtitle="Fundamentos de lóxica matemática e computacional"
-    link="/docs/asignaturas/primeiro/2c/loxica"
-    style="background: linear-gradient(135deg, rgba(219, 39, 119, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(219, 39, 119, 0.1);"
+    title="Terceiro Curso"
+    subtitle="Tecnologías Intelixentes: IoT, computación en nube e neurociencia"
+    link="/docs/terceiro/"
+    icon="chip"
+    style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);"
   >}}
   {{< hextra/feature-card
-    title="Programación II"
-    subtitle="Programación orientada a obxectos"
-    link="/docs/asignaturas/primeiro/2c/programacion2"
-    style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.1);"
-  >}}
-  {{< hextra/feature-card
-    title="Xestión de Organizacións"
-    subtitle="Fundamentos de xestión e organización empresarial"
-    link="/docs/asignaturas/primeiro/2c/xestorg"
-    style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(79, 70, 229, 0.1);"
+    title="Cuarto Curso"
+    subtitle="Proxectos integradores, ética, emprendemento e prácticas"
+    link="/docs/cuarto/"
+    icon="briefcase"
+    style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);"
   >}}
 {{< /hextra/feature-grid >}}
 
-<div class="hx-mt-12"></div>
+<div class="hx-mt-16"></div>
 
+## Sobre memorIA
 
-### 1º Cuadrimestre
+MemorIA é un repositorio colaborativo de recursos académicos para estudantes. Aquí atoparás unha memoria de traballo con apuntes, prácticas, exames resoltos e outros recursos organizados por cursos e asignaturas.
 
-<div class="hx-mt-4"></div>
+Este proxecto nace da necesidade de centralizar e compartir o coñecemento, facilitando o acceso a materiais de estudo de calidade. Todos os contidos son creados e revisados por estudantes, formando unha comunidade de aprendizaxe cooperativa.
 
-{{< hextra/feature-grid >}}
-  {{< hextra/feature-card
-    title="Álxebra"
-    subtitle="Fundamentos de álxebra lineal, matrices e espazos vectoriais"
-    link="/docs/asignaturas/primeiro/1c/alxebra"
-    style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);"
-  >}}
-  {{< hextra/feature-card
-    title="Cálculo"
-    subtitle="Límites, derivadas, integrais e series"
-    link="/docs/asignaturas/primeiro/1c/calculo"
-    style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(124, 58, 237, 0.1);"
-  >}}
-  {{< hextra/feature-card
-    title="Matemática Discreta"
-    subtitle="Lóxica, conxuntos, relacións e teoría de grafos"
-    link="/docs/asignaturas/primeiro/1c/discreta"
-    style="background: linear-gradient(135deg, rgba(192, 38, 211, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(192, 38, 211, 0.1);"
-  >}}
-  {{< hextra/feature-card
-    title="Introdución á Computación"
-    subtitle="Fundamentos básicos da informática e computación"
-    link="/docs/asignaturas/primeiro/1c/intcomp"
-    style="background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(147, 51, 234, 0.1);"
-  >}}
-  {{< hextra/feature-card
-    title="Programación I"
-    subtitle="Introdución aos fundamentos da programación"
-    link="/docs/asignaturas/primeiro/1c/programacion1"
-    style="background: linear-gradient(135deg, rgba(67, 56, 202, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(67, 56, 202, 0.1);"
-  >}}
-{{< /hextra/feature-grid >}}
+### Como utilizar este repositorio
 
+- **Navega por cursos**: Selecciona o curso que che interese nas tarxetas superiores
+- **Explora asignaturas**: Dentro de cada curso, atoparás as asignaturas organizadas por cuadrimestres
+- **Accede aos recursos**: Cada asignatura contén seccións de apuntes, prácticas, exames e recursos adicionais
 
-<div class="hx-text-center hx-text-sm hx-opacity-50 hx-mt-16">
-Podes acceder a cada asignatura facendo clic na súa tarxeta correspondente
-</div>
+[Saber máis sobre o proxecto](/about/) · [Como contribuír](/about/#como-contribuír/) · [Últimas actualizacións](/changelog/)
