@@ -81,6 +81,8 @@ menu:
   #     weight: 3
 
 params:
+  customCSS:
+    - css/custom.css
   description: probiña da web jejje
 
   navbar:

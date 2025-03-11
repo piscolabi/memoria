@@ -1,0 +1,131 @@
+<div class="animation-container">
+    <style>
+      .animation-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .container {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        position: relative;
+      }
+      
+      .word-container {
+        position: relative;
+        height: 60px;
+        width: 180px;
+        display: inline-block;
+      }
+      
+      .word {
+        font-size: 48px;
+        font-weight: 900;
+        position: absolute;
+        right: 0;
+        white-space: nowrap;
+        background: linear-gradient(to right, #4969df, #7035DC);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        opacity: 0;
+        transform: translateY(80px);
+        transition: transform 1.2s ease-in-out, opacity 1.2s ease-in-out;
+      }
+      
+      .static-text {
+        font-size: 60px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #9333EA, #4338CA, #DB2777);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: inline-block;
+      }
+    </style>
+  
+    <div class="container">
+      <div class="word-container" id="wordContainer-{{ now.UnixNano }}"></div>
+      <div class="static-text">IA</div>
+    </div>
+    
+    <script>
+      (function() {
+        // Uso un ID único baseado no timestamp para evitar conflitos
+        const containerId = "wordContainer-{{ now.UnixNano }}";
+        
+        // AXUSTA ESTA CONSTANTE PARA SUBIR OU BAIXAR AS PALABRAS (valores negativos suben, positivos baixan)
+        const VERTICAL_OFFSET = 4; // baixa a palabra 7 pixeles
+        
+        const words = ["memor", "estud", "teor", "bibliograf", "emprend"];
+        const container = document.getElementById(containerId);
+        
+        // Crear elementos para cada palabra
+        words.forEach((word) => {
+          const wordElement = document.createElement('div');
+          wordElement.className = 'word';
+          wordElement.textContent = word;
+          container.appendChild(wordElement);
+        });
+        
+        const wordElements = Array.from(container.querySelectorAll('.word'));
+        let currentIndex = 0;
+        let isAnimating = false;
+        
+        // Asegurar que todos os elementos estean na posición inicial
+        wordElements.forEach(word => {
+          word.style.opacity = "0";
+          word.style.transform = `translateY(80px)`;
+        });
+        
+        function showNextWord() {
+          if (isAnimating) return;
+          
+          // Ocultar a palabra actual
+          if (currentIndex < wordElements.length) {
+            const currentWord = wordElements[currentIndex];
+            isAnimating = true;
+            
+            // Animar saída
+            setTimeout(() => {
+              currentWord.style.opacity = "0";
+              currentWord.style.transform = `translateY(-80px)`;
+              
+              // Preparar para a seguinte animación
+              setTimeout(() => {
+                isAnimating = false;
+                
+                // Incrementar índice
+                currentIndex = (currentIndex + 1) % wordElements.length;
+                
+                // Se chegamos ao final, resetear todas as palabras
+                if (currentIndex === 0) {
+                  wordElements.forEach(word => {
+                    word.style.opacity = "0";
+                    word.style.transform = `translateY(80px)`;
+                  });
+                }
+                
+                // Mostrar a seguinte palabra
+                showNextWord();
+              }, 1200); // 1200ms para a animación de saída
+            }, 2500); // 2500ms de pausa na posición central
+          }
+          
+          // Mostrar a seguinte palabra
+          const nextWord = wordElements[currentIndex];
+          nextWord.style.opacity = "1";
+          nextWord.style.transform = `translateY(${VERTICAL_OFFSET}px)`;
+        }
+        
+        // Iniciar a animación
+        setTimeout(() => {
+          showNextWord();
+        }, 500);
+      })();
+    </script>
+  </div>

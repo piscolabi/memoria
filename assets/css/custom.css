@@ -308,3 +308,8 @@
     border-color: hsla(var(--primary-hue), 50%, 60%, 0.3);
     box-shadow: 0 4px 12px hsla(var(--primary-hue), 30%, 10%, 0.5);
   }
+  /* Ocultar o botón de tema só na barra lateral esquerda */
+  .sidebar-container .hextra-theme-toggle,
+  .sidebar-container [data-toggle-animation="show"] {
+    display: none !important;
+  }
