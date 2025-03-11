@@ -3,12 +3,48 @@
   <head>
     {{- partial "head.html" . -}}
     
-    <!-- Ocultar o contido inicialmente se non está autenticado -->
+    <!-- Script para sincronizar autenticación entre ventás -->
     <script>
-      if (sessionStorage.getItem('siteAuthenticated') !== 'true') {
+      (function() {
+        // Comprobar se estamos nunha nova ventá e sincronizar desde localStorage
+        if (sessionStorage.getItem('siteAuthenticated') !== 'true') {
+          // Intentar ler desde localStorage
+          if (localStorage.getItem('siteAuthenticated') === 'true') {
+            sessionStorage.setItem('siteAuthenticated', 'true');
+          }
+        }
+        
+        // Se estamos autenticados en sessionStorage, gardar en localStorage tamén
+        if (sessionStorage.getItem('siteAuthenticated') === 'true') {
+          localStorage.setItem('siteAuthenticated', 'true');
+        }
+        
+        // Engadir event listener para detectar cambios no localStorage
+        window.addEventListener('storage', function(e) {
+          if (e.key === 'siteAuthenticated' && e.newValue === 'true') {
+            sessionStorage.setItem('siteAuthenticated', 'true');
+          }
+        });
+      })();
+      
+      // Ocultar o contido inicialmente se non está autenticado (comprobamos ambos almacenamentos)
+      if (localStorage.getItem('siteAuthenticated') !== 'true' && sessionStorage.getItem('siteAuthenticated') !== 'true') {
         document.write('<style>#site-content{display:none;}</style>');
+        // Cambiar o título da páxina para ocultar información
+        document.title = "Acceso Protexido";
       }
     </script>
+    
+    <!-- Estilo para ocultar o contido durante a carga da páxina -->
+    <style>
+      #site-content {
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .auth-loaded #site-content {
+        opacity: 1;
+      }
+    </style>
   </head>
   <body dir="{{ .Site.Language.LanguageDirection | default `ltr` }}">
     <div id="site-content">
@@ -23,5 +59,25 @@
     <!-- Scripts de protección con contrasinal -->
     <script src="/js/auth-template.js"></script>
     <script src="/js/password-protection.js"></script>
+    
+    <!-- Script para mostrar o contido cando está autenticado -->
+    <script>
+      (function() {
+        // Comprobar se está autenticado
+        if (localStorage.getItem('siteAuthenticated') === 'true' || sessionStorage.getItem('siteAuthenticated') === 'true') {
+          // Mostrar o contido con animación suave
+          document.body.classList.add('auth-loaded');
+          // Restaurar o título orixinal se foi cambiado
+          if (document.title === "Acceso Protexido") {
+            document.title = "{{ .Site.Title }}";
+          }
+        }
+        
+        // Código de depuración (podes eliminalo en produción)
+        console.log("Estado de autenticación:");
+        console.log("- sessionStorage:", sessionStorage.getItem('siteAuthenticated'));
+        console.log("- localStorage:", localStorage.getItem('siteAuthenticated'));
+      })();
+    </script>
   </body>
 </html>
