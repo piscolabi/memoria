@@ -65,20 +65,20 @@ menu:
       params:
         icon: github
 
-  # sidebar:
-  #   - identifier: mais
-  #     name: Máis
-  #     params:
-  #       type: separator
-  #     weight: 1
-  #   - identifier: about
-  #     name: "About"
-  #     pageRef: "/about"
-  #     weight: 2
-  #   - identifier: hugoDocs
-  #     name: "Hugo Docs ↗"
-  #     url: "https://gohugo.io/documentation/"
-  #     weight: 3
+  sidebar:
+    - identifier: interes
+      name: Máis
+      params:
+        type: separator
+      weight: 1
+    - identifier: about
+      name: "About"
+      pageRef: "/about"
+      weight: 2
+    - identifier: hugoDocs
+      name: "Grao IA - usc.gal ↗"
+      url: "https://www.usc.gal/gl/estudos/graos/enxenaria-arquitectura/grao-intelixencia-artificial"
+      weight: 3
 
 params:
   customCSS:
@@ -89,8 +89,8 @@ params:
     displayTitle: true
     displayLogo: true
     logo:
-      path: images/logo6.svg
-      dark: images/logo5.svg
+      path: logo/logo6.svg
+      dark: logo/logo5.svg
       width: 50
       height: 52
       # link: /

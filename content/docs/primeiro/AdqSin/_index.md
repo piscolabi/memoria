@@ -1,8 +1,8 @@
 ---
-linkTitle: "AdqSin"
+linkTitle: "AdqSin" #nome da carpeta na sidebar e do breadcrumb, o enderezo (link) resl é o nome da carpeta de arquivos, pero ponse en minusculas automáticamente  
 title: "Adquisición de Sinal"
 description: "Fundamentos de procesamento e adquisición de sinais analóxicos e dixitais"
-weight: 2  # Orde dentro do cuadrimestre
+weight: 1
 geekdocCollapseSection: true
 ---
 

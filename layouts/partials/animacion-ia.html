@@ -58,10 +58,10 @@
         // Uso un ID único baseado no timestamp para evitar conflitos
         const containerId = "wordContainer-{{ now.UnixNano }}";
         
-        // AXUSTA ESTA CONSTANTE PARA SUBIR OU BAIXAR AS PALABRAS (valores negativos suben, positivos baixan)
-        const VERTICAL_OFFSET = 4; // baixa a palabra 7 pixeles
+        // cte para subir ou baixar pixeles das palabras (valores negativos suben, positivos baixan)
+        const VERTICAL_OFFSET = 4; // baixa a palabra 4 pixeles
         
-        const words = ["memor", "estud", "teor", "bibliograf", "emprend"];
+        const words = ["memor", "estud", "teor", "bibliograf", "emprend", "chorizo"];
         const container = document.getElementById(containerId);
         
         // Crear elementos para cada palabra
@@ -110,20 +110,17 @@
                   });
                 }
                 
-                // Mostrar a seguinte palabra
                 showNextWord();
               }, 1200); // 1200ms para a animación de saída
             }, 2500); // 2500ms de pausa na posición central
           }
           
-          // Mostrar a seguinte palabra
           const nextWord = wordElements[currentIndex];
           nextWord.style.opacity = "1";
           nextWord.style.transform = `translateY(${VERTICAL_OFFSET}px)`;
         }
-        
         // Iniciar a animación
-        setTimeout(() => {
+        setTimeout(() => { 
           showNextWord();
         }, 500);
       })();
