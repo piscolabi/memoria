@@ -3,38 +3,6 @@
   <head>
     {{- partial "head.html" . -}}
     
-    <!-- Script para sincronizar autenticación entre ventás -->
-    <script>
-      (function() {
-        // Comprobar se estamos nunha nova ventá e sincronizar desde localStorage
-        if (sessionStorage.getItem('siteAuthenticated') !== 'true') {
-          // Intentar ler desde localStorage
-          if (localStorage.getItem('siteAuthenticated') === 'true') {
-            sessionStorage.setItem('siteAuthenticated', 'true');
-          }
-        }
-        
-        // Se estamos autenticados en sessionStorage, gardar en localStorage tamén
-        if (sessionStorage.getItem('siteAuthenticated') === 'true') {
-          localStorage.setItem('siteAuthenticated', 'true');
-        }
-        
-        // Engadir event listener para detectar cambios no localStorage
-        window.addEventListener('storage', function(e) {
-          if (e.key === 'siteAuthenticated' && e.newValue === 'true') {
-            sessionStorage.setItem('siteAuthenticated', 'true');
-          }
-        });
-      })();
-      
-      // Ocultar o contido inicialmente se non está autenticado (comprobamos ambos almacenamentos)
-      if (localStorage.getItem('siteAuthenticated') !== 'true' && sessionStorage.getItem('siteAuthenticated') !== 'true') {
-        document.write('<style>#site-content{display:none;}</style>');
-        // Cambiar o título da páxina para ocultar información
-        document.title = "Acceso Protexido";
-      }
-    </script>
-    
     <!-- Estilo para ocultar o contido durante a carga da páxina -->
     <style>
       #site-content {
@@ -45,6 +13,33 @@
         opacity: 1;
       }
     </style>
+    
+    <!-- Script inicial para ocultar contido se non está autenticado -->
+    <script>
+      (function() {
+        // Comprobar se a sesión expirou (24 horas)
+        const authTimestamp = localStorage.getItem('authTimestamp');
+        const SESSION_EXPIRATION = 24 * 60 * 60 * 1000;
+        
+        if (authTimestamp) {
+          const currentTime = Date.now();
+          if (currentTime - parseInt(authTimestamp) > SESSION_EXPIRATION) {
+            // A sesión expirou, eliminar datos
+            localStorage.removeItem('siteAuthenticated');
+            localStorage.removeItem('authTimestamp');
+            sessionStorage.removeItem('siteAuthenticated');
+            document.cookie = 'siteAuthenticated=; Max-Age=-99999999; path=/';
+          }
+        }
+        
+        // Comprobar autenticación
+        if (localStorage.getItem('siteAuthenticated') !== 'true') {
+          document.write('<style>#site-content{display:none;}</style>');
+          // Cambiar o título da páxina para ocultar información
+          document.title = "Acceso Protexido";
+        }
+      })();
+    </script>
   </head>
   <body dir="{{ .Site.Language.LanguageDirection | default `ltr` }}">
     <div id="site-content">
@@ -57,6 +52,7 @@
     {{ partial "scripts.html" . }}
     
     <!-- Scripts de protección con contrasinal -->
+    <script src="/js/password-config.js"></script>
     <script src="/js/auth-template.js"></script>
     <script src="/js/password-protection.js"></script>
     
@@ -64,7 +60,7 @@
     <script>
       (function() {
         // Comprobar se está autenticado
-        if (localStorage.getItem('siteAuthenticated') === 'true' || sessionStorage.getItem('siteAuthenticated') === 'true') {
+        if (localStorage.getItem('siteAuthenticated') === 'true') {
           // Mostrar o contido con animación suave
           document.body.classList.add('auth-loaded');
           // Restaurar o título orixinal se foi cambiado
@@ -72,11 +68,6 @@
             document.title = "{{ .Site.Title }}";
           }
         }
-        
-        // Código de depuración (podes eliminalo en produción)
-        console.log("Estado de autenticación:");
-        console.log("- sessionStorage:", sessionStorage.getItem('siteAuthenticated'));
-        console.log("- localStorage:", localStorage.getItem('siteAuthenticated'));
       })();
     </script>
   </body>

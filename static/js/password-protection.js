@@ -1,19 +1,28 @@
+// Sistema de protección con contrasinal optimizado
 (function() {
-    // (non modificar estas constantes)
-    const _0xd72f = [
-      'R2FsZWdvUmVwb3NpdG9yaW8yMDI1', // Sal en Base64
-      '==QZtFmb', 'vd2bQBCf', 'kRWYsN2c', 'hBCZpVmb', 'pxWY2JXZ',  // Fragmentos de datos confusos
-      '5dc7a', '85b2c9', '4e1f3b', '2d6a08', // Fragmentos do hash (non en orde)
-      'zJXZ39Gd', 'jF2czVmcj', 'NHel5WZ', // Máis confusión
-      'd78c98d6aa0392bc48b101a9525a469f20ec4f764dccd928e2ca325bc21a5b0', // Hash orixinal (obsoleto, só para confundir)
-      '9cb3', '67f1d', 'e02a5' // Máis fragmentos
-    ];
-    
-    // Matriz de iteracións dinámicas (baseada na data actual)
-    const _iterBase = new Date().getDate() + 7;
-    
-    // Funcións para manexar cookies
-    function setCookie(name, value, days) {
+  // Tempo de expiración da sesión en milisegundos (24 horas)
+  const SESSION_EXPIRATION = 24 * 60 * 60 * 1000;
+  
+  // Comprobar se o almacenamento está dispoñible
+  function isStorageAvailable(type) {
+    try {
+      const storage = window[type];
+      const x = '__storage_test__';
+      storage.setItem(x, x);
+      storage.removeItem(x);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+  
+  // Determinar que métodos de almacenamento están dispoñibles
+  const hasLocalStorage = isStorageAvailable('localStorage');
+  const hasSessionStorage = isStorageAvailable('sessionStorage');
+  
+  // Funcións para manexar cookies
+  function setCookie(name, value, days) {
+    try {
       let expires = "";
       if (days) {
         const date = new Date();
@@ -21,9 +30,15 @@
         expires = "; expires=" + date.toUTCString();
       }
       document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Strict";
+      return true;
+    } catch (e) {
+      console.error('Erro ao establecer cookie:', e);
+      return false;
     }
-    
-    function getCookie(name) {
+  }
+  
+  function getCookie(name) {
+    try {
       const nameEQ = name + "=";
       const ca = document.cookie.split(';');
       for (let i = 0; i < ca.length; i++) {
@@ -32,348 +47,464 @@
         if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
       }
       return null;
+    } catch (e) {
+      console.error('Erro ao obter cookie:', e);
+      return null;
     }
-    
-    function deleteCookie(name) {
+  }
+  
+  function deleteCookie(name) {
+    try {
       document.cookie = name + '=; Max-Age=-99999999; path=/';
+      return true;
+    } catch (e) {
+      console.error('Erro ao eliminar cookie:', e);
+      return false;
     }
+  }
 
-    // Función para corrixir inconsistencias no estado de autenticación
-    function fixAuthenticationState() {
-        const cookieAuth = getCookie('siteAuthenticated') === 'true';
-        const localAuth = localStorage.getItem('siteAuthenticated') === 'true';
-        const sessionAuth = sessionStorage.getItem('siteAuthenticated') === 'true';
-        
-        // Se hai inconsistencias, establecer todo ao valor máis común
-        if (cookieAuth !== localAuth || localAuth !== sessionAuth || cookieAuth !== sessionAuth) {
-          console.log("Detectada inconsistencia no estado de autenticación, corrixindo...");
-          console.log("- Cookie:", cookieAuth);
-          console.log("- localStorage:", localAuth);
-          console.log("- sessionStorage:", sessionAuth);
-          
-          // Contar cantos son true
-          const trueCount = (cookieAuth ? 1 : 0) + (localAuth ? 1 : 0) + (sessionAuth ? 1 : 0);
-          
-          // Se a maioría son true, establecer todo a true
-          if (trueCount >= 2) {
-            console.log("Resolvendo a inconsistencia: establecendo todo a TRUE");
-            setAuthenticated(true);
-          } else {
-            console.log("Resolvendo a inconsistencia: establecendo todo a FALSE");
-            setAuthenticated(false);
-          }
-        }
+  // Función para obter un valor do almacenamento
+  function getStorageItem(key) {
+    if (hasLocalStorage) {
+      try {
+        return localStorage.getItem(key);
+      } catch (e) {
+        console.warn('Erro ao ler de localStorage:', e);
       }
+    }
+    
+    if (hasSessionStorage) {
+      try {
+        return sessionStorage.getItem(key);
+      } catch (e) {
+        console.warn('Erro ao ler de sessionStorage:', e);
+      }
+    }
+    
+    return getCookie(key);
+  }
+  
+  // Función para establecer un valor no almacenamento
+  function setStorageItem(key, value) {
+    let success = false;
+    
+    if (hasLocalStorage) {
+      try {
+        localStorage.setItem(key, value);
+        success = true;
+      } catch (e) {
+        console.warn('Erro ao escribir en localStorage:', e);
+      }
+    }
+    
+    if (hasSessionStorage) {
+      try {
+        sessionStorage.setItem(key, value);
+        success = true;
+      } catch (e) {
+        console.warn('Erro ao escribir en sessionStorage:', e);
+      }
+    }
+    
+    // Sempre intentar establecer unha cookie como fallback
+    if (setCookie(key, value, 1)) {
+      success = true;
+    }
+    
+    return success;
+  }
+  
+  // Función para eliminar un valor do almacenamento
+  function removeStorageItem(key) {
+    if (hasLocalStorage) {
+      try {
+        localStorage.removeItem(key);
+      } catch (e) {
+        console.warn('Erro ao eliminar de localStorage:', e);
+      }
+    }
+    
+    if (hasSessionStorage) {
+      try {
+        sessionStorage.removeItem(key);
+      } catch (e) {
+        console.warn('Erro ao eliminar de sessionStorage:', e);
+      }
+    }
+    
+    deleteCookie(key);
+  }
 
-
-    
-    // Función para comprobar se o usuario está autenticado (usando calquera método)
-    function isAuthenticated() {
-      return getCookie('siteAuthenticated') === 'true' || 
-             localStorage.getItem('siteAuthenticated') === 'true' || 
-             sessionStorage.getItem('siteAuthenticated') === 'true';
+  // Función para comprobar se o usuario está autenticado e se a sesión está vixente
+  function isAuthenticated() {
+    // Comprobar se a sesión expirou (24 horas)
+    const authTimestamp = getStorageItem('authTimestamp');
+    if (authTimestamp) {
+      const currentTime = Date.now();
+      if (currentTime - parseInt(authTimestamp) > SESSION_EXPIRATION) {
+        // A sesión expirou, eliminar datos
+        setAuthenticated(false);
+        return false;
+      }
+    } else if (getStorageItem('siteAuthenticated') === 'true') {
+      // Se está autenticado pero non ten timestamp, engadir agora
+      setStorageItem('authTimestamp', Date.now().toString());
     }
     
-    // Función para establecer a autenticación en todos os medios dispoñibles
-    function setAuthenticated(value) {
-      try {
-        // Establecer cookie (7 días de duración)
-        setCookie('siteAuthenticated', value ? 'true' : '', value ? 7 : -1);
-      } catch (e) {
-        console.error('Erro ao establecer cookie:', e);
+    return getStorageItem('siteAuthenticated') === 'true';
+  }
+  
+  // Función para establecer a autenticación en todos os medios dispoñibles
+  function setAuthenticated(value) {
+    try {
+      if (value) {
+        setStorageItem('siteAuthenticated', 'true');
+        setStorageItem('authTimestamp', Date.now().toString());
+      } else {
+        removeStorageItem('siteAuthenticated');
+        removeStorageItem('authTimestamp');
       }
-      
-      try {
-        // Establecer en localStorage para compartir entre ventás
-        if (value) {
-          localStorage.setItem('siteAuthenticated', 'true');
-        } else {
-          localStorage.removeItem('siteAuthenticated');
-        }
-      } catch (e) {
-        console.error('Erro ao establecer localStorage:', e);
-      }
-      
-      try {
-        // Establecer en sessionStorage para compatibilidade
-        if (value) {
-          sessionStorage.setItem('siteAuthenticated', 'true');
-        } else {
-          sessionStorage.removeItem('siteAuthenticated');
-        }
-      } catch (e) {
-        console.error('Erro ao establecer sessionStorage:', e);
-      }
+    } catch (e) {
+      console.error('Erro ao xestionar o estado de autenticación:', e);
+    }
+  }
+  
+  // Función para verificar a autenticación
+  function checkAuthentication() {
+    return isAuthenticated();
+  }
+  
+  // Función para mostrar o formulario de autenticación
+  function showAuthForm() {
+    // Usar o template definido en auth-template.js
+    if (!window.AUTH_TEMPLATE) {
+      console.error("Template de autenticación non atopado!");
+      return;
     }
     
-    // Función para transformar unha mensaxe con múltiples pasadas
-    async function secureTransform(message) {
-      try {
-        // Decodificar o sal desde Base64
-        const salt = atob(_0xd72f[0]);
-        
-        // Aplicar transformacións múltiples
-        let result = message;
-        
-        // 1. Primeira transformación: Engadir sal
-        result = salt + ":" + result + ":" + salt.split('').reverse().join('');
-        
-        // 2. Primeira pasada de hash
-        const encoder = new TextEncoder();
-        let hashBuffer = await crypto.subtle.digest('SHA-256', encoder.encode(result));
-        
-        // 3. Iteracións múltiples (baseadas na data para dificultar a análise)
-        for (let i = 0; i < _iterBase; i++) {
-          // Combinar o hash actual co sal e un contador
-          const iterData = new Uint8Array([
-            ...new Uint8Array(hashBuffer),
-            ...encoder.encode(salt + i.toString())
-          ]);
-          // Aplicar outro hash
-          hashBuffer = await crypto.subtle.digest('SHA-256', iterData);
-        }
-        
-        // 4. Converter a hexadecimal
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        
-      } catch (error) {
-        console.error('Erro na transformación segura', error);
-        // En caso de erro, usar un hash simple como fallback
-        return sha256(message);
-      }
+    // Comprobar se xa existe o formulario
+    if (document.getElementById('auth-overlay')) {
+      return;
     }
     
-    // Función de hash simple (como fallback)
-    async function sha256(message) {
-      const msgBuffer = new TextEncoder().encode(message);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    // Crear e engadir o elemento de autenticación ao body
+    const authElement = document.createElement('div');
+    authElement.id = 'auth-overlay';
+    authElement.innerHTML = window.AUTH_TEMPLATE;
+    document.body.appendChild(authElement);
+    
+    // Engadir event listeners
+    const passwordInput = document.getElementById('password-input');
+    const submitButton = document.getElementById('submit-button');
+    
+    if (!passwordInput || !submitButton) {
+      console.error("Non se atoparon os elementos do formulario!");
+      return;
     }
     
     // Función para verificar a contrasinal
-    async function verifyPassword(input) {
-      // Hash correcto (reconstruído dinamicamente)
-      // Este hash corresponde á contrasinal real transformada co algoritmo de arriba
-      // Nota: Debes xerar este hash coa túa contrasinal usando o algoritmo secureTransform
-      const fragmentos = [
-        '21e17f50c7', '68af012e55', '97116b5582', 
-        'd2d99060bf', 'e1c309a443', 'bdc66aba84', '103c'
-      ];
+    async function verifyPassword() {
+      const password = passwordInput.value;
       
-      // Permutar os fragmentos para dificultar a análise estática
-      const correctHash = fragmentos.join('');
+      // Verificar usando o sistema ofuscado
+      let isCorrect = false;
       
       try {
-        // Transformar a entrada do usuario
-        const transformedInput = await secureTransform(input);
-        
-        // Comparar de forma segura (tempo constante para evitar ataques de tempo)
-        let result = 0;
-        for (let i = 0; i < correctHash.length; i++) {
-          result |= (transformedInput.charCodeAt(i) ^ correctHash.charCodeAt(i));
+        if (window.x7kR9p && typeof window.x7kR9p.q8bZ3 === 'function') {
+          isCorrect = await window.x7kR9p.q8bZ3(password);
+        } else {
+          console.error("Sistema de verificación non dispoñible");
+          return;
         }
-        
-        return result === 0;
       } catch (error) {
-        console.error('Erro ao verificar a contrasinal:', error);
-        return false;
+        console.error("Erro ao verificar a contrasinal:", error);
+        return;
+      }
+      
+      if (isCorrect) {
+        try {
+          // Gardar a autenticación en todos os medios
+          setAuthenticated(true);
+          
+          // Mostrar mensaxe de éxito antes de recargar
+          const authContainer = document.querySelector('.auth-content');
+          if (authContainer) {
+            // Cambiar a un mensaxe de éxito
+            authContainer.innerHTML = `
+              <div style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: linear-gradient(90deg, #9333EA, #4338CA, #DB2777);
+                z-index: 1;
+              "></div>
+              <div style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 2rem;
+                color: white;
+                width: 100%;
+              ">
+                <div style="
+                  background: rgba(147, 51, 234, 0.2);
+                  border-radius: 50%;
+                  width: 80px;
+                  height: 80px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin-bottom: 1.5rem;
+                ">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(147, 51, 234, 1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <h2 style="
+                  font-size: 1.75rem;
+                  margin-bottom: 1rem;
+                  background: linear-gradient(90deg, #9333EA, #4338CA);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  background-clip: text;
+                  text-align: center;
+                ">Acceso correcto</h2>
+                <p style="
+                  font-size: 1.125rem;
+                  margin-bottom: 0.5rem;
+                  color: rgba(255, 255, 255, 0.8);
+                  text-align: center;
+                ">Redirixindo á páxina principal...</p>
+                <div class="loading-bar" style="
+                  width: 200px;
+                  height: 4px;
+                  background: rgba(255, 255, 255, 0.2);
+                  border-radius: 2px;
+                  overflow: hidden;
+                  margin-top: 1rem;
+                  position: relative;
+                ">
+                  <div class="loading-progress" style="
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 0%;
+                    background: linear-gradient(90deg, #9333EA, #4338CA, #DB2777);
+                    border-radius: 2px;
+                    transition: width 1.5s ease;
+                  "></div>
+                </div>
+              </div>
+            `;
+            
+            // Animar a barra de progreso
+            setTimeout(() => {
+              const progressBar = document.querySelector('.loading-progress');
+              if (progressBar) {
+                progressBar.style.width = '100%';
+              }
+            }, 100);
+
+            // Mostrar o contido sen recargar
+            setTimeout(() => {
+              try {
+                // Eliminar o overlay de autenticación
+                const overlay = document.getElementById('auth-overlay');
+                if (overlay && overlay.parentNode) {
+                  overlay.parentNode.removeChild(overlay);
+                }
+                
+                // Mostrar o contido da páxina
+                const content = document.getElementById('site-content');
+                if (content) {
+                  content.style.display = 'block';
+                  document.body.classList.add('auth-loaded');
+                  
+                  // Restaurar o título orixinal
+                  if (document.title === "Acceso Protexido") {
+                    // Intentar obter o título do meta tag
+                    const titleMeta = document.querySelector('meta[property="og:title"]');
+                    if (titleMeta) {
+                      document.title = titleMeta.getAttribute('content');
+                    } else {
+                      // Fallback a un título xenérico
+                      document.title = "Páxina Principal";
+                    }
+                  }
+                } else {
+                  // Se non podemos mostrar o contido, recargar
+                  window.location.href = window.location.pathname;
+                }
+              } catch (e) {
+                console.error("Erro ao mostrar o contido:", e);
+                // Fallback: recargar a páxina
+                window.location.href = window.location.pathname;
+              }
+            }, 1800);
+          } else {
+            // Se non se atopa o contedor, intentar mostrar o contido directamente
+            try {
+              const overlay = document.getElementById('auth-overlay');
+              if (overlay && overlay.parentNode) {
+                overlay.parentNode.removeChild(overlay);
+              }
+              
+              const content = document.getElementById('site-content');
+              if (content) {
+                content.style.display = 'block';
+                document.body.classList.add('auth-loaded');
+              } else {
+                window.location.href = window.location.pathname;
+              }
+            } catch (e) {
+              console.error("Erro ao mostrar o contido:", e);
+              window.location.href = window.location.pathname;
+            }
+          }
+          
+          console.log("Autenticación correcta!");
+        } catch (error) {
+          console.error("Erro ao procesar autenticación correcta:", error);
+          // Fallback: intentar mostrar o contido sen recargar
+          try {
+            const overlay = document.getElementById('auth-overlay');
+            if (overlay) {
+              overlay.style.display = 'none';
+            }
+            const content = document.getElementById('site-content');
+            if (content) {
+              content.style.display = 'block';
+            }
+          } catch (e) {
+            console.error("Erro ao mostrar contido no fallback:", e);
+          }
+        }
+      } else {
+        // Mostrar erro (con animación)
+        passwordInput.value = "";
+        passwordInput.placeholder = "Contrasinal incorrecto";
+        passwordInput.style.borderColor = "#EF4444";
+        passwordInput.classList.remove('shake-animation');
+        
+        void passwordInput.offsetWidth;
+        
+        passwordInput.classList.add('shake-animation');
+        
+        // Eliminar a animación despois de completarse
+        setTimeout(() => {
+          passwordInput.classList.remove('shake-animation');
+        }, 700);
+        
+        // Restaurar o placeholder despois dun tempo
+        setTimeout(() => {
+          passwordInput.placeholder = "Introduce o contrasinal";
+          passwordInput.style.borderColor = ""; 
+        }, 1500);
       }
     }
     
-    // Función principal de autenticación
-    function initAuthentication() {
-      // IMPORTANTE: Comprobar primeiro se xa estamos autenticados
-      if (isAuthenticated()) {
-        console.log("Usuario xa autenticado, mostrando contido");
-        // Xa autenticado, asegurarse de que o contido é visible
-        document.addEventListener('DOMContentLoaded', function() {
-          const siteContent = document.getElementById('site-content');
-          if (siteContent) {
-            siteContent.style.display = 'block';
-          }
-        });
-        return; // Importante: saír da función se xa estamos autenticados
-      }
-      
-      // Se chegamos aquí, non estamos autenticados
-      console.log("Usuario non autenticado, mostrando formulario de login");
-      
-      // Executar cando o DOM estea cargado
-      document.addEventListener('DOMContentLoaded', function() {
-        // Ocultar o contido da páxina
-        const siteContent = document.getElementById('site-content');
-        if (siteContent) {
-          siteContent.style.display = 'none';
-        }
-        
-        // Non limpar todo o body, só ocultar o contido principal
-        document.title = "Acceso Protexido";
-        
-        // Crear o formulario de login
-        const loginForm = document.createElement('div');
-        
-        // Comprobar se o template está dispoñible
-        if (window.AUTH_TEMPLATE) {
-          loginForm.innerHTML = window.AUTH_TEMPLATE;
-        } else {
-          // Template de emerxencia
-          loginForm.innerHTML = `
-            <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:#f5f5f7;display:flex;align-items:center;justify-content:center;z-index:9999;">
-              <div style="background:white;padding:30px;border-radius:10px;text-align:center;max-width:400px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
-                <h2 style="margin-bottom:20px;color:#333;">Acceso protexido</h2>
-                <input id="password-input" type="password" placeholder="Escriba a contrasinal" style="width:100%;padding:12px;margin-bottom:15px;border-radius:4px;border:1px solid #ddd;">
-                <button id="submit-button" style="background:#4338CA;color:white;padding:12px 20px;border:none;border-radius:4px;cursor:pointer;width:100%;">Acceder</button>
-              </div>
-            </div>
-          `;
-        }
-        
-        document.body.appendChild(loginForm);
-        
-        // Enfocar o input
-        setTimeout(() => {
-          const passwordInput = document.getElementById('password-input');
-          if (passwordInput) {
-            passwordInput.focus();
-          }
-        }, 100);
-        
-        // Engadir event listeners
-        const submitButton = document.getElementById('submit-button');
-        const passwordInput = document.getElementById('password-input');
-        
-        if (submitButton) {
-          submitButton.addEventListener('click', checkPassword);
-        }
-        
-        if (passwordInput) {
-          passwordInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-              checkPassword();
-            }
-          });
-        }
-        
-        async function checkPassword() {
-          const passwordInput = document.getElementById('password-input');
-          if (!passwordInput) return;
-          
-          const enteredPassword = passwordInput.value;
-          
-          try {
-            console.log("Verificando contrasinal...");
-            
-            // Verificar a contrasinal
-            const isValid = await verifyPassword(enteredPassword);
-            console.log("Resultado da verificación:", isValid);
-            
-            if (isValid) {
-              console.log("Contrasinal correcta, establecendo autenticación");
-              
-              // Autenticación correcta - establecer en todos os medios dispoñibles
-              setAuthenticated(true);
-              
-              // IMPORTANTE: Mostrar un mensaxe antes de recargar
-              const loginContainer = document.querySelector('.auth-container') || loginForm;
-              if (loginContainer) {
-                loginContainer.innerHTML = `
-                  <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:#f5f5f7;display:flex;align-items:center;justify-content:center;z-index:9999;">
-                    <div style="background:white;padding:30px;border-radius:10px;text-align:center;max-width:400px;box-shadow:0 4px 20px rgba(0,0,0,0.1);">
-                      <h2 style="margin-bottom:20px;color:#333;">Acceso correcto</h2>
-                      <p style="margin-bottom:20px;">Cargando o contido da páxina...</p>
-                      <div style="width:50px;height:50px;border:5px solid #f3f3f3;border-top:5px solid #4338CA;border-radius:50%;margin:0 auto;animation:spin 1s linear infinite;"></div>
-                    </div>
-                  </div>
-                  <style>@keyframes spin {0% {transform: rotate(0deg);} 100% {transform: rotate(360deg);}}</style>
-                `;
-              }
-              
-              // Recargar a páxina despois de mostrar o mensaxe (con pequeno retraso)
-              setTimeout(function() {
-                window.location.reload();
-              }, 800);
-            } else {
-              // Contrasinal incorrecta
-              passwordInput.value = '';
-              passwordInput.style.borderColor = '#DB2777';
-              passwordInput.style.boxShadow = '0 0 0 2px rgba(219, 39, 119, 0.2)';
-              passwordInput.placeholder = 'Contrasinal incorrecta';
-              
-              // Efecto de sacudida no input
-              passwordInput.animate([
-                { transform: 'translateX(-6px)' },
-                { transform: 'translateX(6px)' },
-                { transform: 'translateX(-6px)' },
-                { transform: 'translateX(6px)' },
-                { transform: 'translateX(-3px)' },
-                { transform: 'translateX(3px)' },
-                { transform: 'translateX(0)' }
-              ], {
-                duration: 500,
-                easing: 'ease-in-out'
-              });
-              
-              setTimeout(() => {
-                passwordInput.style.borderColor = '';
-                passwordInput.style.boxShadow = '';
-                passwordInput.placeholder = 'Escriba a contrasinal';
-              }, 2000);
-            }
-          } catch (error) {
-            console.error('Erro ao verificar a contrasinal:', error);
-          }
-        }
+    // Engadir evento para o botón
+    if (submitButton) {
+      submitButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        verifyPassword();
       });
     }
     
-    // Función para cerrar sesión (podes chamar a isto desde un botón)
-    window.logoutSite = function() {
-      setAuthenticated(false);
-      window.location.reload();
-    };
-    
-    // Verificar o estado de autenticación ao inicio
-    console.log("Estado de autenticación:");
-    console.log("- Cookie:", getCookie('siteAuthenticated'));
-    console.log("- localStorage:", localStorage.getItem('siteAuthenticated'));
-    console.log("- sessionStorage:", sessionStorage.getItem('siteAuthenticated'));
-    
-    // Corrixir calquera inconsistencia no estado de autenticación
-    fixAuthenticationState();
-
-    // Comprobar se o template está cargado e iniciar a autenticación
-    if (window.authTemplateLoaded) {
-      initAuthentication();
-    } else {
-      // Esperar a que o template estea cargado
-      window.addEventListener('load', function checkTemplate() {
-        if (window.authTemplateLoaded) {
-          window.removeEventListener('load', checkTemplate);
-          initAuthentication();
-        } else {
-            console.error("Erro: auth-template.js non está cargado correctamente");
-            // Intentar cargar de novo despois dun tempo
-            setTimeout(function() {
-              if (window.authTemplateLoaded) {
-                initAuthentication();
-              } else {
-                console.error("Erro crítico: Non se puido cargar o template de autenticación");
-                // Usar un template de emerxencia e iniciar a autenticación
-                window.AUTH_TEMPLATE = `
-                  <div class="auth-container" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:9999;">
-                    <div style="background:white;padding:20px;border-radius:10px;text-align:center;max-width:400px;">
-                      <h2 style="margin-bottom:20px;">Acceso protexido</h2>
-                      <input id="password-input" type="password" placeholder="Escriba a contrasinal" style="width:100%;padding:10px;margin-bottom:15px;border-radius:4px;border:1px solid #ddd;">
-                      <button id="submit-button" style="background:#4338CA;color:white;padding:10px 20px;border:none;border-radius:4px;cursor:pointer;">Acceder</button>
-                    </div>
-                  </div>
-                `;
-                initAuthentication();
-              }
-            }, 1000);
+    // Engadir evento para o input (presionar Enter)
+    if (passwordInput) {
+      passwordInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          verifyPassword();
+        }
+      });
+      
+      // Foco automático no input
+      setTimeout(() => {
+        passwordInput.focus();
+      }, 100);
+    }
+    // Engadir evento para o input (presionar Enter)
+    if (passwordInput) {
+      passwordInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          verifyPassword();
+        }
+      });
+      
+      // Foco automático no input
+      setTimeout(() => {
+        passwordInput.focus();
+      }, 100);
+    }
+  }
+  
+  // Inicialización
+  function init() {
+    try {
+      // Comprobar se o contido xa está visible
+      const content = document.getElementById('site-content');
+      if (content && window.getComputedStyle(content).display === 'none') {
+        // Comprobar autenticación
+        if (checkAuthentication()) {
+          // Se está autenticado, mostrar o contido
+          content.style.display = 'block';
+          document.body.classList.add('auth-loaded');
+          
+          // Comprobar se debemos renovar o timestamp
+          const authTimestamp = getStorageItem('authTimestamp');
+          if (authTimestamp) {
+            const currentTime = Date.now();
+            const elapsedTime = currentTime - parseInt(authTimestamp);
+            
+            // Se pasou máis da metade do tempo de expiración, renovar o timestamp
+            if (elapsedTime > (SESSION_EXPIRATION / 2)) {
+              setStorageItem('authTimestamp', currentTime.toString());
+            }
           }
-        });
+        } else {
+          // Se non está autenticado, mostrar o formulario
+          showAuthForm();
+        }
       }
-  })();
+    } catch (error) {
+      console.error("Erro ao inicializar:", error);
+      // En caso de erro, intentar mostrar o formulario
+      showAuthForm();
+    }
+  }
+  
+  // Comprobar se o documento xa está cargado
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+  
+  // Comprobar periodicamente a expiración da sesión (cada minuto)
+  setInterval(() => {
+    try {
+      if (!isAuthenticated()) {
+        // Se a sesión expirou e o contido está visible, ocultalo e mostrar o formulario
+        const content = document.getElementById('site-content');
+        const overlay = document.getElementById('auth-overlay');
+        
+        if (content && !overlay) {
+          content.style.display = 'none';
+          document.body.classList.remove('auth-loaded');
+          showAuthForm();
+        }
+      }
+    } catch (error) {
+      console.error("Erro na comprobación periódica:", error);
+    }
+  }, 60000); // 60 segundos
+})();
