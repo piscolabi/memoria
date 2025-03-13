@@ -1,0 +1,68 @@
+<svg viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradientFill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9333EA" />
+      <stop offset="25%" stop-color="#7E22CE" />
+      <stop offset="50%" stop-color="#4338CA" />
+      <stop offset="75%" stop-color="#6D28D9" />
+      <stop offset="100%" stop-color="#DB2777" />
+    </linearGradient>
+    
+    <!-- Sombra para profundidade -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+    
+    <!-- Resplandor para o hexágono interior -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <!-- Máscara para o buraco central -->
+    <mask id="hexHole">
+      <rect width="100%" height="100%" fill="white"/>
+      <path fill="black" d="M90,45 L50,65 L50,115 L90,135 L130,115 L130,65 Z" />
+    </mask>
+    
+    <!-- Definimos un clip-path para recortar exactamente ao hexágono exterior -->
+    <clipPath id="hexClip">
+      <path d="M90,25 L30,55 L30,125 L90,155 L150,125 L150,55 Z" />
+    </clipPath>
+  </defs>
+  
+  <!-- Contorno exterior da cor #1C1A24 -->
+  <path fill="none" stroke="#1C1A24" stroke-width="2.5" d="M90,25 L30,55 L30,125 L90,155 L150,125 L150,55 Z" />
+  
+  <!-- Forma principal co buraco no medio -->
+  <path fill="url(#gradientFill)" d="M90,25 L30,55 L30,125 L90,155 L150,125 L150,55 Z" mask="url(#hexHole)" filter="url(#shadow)" />
+  
+  <!-- Agora debuxamos as liñas de división, pero recortadas polo hexágono exterior -->
+  <g clip-path="url(#hexClip)">
+    <!-- Liña vertical superior -->
+    <path d="M90,15 L90,45" stroke="#1C1A24" stroke-width="2.5" />
+    
+    <!-- Liña superior esquerda -->
+    <path d="M20,45 L50,65" stroke="#1C1A24" stroke-width="2.5" />
+    
+    <!-- Liña superior dereita -->
+    <path d="M160,45 L130,65" stroke="#1C1A24" stroke-width="2.5" />
+    
+    <!-- Liña inferior esquerda -->
+    <path d="M20,135 L50,115" stroke="#1C1A24" stroke-width="2.5" />
+    
+    <!-- Liña inferior dereita -->
+    <path d="M160,135 L130,115" stroke="#1C1A24" stroke-width="2.5" />
+    
+    <!-- Liña vertical inferior -->
+    <path d="M90,165 L90,135" stroke="#1C1A24" stroke-width="2.5" />
+  </g>
+  
+  <!-- Forma interior con resplandor sutil -->
+  <path fill="none" stroke="#1C1A24" stroke-width="2.5" d="M90,45 L50,65 L50,115 L90,135 L130,115 L130,65 Z" filter="url(#glow)" />
+  
+  <!-- Punto central mellorado -->
+  <circle cx="90" cy="90" r="8" fill="#1C1A24" />
+  <circle cx="90" cy="90" r="4" fill="#4338CA" opacity="0.7" />
+  
+</svg>

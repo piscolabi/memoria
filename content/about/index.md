@@ -3,8 +3,8 @@ title: "Información"
 toc: false
 ---
 
-## Sobre Este Proxecto
-<!-- {{< icon name="lock-closed" >}} -->
+## Sobre Este Proxecto {{< icon name="verificao" >}}
+
 
 <div class="hx-mt-8"></div>
 
