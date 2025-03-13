@@ -193,6 +193,11 @@
     authElement.innerHTML = window.AUTH_TEMPLATE;
     document.body.appendChild(authElement);
     
+    setupAuthEvents();
+  }
+  // ######################## CERRAR
+  // Función para configurar todos os eventos de autenticación
+  function setupAuthEvents() {
     // Engadir event listeners
     const passwordInput = document.getElementById('password-input');
     const submitButton = document.getElementById('submit-button');
@@ -202,248 +207,244 @@
       return;
     }
     
-    // Función para verificar a contrasinal
-    async function verifyPassword() {
-      const password = passwordInput.value;
-      
-      // Verificar usando o sistema ofuscado
-      let isCorrect = false;
-      
-      try {
-        if (window.x7kR9p && typeof window.x7kR9p.q8bZ3 === 'function') {
-          isCorrect = await window.x7kR9p.q8bZ3(password);
-        } else {
-          console.error("Sistema de verificación non dispoñible");
-          return;
-        }
-      } catch (error) {
-        console.error("Erro ao verificar a contrasinal:", error);
+    // Función para manexar calquera intento de verificación
+    function handleVerificationAttempt(e) {
+      if (e) e.preventDefault();
+      verifyPassword();
+    }
+
+  // Evento para o botón
+  submitButton.addEventListener('click', handleVerificationAttempt);
+
+  // Evento para o input (tecla Enter)
+  passwordInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      handleVerificationAttempt(e);
+    }
+  });
+
+  // Foco automático no input
+  setTimeout(() => {
+    passwordInput.focus();
+  }, 100);
+}
+
+  // Función para verificar a contrasinal
+  async function verifyPassword() {
+    const passwordInput = document.getElementById('password-input');
+    if (!passwordInput) return;
+
+    const password = passwordInput.value;
+    // Verificar usando o sistema ofuscado
+    let isCorrect = false;
+    
+    try {
+      if (window.x7kR9p && typeof window.x7kR9p.q8bZ3 === 'function') {
+        isCorrect = await window.x7kR9p.q8bZ3(password);
+      } else {
+        console.error("Sistema de verificación non dispoñible");
         return;
       }
-      
-      if (isCorrect) {
-        try {
-          // Gardar a autenticación en todos os medios
-          setAuthenticated(true);
-          
-          // Mostrar mensaxe de éxito antes de recargar
-          const authContainer = document.querySelector('.auth-content');
-          if (authContainer) {
-            // Cambiar a un mensaxe de éxito
-            authContainer.innerHTML = `
+    } catch (error) {
+      console.error("Erro ao verificar a contrasinal:", error);
+      return;
+    }
+    
+    if (isCorrect) {
+      try {
+        // Gardar a autenticación en todos os medios
+        setAuthenticated(true);
+        
+        // Mostrar mensaxe de éxito antes de recargar
+        const authContainer = document.querySelector('.auth-content');
+        if (authContainer) {
+          // Cambiar a un mensaxe de éxito
+          authContainer.innerHTML = `
+            <div style="
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              height: 3px;
+              background: linear-gradient(90deg, #9333EA, #4338CA, #DB2777);
+              z-index: 1;
+            "></div>
+            <div style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              padding: 2rem;
+              color: white;
+              width: 100%;
+            ">
               <div style="
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 3px;
-                background: linear-gradient(90deg, #9333EA, #4338CA, #DB2777);
-                z-index: 1;
-              "></div>
-              <div style="
+                background: rgba(147, 51, 234, 0.2);
+                border-radius: 50%;
+                width: 80px;
+                height: 80px;
                 display: flex;
-                flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                text-align: center;
-                padding: 2rem;
-                color: white;
-                width: 100%;
+                margin-bottom: 1.5rem;
               ">
-                <div style="
-                  background: rgba(147, 51, 234, 0.2);
-                  border-radius: 50%;
-                  width: 80px;
-                  height: 80px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  margin-bottom: 1.5rem;
-                ">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(147, 51, 234, 1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                </div>
-                <h2 style="
-                  font-size: 1.75rem;
-                  margin-bottom: 1rem;
-                  background: linear-gradient(90deg, #9333EA, #4338CA);
-                  -webkit-background-clip: text;
-                  -webkit-text-fill-color: transparent;
-                  background-clip: text;
-                  text-align: center;
-                ">Acceso correcto</h2>
-                <p style="
-                  font-size: 1.125rem;
-                  margin-bottom: 0.5rem;
-                  color: rgba(255, 255, 255, 0.8);
-                  text-align: center;
-                ">Redirixindo á páxina principal...</p>
-                <div class="loading-bar" style="
-                  width: 200px;
-                  height: 4px;
-                  background: rgba(255, 255, 255, 0.2);
-                  border-radius: 2px;
-                  overflow: hidden;
-                  margin-top: 1rem;
-                  position: relative;
-                ">
-                  <div class="loading-progress" style="
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    height: 100%;
-                    width: 0%;
-                    background: linear-gradient(90deg, #9333EA, #4338CA, #DB2777);
-                    border-radius: 2px;
-                    transition: width 1.5s ease;
-                  "></div>
-                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(147, 51, 234, 1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
               </div>
-            `;
-            
-            // Animar a barra de progreso
-            setTimeout(() => {
-              const progressBar = document.querySelector('.loading-progress');
-              if (progressBar) {
-                progressBar.style.width = '100%';
-              }
-            }, 100);
+              <h2 style="
+                font-size: 1.75rem;
+                margin-bottom: 1rem;
+                background: linear-gradient(90deg, #9333EA, #4338CA);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                text-align: center;
+              ">Acceso correcto</h2>
+              <p style="
+                font-size: 1.125rem;
+                margin-bottom: 0.5rem;
+                color: rgba(255, 255, 255, 0.8);
+                text-align: center;
+              ">Redirixindo á páxina principal...</p>
+              <div class="loading-bar" style="
+                width: 200px;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 2px;
+                overflow: hidden;
+                margin-top: 1rem;
+                position: relative;
+              ">
+                <div class="loading-progress" style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  height: 100%;
+                  width: 0%;
+                  background: linear-gradient(90deg, #9333EA, #4338CA, #DB2777);
+                  border-radius: 2px;
+                  transition: width 1.5s ease;
+                "></div>
+              </div>
+            </div>
+          `;
+          
+          // Animar a barra de progreso
+          setTimeout(() => {
+            const progressBar = document.querySelector('.loading-progress');
+            if (progressBar) {
+              progressBar.style.width = '100%';
+            }
+          }, 100);
 
-            // Mostrar o contido sen recargar
-            setTimeout(() => {
-              try {
-                // Eliminar o overlay de autenticación
-                const overlay = document.getElementById('auth-overlay');
-                if (overlay && overlay.parentNode) {
-                  overlay.parentNode.removeChild(overlay);
-                }
-                
-                // Mostrar o contido da páxina
-                const content = document.getElementById('site-content');
-                if (content) {
-                  content.style.display = 'block';
-                  document.body.classList.add('auth-loaded');
-                  
-                  // Restaurar o título orixinal
-                  if (document.title === "Acceso Protexido") {
-                    // Intentar obter o título do meta tag
-                    const titleMeta = document.querySelector('meta[property="og:title"]');
-                    if (titleMeta) {
-                      document.title = titleMeta.getAttribute('content');
-                    } else {
-                      // Fallback a un título xenérico
-                      document.title = "Páxina Principal";
-                    }
-                  }
-                } else {
-                  // Se non podemos mostrar o contido, recargar
-                  window.location.href = window.location.pathname;
-                }
-              } catch (e) {
-                console.error("Erro ao mostrar o contido:", e);
-                // Fallback: recargar a páxina
-                window.location.href = window.location.pathname;
-              }
-            }, 1800);
-          } else {
-            // Se non se atopa o contedor, intentar mostrar o contido directamente
+          // Mostrar o contido sen recargar
+          setTimeout(() => {
             try {
+              // Eliminar o overlay de autenticación
               const overlay = document.getElementById('auth-overlay');
               if (overlay && overlay.parentNode) {
                 overlay.parentNode.removeChild(overlay);
               }
               
+              // Mostrar o contido da páxina
               const content = document.getElementById('site-content');
               if (content) {
                 content.style.display = 'block';
                 document.body.classList.add('auth-loaded');
+                
+                // Restaurar o título orixinal
+                if (document.title === "Acceso Protexido") {
+                  // Intentar obter o título do meta tag
+                  const titleMeta = document.querySelector('meta[property="og:title"]');
+                  if (titleMeta) {
+                    document.title = titleMeta.getAttribute('content');
+                  } else {
+                    // Fallback a un título xenérico
+                    document.title = "Páxina Principal";
+                  }
+                }
               } else {
+                // Se non podemos mostrar o contido, recargar
                 window.location.href = window.location.pathname;
               }
             } catch (e) {
               console.error("Erro ao mostrar o contido:", e);
+              // Fallback: recargar a páxina
               window.location.href = window.location.pathname;
             }
-          }
-          
-          console.log("Autenticación correcta!");
-        } catch (error) {
-          console.error("Erro ao procesar autenticación correcta:", error);
-          // Fallback: intentar mostrar o contido sen recargar
+          }, 1800);
+        } else {
+          // Se non se atopa o contedor, intentar mostrar o contido directamente
           try {
             const overlay = document.getElementById('auth-overlay');
-            if (overlay) {
-              overlay.style.display = 'none';
+            if (overlay && overlay.parentNode) {
+              overlay.parentNode.removeChild(overlay);
             }
+            
             const content = document.getElementById('site-content');
             if (content) {
               content.style.display = 'block';
+              document.body.classList.add('auth-loaded');
+            } else {
+              window.location.href = window.location.pathname;
             }
           } catch (e) {
-            console.error("Erro ao mostrar contido no fallback:", e);
+            console.error("Erro ao mostrar o contido:", e);
+            window.location.href = window.location.pathname;
           }
         }
-      } else {
-        // Mostrar erro (con animación)
-        passwordInput.value = "";
-        passwordInput.placeholder = "Contrasinal incorrecto";
-        passwordInput.style.borderColor = "#EF4444";
-        passwordInput.classList.remove('shake-animation');
         
-        void passwordInput.offsetWidth;
-        
-        passwordInput.classList.add('shake-animation');
-        
-        // Eliminar a animación despois de completarse
-        setTimeout(() => {
-          passwordInput.classList.remove('shake-animation');
-        }, 700);
-        
-        // Restaurar o placeholder despois dun tempo
-        setTimeout(() => {
-          passwordInput.placeholder = "Introduce o contrasinal";
-          passwordInput.style.borderColor = ""; 
-        }, 1500);
+        console.log("Autenticación correcta!");
+      } catch (error) {
+        console.error("Erro ao procesar autenticación correcta:", error);
+        // Fallback: intentar mostrar o contido sen recargar
+        try {
+          const overlay = document.getElementById('auth-overlay');
+          if (overlay) {
+            overlay.style.display = 'none';
+          }
+          const content = document.getElementById('site-content');
+          if (content) {
+            content.style.display = 'block';
+          }
+        } catch (e) {
+          console.error("Erro ao mostrar contido no fallback:", e);
+        }
       }
-    }
-    
-    // Engadir evento para o botón
-    if (submitButton) {
-      submitButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        verifyPassword();
-      });
-    }
-    
-    // Engadir evento para o input (presionar Enter)
-    if (passwordInput) {
-      passwordInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          verifyPassword();
-        }
-      });
+    } else {
+      // Mostrar erro (con animación)
+      passwordInput.value = "";
+      passwordInput.placeholder = "Contrasinal incorrecto";
       
-      // Foco automático no input
-      setTimeout(() => {
-        passwordInput.focus();
-      }, 100);
-    }
-    // Engadir evento para o input (presionar Enter)
-    if (passwordInput) {
-      passwordInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          verifyPassword();
-        }
-      });
+      // Aplicar o estilo de erro directamente
+      passwordInput.style.borderColor = "#EF4444";
+      // Eliminar a clase de animación primeiro (se existe)
+      passwordInput.classList.remove('shake-animation');
+      // Forzar un reflow para asegurar que a animación se reinicie
+      void passwordInput.offsetWidth;
+      // Aplicar a clase de animación
+      passwordInput.classList.add('shake-animation');
+
+      // Asegurar que o borde permaneza vermello durante a animación
+      // usando un intervalo para forzar o estilo
+      let redBorderInterval = setInterval(() => {
+        passwordInput.style.borderColor = "#EF4444";
+      }, 50);
       
-      // Foco automático no input
+      // Eliminar a animación despois de completarse
       setTimeout(() => {
-        passwordInput.focus();
-      }, 100);
+        passwordInput.classList.remove('shake-animation');
+        clearInterval(redBorderInterval); // Deter o intervalo
+      }, 700);
+      // Restaurar o placeholder e o borde despois dun tempo
+      setTimeout(() => {
+        passwordInput.placeholder = "Introduce o contrasinal";
+        passwordInput.style.borderColor = ""; 
+        clearInterval(redBorderInterval); // Asegurar que o intervalo se detén
+      }, 1500);
     }
   }
   

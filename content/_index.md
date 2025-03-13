@@ -1,40 +1,83 @@
 ---
-title: Memoria de estudo
+title: memorIA | Recursos académicos
 layout: hextra-home
 ---
 
-{{< hextra/hero-badge link="/changelog/2025/memoria-v0.1-notas/">}}
+<style>
+  /* Aliñamento responsivo para todo o contido */
+  .text-container, .badge-container {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Estilo para o subtítulo personalizado */
+  .custom-subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(160, 160, 175, 0.9);
+    margin-top: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .text-container, .badge-container {
+      text-align: left;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    
+    .button-container {
+      justify-content: flex-start;
+    }
+    
+    .custom-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Modo escuro */
+  @media (prefers-color-scheme: dark) {
+    .custom-subtitle {
+      color: rgba(180, 180, 190, 0.8);
+    }
+  }
+</style>
+
+<div class="badge-container">
+{{< hextra/hero-badge link="/changelog/" >}}
   <div class="hx-w-2 hx-h-2 hx-rounded-full hx-bg-primary-400"></div>
-  <span>Última actualización v0.1</span>
+  <span>Beta</span>
   {{< icon name="arrow-circle-right" attributes="height=14 class=hx-text-purple-500 style=fill:transparent!important;" >}}
 {{< /hextra/hero-badge >}}
+</div>
 
 {{< two-column-hero >}}
-<div class="hx-mt-6 hx-mb-6">
+<div class="hx-mt-4 hx-mb-4 text-container">
 {{< hextra/hero-headline >}}
-  memorIA <div class="hx-h-4"></div><div class="hx-h-4"></div> repositorio colaborativo <br> de recursos académicos
+  memorIA
+  <div class="hx-h-2 sm:hx-h-3"></div>
+  <span class="hx-text-xl sm:hx-text-2xl md:hx-text-3xl hx-font-semibold hx-opacity-90">Repositorio de recursos académicos</span>
 {{< /hextra/hero-headline >}}
 </div>
 
-<div class="hx-mb-12">
-{{< hextra/hero-subtitle >}}
-  Colección persoal de apuntes, vídeos&nbsp;<br class="sm:hx-block hx-hidden" />notas e recursos para compartir entre todos
-{{< /hextra/hero-subtitle >}}
+<div class="hx-mb-8 text-container">
+  <p class="custom-subtitle">
+    Un espazo colaborativo onde atopar e compartir material de estudo, exercicios resoltos, apuntes e recursos didácticos. Proxecto de código aberto.
+  </p>
 </div>
 
-<div class="hx-mb-16">
+<div class="hx-mb-12 button-container">
 {{< hextra/hero-button text="Explorar Contidos" link="docs" class="hx-bg-purple-500 hover:hx-bg-purple-600" >}}
 </div>
 {{< /two-column-hero >}}
 
+
 <div class="hx-mt-16"></div>
-
-
-<!-- plantilla para usar imaxes en lugar de animacións:
-{{< hextra/hero-container showAnimation=false image="/image.png" imageTitle="memorIA" imageWidth="853" >}}
-...contido...
-{{< /hextra/hero-container >}}-->
-
 <div class="hx-mt-16"></div>
 
 {{< hextra/feature-grid columns="3">}}

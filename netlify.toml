@@ -11,8 +11,8 @@
   
 [dev]
   framework = "hugo"
-  command = "hugo server -D"
-  targetPort = 1313
+  command = "hugo server -D -p 8080"
+  targetPort = 8080
   port = 8888
   publish = "public"
   autoLaunch = true

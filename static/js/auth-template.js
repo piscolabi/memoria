@@ -232,37 +232,4 @@ window.AUTH_TEMPLATE = `
     border-color: #EF4444 !important;
   }
 </style>
-
-<!-- Script para mellorar a animación de shake -->
-<script>
-  // Esta función será chamada automaticamente cando se cargue o template
-  (function() {
-    // Función para aplicar a animación de shake
-    window.applyShakeAnimation = function(element) {
-      if (!element) return;
-      
-      // Aplicar o estilo de erro inmediatamente
-      element.style.borderColor = '#EF4444';
-      
-      // Eliminar a clase primeiro para poder volver aplicala
-      element.classList.remove('shake-animation');
-      
-      // Forzar un reflow para asegurar que a animación se reinicie
-      void element.offsetWidth;
-      
-      // Aplicar a clase de animación
-      element.classList.add('shake-animation');
-      
-      // Eliminar a animación despois de completarse, pero manter o borde vermello por un pouco máis
-      setTimeout(function() {
-        element.classList.remove('shake-animation');
-        
-        // Esperar un pouco máis para quitar o borde vermello
-        setTimeout(function() {
-          element.style.borderColor = '';
-        }, 200);
-      }, 700);
-    };
-  })();
-</script>
 `;
