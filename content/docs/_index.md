@@ -1,12 +1,12 @@
 ---
 linkTitle: "Docs"
-title: "Índice xeral - repositorio académico"
+title: "Índice xeral"
 toc: true
 ---
 
 <div class="hx-mt-16"></div>
 
-{{< hextra/feature-grid cols="4" >}}
+{{< hextra/feature-grid cols="2" >}}
   {{< hextra/feature-card
     title="Primeiro Curso"
     subtitle="Fundamentos de IA, matemáticas e programación"

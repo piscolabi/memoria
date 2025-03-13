@@ -18,7 +18,6 @@ toc: false
 
 O proxecto busca crear unha biblioteca dixital de recursos educativos, apuntes e materiais de estudo, organizada de maneira accesible e intuitiva. O principal obxectivo é facilitar o acceso ao coñecemento, ofrecendo unha plataforma onde os estudantes poidan atopar información relevante e actualizada sobre diversas materias.
 
-> The idea that knowledge should be kept secret is the opposite of the spirit of science - Richard Stallman
 
 <div class="hx-mt-8"></div>
 
@@ -113,3 +112,5 @@ Este proxecto foi creado utilizando as seguintes tecnoloxías:
 
 
 <div class="hx-mt-16"></div>
+
+> The idea that knowledge should be kept secret is the opposite of the spirit of science - Richard Stallman

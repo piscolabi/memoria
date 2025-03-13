@@ -51,7 +51,7 @@ Neste video explóranse as diversas aplicacións dos diodos en circuítos electr
 - [Electronics Tutorials](https://www.electronics-tutorials.ws/) - Recursos educativos sobre electrónica básica e avanzada
 
 {{< cards cols="3">}}
-  {{< card link="exame-calculo-2022-2023.pdf" title="Exame Cálculo 2022/2023" icon="download" >}}
+  {{< card link="exame-calculo-2022-2023.pdf" title="Libro \"Computer Systems\" IntComp" icon="download" >}}
   {{< card link="exame-calculo-2023-2024.pdf" title="Exame Cálculo 2023/2024" icon="download" >}}
   {{< card link="exame-calculo-2024-2025.pdf" title="Exame Cálculo 2024/2025" icon="download" >}}
 {{< /cards >}}
@@ -64,6 +64,6 @@ Neste video explóranse as diversas aplicacións dos diodos en circuítos electr
 
 {{< cards cols="3">}}
   {{< card link="exame-calculo-parcial1-2022-2023.pdf" title="Parcial 2 Álxebra 2024/2025" icon="download" >}}
-  {{< card link="exame-calculo-parcial1-2023-2024.pdf" title="Parcial 1 Cálculo 2023/2024" icon="download" >}}
+  {{< card link="exame-calculo-parcial1-2023-2024.pdf" title="Apuntes Discreta T3 - Algoritmos e números" icon="download" >}}
   {{< card link="exame-calculo-parcial1-2024-2025.pdf" title="Parcial 1 Cálculo 2024/2025" icon="download" >}}
 {{< /cards >}}

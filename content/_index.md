@@ -4,7 +4,6 @@ layout: hextra-home
 ---
 
 <style>
-  /* Aliñamento responsivo para todo o contido */
   .text-container, .badge-container {
     text-align: center;
     margin-left: auto;
@@ -16,12 +15,15 @@ layout: hextra-home
     justify-content: center;
   }
   
-  /* Estilo para o subtítulo personalizado */
   .custom-subtitle {
     font-size: 1rem;
     line-height: 1.6;
-    color: rgba(160, 160, 175, 0.9);
+    color: rgba(120, 120, 120, 0.85);
     margin-top: 1rem;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
   
   @media (min-width: 768px) {
@@ -37,13 +39,9 @@ layout: hextra-home
     
     .custom-subtitle {
       font-size: 1.1rem;
-    }
-  }
-  
-  /* Modo escuro */
-  @media (prefers-color-scheme: dark) {
-    .custom-subtitle {
-      color: rgba(180, 180, 190, 0.8);
+      max-width: 430px;
+      margin-left: 0;
+      text-align: left;
     }
   }
 </style>
@@ -51,23 +49,27 @@ layout: hextra-home
 <div class="badge-container">
 {{< hextra/hero-badge link="/changelog/" >}}
   <div class="hx-w-2 hx-h-2 hx-rounded-full hx-bg-primary-400"></div>
-  <span>Beta</span>
+  <span>Beta testing</span>
   {{< icon name="arrow-circle-right" attributes="height=14 class=hx-text-purple-500 style=fill:transparent!important;" >}}
 {{< /hextra/hero-badge >}}
 </div>
+<div class="hx-mt-1.5"></div>
+<div class="hx-mt-1.5"></div>
 
 {{< two-column-hero >}}
 <div class="hx-mt-4 hx-mb-4 text-container">
 {{< hextra/hero-headline >}}
   memorIA
-  <div class="hx-h-2 sm:hx-h-3"></div>
+  <div class="hx-h-4 sm:hx-h-5"></div>
   <span class="hx-text-xl sm:hx-text-2xl md:hx-text-3xl hx-font-semibold hx-opacity-90">Repositorio de recursos académicos</span>
 {{< /hextra/hero-headline >}}
 </div>
 
 <div class="hx-mb-8 text-container">
   <p class="custom-subtitle">
-    Un espazo colaborativo onde atopar e compartir material de estudo, exercicios resoltos, apuntes e recursos didácticos. Proxecto de código aberto.
+    Un espazo colaborativo onde atopar e compartir
+    material de estudo, exercicios resoltos, apuntes
+    e recursos didácticos. Proxecto de código aberto.
   </p>
 </div>
 
@@ -101,7 +103,7 @@ layout: hextra-home
   >}}
   {{< hextra/feature-card
     title="Arquivos Descargables"
-    subtitle="Documentos e materiais de estudo en distintos formatos listos para descargar (exames, apuntes, libros...)."
+    subtitle="Documentos en distintos formatos listos para descargar."
     class="hx-aspect-auto md:hx-aspect-[1.1/1] max-md:hx-min-h-[340px]"
     image="images/arquivos.png"
     imageClass="hx-top-[20%] hx-w-[180%] sm:hx-w-[110%] dark:hx-opacity-80"

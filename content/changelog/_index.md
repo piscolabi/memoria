@@ -1,5 +1,5 @@
 ---
-title: "Actualizacións"
+title: "Actualizacións do proxecto"
 width: normal
 description: Cambios e novedades na plataforma.
 ---
