@@ -1,9 +1,15 @@
 [build]
   publish = "public"
-  command = "hugo"
+  command = "hugo --gc --minify"
+
+# Always trigger a rebuild, even if the files haven't changed.
+# See https://docs.netlify.com/configure-builds/file-based-configuration/#ignore-builds
+ignore = "false"
 
 [build.environment]
   HUGO_VERSION = "0.138.0"
+  GO_VERSION = "1.24.0"
+  NODE_VERSION = "22.14.0"
 
 [context.production.environment]
   HUGO_ENV = "production"
@@ -17,8 +23,13 @@
   publish = "public"
   autoLaunch = true
 
-# Configuración específica de cabeceiras para CSP
 [[headers]]
   for = "/*"
   [headers.values]
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-src 'self'"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Cache-Control = "no-store, max-age=0"
+    Permissions-Policy = "document-domain=()"

@@ -166,3 +166,11 @@ params:
       # lang: en
       # theme: noborder_dark
 
+minify:
+  disableCSS: false
+  disableHTML: false
+  disableJS: false
+  disableJSON: false
+  disableSVG: false
+  disableXML: false
+  minifyOutput: true

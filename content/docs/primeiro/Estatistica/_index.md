@@ -55,6 +55,14 @@ A asignatura de **Estatística** ten como obxectivo principal que o estudantado 
 - **Correo electrónico**: [mariajose.ginzo@usc.es](mailto:mariajose.ginzo@usc.es)
 {{% /details %}}
 
+### Jose Ameijeiras Alonso
+{{% details title="Detalles" closed="true" %}}
+- **Categoría**: Profesor Permanente Laboral
+- **Departamento**: Estatística, Análise Matemática e Optimización
+- **Área**: Estatística e Investigación Operativa
+- **Correo electrónico**: [jose.ameijeiras@usc.es](mailto:jose.ameijeiras@usc.es)
+{{% /details %}}
+
 ## Contidos
 
 {{% details title="Contidos Expositivos" closed="true" %}}

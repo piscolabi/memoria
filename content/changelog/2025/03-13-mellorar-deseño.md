@@ -85,13 +85,15 @@ Realizáronse varias correccións e melloras no repositorio, centrándome princi
 - Axustouse o tamaño das tarxetas de características para unha mellor visualización
 - Modificouse o título: "memorIA | Recursos académicos"
 
-```markdown
+```md
 <div class="hx-mt-4 hx-mb-6">
-{{< hextra/hero-headline >}}
+{{\< hextra/hero-headline >}}
   memorIA <div class="max-md:hx-h-2 md:hx-h-4"></div> repositorio colaborativo <br class="max-sm:hx-hidden"> de recursos académicos
-{{< /hextra/hero-headline >}}
+{{\< /hextra/hero-headline >}}
 </div>
 ```
+
+Edit: (puxen as \ para que non se renderizara o div)
 
 ### 4. Corrección de problemas co Netlify
 
