@@ -1,6 +1,6 @@
 ---
 linkTitle: "Primeiro"
-title: "Índice de Asignaturas - 1º curso"
+title: "Índice de Asignaturas"
 toc: true
 ---
 
@@ -37,7 +37,7 @@ toc: true
     style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);"
   >}}
   {{< hextra/feature-card
-    title="Introdución á Computación"
+    title="Introdución aos Computadores"
     subtitle="Fundamentos básicos da informática e computación"
     link="/docs/primeiro/intcomp"
     icon="chip"
@@ -78,7 +78,7 @@ toc: true
     subtitle="Razoamento formal e fundamentos da computación"
     link="/docs/primeiro/loxica"
     icon="academic-cap"
-    style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);"
+    style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);"
   >}}
   {{< hextra/feature-card
     title="Programación II"

@@ -8,16 +8,11 @@ geekdocCollapseSection: true
 
 ## Seccións de contido
 
-{{< cards cols="3">}}
+{{< cards cols="2">}}
   {{< card link="apuntes" title="Apuntes" icon="book-open" >}}
   {{< card link="practicas" title="Prácticas" icon="beaker" >}}
   {{< card link="exames" title="Exames" icon="clipboard-check" >}}
-{{< /cards >}}
-
-{{< cards cols="3">}}
-  {{< card class="invisible-card" >}}
   {{< card link="recursos" title="Recursos" icon="collection" >}}
-  {{< card class="invisible-card" >}}
 {{< /cards >}}
 
 ## Descrición da asignatura

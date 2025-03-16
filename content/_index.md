@@ -4,15 +4,20 @@ layout: hextra-home
 ---
 
 <style>
-  .text-container, .badge-container {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+  .badge-container, .text-container, .title-container {
+    text-align: left;
+  }
+  
+  .badge-container {
+    display: flex;
+    justify-content: left;
   }
   
   .button-container {
     display: flex;
     justify-content: center;
+    width: 400px;
+    max-width: 100%;
   }
   
   .custom-subtitle {
@@ -20,28 +25,18 @@ layout: hextra-home
     line-height: 1.6;
     color: rgba(120, 120, 120, 0.85);
     margin-top: 1rem;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+    max-width: 400px;
+    text-align: left;
   }
   
   @media (min-width: 768px) {
-    .text-container, .badge-container {
-      text-align: left;
-      margin-left: 0;
-      margin-right: 0;
+    .custom-subtitle {
+      font-size: 1.2rem;
+      max-width: 430px;
     }
     
     .button-container {
-      justify-content: flex-start;
-    }
-    
-    .custom-subtitle {
-      font-size: 1.1rem;
-      max-width: 430px;
-      margin-left: 0;
-      text-align: left;
+      width: 430px;
     }
   }
 </style>
@@ -49,7 +44,7 @@ layout: hextra-home
 <div class="badge-container">
 {{< hextra/hero-badge link="/changelog/" >}}
   <div class="hx-w-2 hx-h-2 hx-rounded-full hx-bg-primary-400"></div>
-  <span>Beta testing</span>
+  <span>En desenvolvemento</span>
   {{< icon name="arrow-circle-right" attributes="height=14 class=hx-text-purple-500 style=fill:transparent!important;" >}}
 {{< /hextra/hero-badge >}}
 </div>
@@ -57,7 +52,7 @@ layout: hextra-home
 <div class="hx-mt-1.5"></div>
 
 {{< two-column-hero >}}
-<div class="hx-mt-4 hx-mb-4 text-container">
+<div class="hx-mt-4 hx-mb-4 title-container">
 {{< hextra/hero-headline >}}
   memorIA
   <div class="hx-h-4 sm:hx-h-5"></div>
@@ -69,20 +64,22 @@ layout: hextra-home
   <p class="custom-subtitle">
     Un espazo colaborativo onde atopar e compartir
     material de estudo, exercicios resoltos, apuntes
-    e recursos didácticos. Proxecto de código aberto.
+    e máis recursos. Proxecto de código aberto.
   </p>
 </div>
 
 <div class="hx-mb-12 button-container">
 {{< hextra/hero-button text="Explorar Contidos" link="docs" class="hx-bg-purple-500 hover:hx-bg-purple-600" >}}
 </div>
+
+<div class="md:hx-hidden hx-h-7"></div>
 {{< /two-column-hero >}}
 
 
 <div class="hx-mt-16"></div>
 <div class="hx-mt-16"></div>
 
-{{< hextra/feature-grid columns="3">}}
+{{< hextra/feature-grid cols="3">}}
   {{< hextra/feature-card
     title="Apuntes Organizados"
     subtitle="Notas detalladas e organizadas por temas e materias."

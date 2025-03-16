@@ -215,6 +215,7 @@ window.AUTH_TEMPLATE = `
   
   #password-input {
     transition: border-color 0.3s, box-shadow 0.3s;
+    will-change: transform;
   }
   
   #password-input:focus {

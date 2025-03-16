@@ -1,6 +1,8 @@
 (function() {
   const SESSION_EXPIRATION = 24 * 60 * 60 * 1000;
-  
+  const RETRY_DELAY = 2000;
+  let isPasswordDisabled = false;
+
   // Comprobar dispoñibilidade de almacenamento
   function isStorageAvailable(type) {
     try {
@@ -168,7 +170,11 @@
 
     submitButton.addEventListener('click', handleVerificationAttempt);
     passwordInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') handleVerificationAttempt(e);
+      if (e.key === 'Enter' || e.keyCode === 13) {
+        e.preventDefault();
+        e.stopPropagation();
+        handleVerificationAttempt(e);
+      }
     });
 
     setTimeout(() => passwordInput.focus(), 100);
@@ -177,7 +183,9 @@
   // Verificación de contrasinal
   async function verifyPassword() {
     const passwordInput = document.getElementById('password-input');
-    if (!passwordInput) return;
+    const submitButton = document.getElementById('submit-button');
+
+    if (!passwordInput || isPasswordDisabled) return;
 
     const password = passwordInput.value;
     let isCorrect = false;
@@ -198,31 +206,69 @@
       setAuthenticated(true);
       showSuccessMessage();
     } else {
-      showErrorMessage(passwordInput);
+      showErrorMessage(passwordInput, submitButton);
     }
   }
   
   // Mostrar mensaxe de erro
-  function showErrorMessage(passwordInput) {
+  function showErrorMessage(passwordInput, submitButton) {
+    if (!passwordInput) return;
+
+    isPasswordDisabled = true;
+    passwordInput.disabled = true;
+    if (submitButton) submitButton.disabled = true;
+
     passwordInput.value = "";
     passwordInput.placeholder = "Contrasinal incorrecto";
     passwordInput.style.borderColor = "#EF4444";
+    passwordInput.style.opacity = "0.7";
+    if (submitButton) submitButton.style.opacity = "0.7";
     
-    // Aplicar animación de shake
     passwordInput.classList.remove('shake-animation');
     void passwordInput.offsetWidth; // Forzar reflow
     passwordInput.classList.add('shake-animation');
     
-    // Eliminar animación despois de completarse
-    setTimeout(() => {
+    const handleAnimationEnd = () => {
       passwordInput.classList.remove('shake-animation');
-    }, 700);
+      passwordInput.removeEventListener('animationend', handleAnimationEnd);
+    };
     
-    // Restaurar placeholder e borde
+    passwordInput.addEventListener('animationend', handleAnimationEnd);
+
+    let timeLeft = Math.floor(RETRY_DELAY / 1000);
+    passwordInput.placeholder = `Espera ${timeLeft}s para volver a intentar`;
+
+    const countdownInterval = setInterval(() => {
+      timeLeft--;
+      if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        enablePasswordField(passwordInput, submitButton);
+      } else {
+        passwordInput.placeholder = `Espera ${timeLeft}s para volver a intentar`;
+      }
+    }, 1000);
+
     setTimeout(() => {
+      if (countdownInterval) clearInterval(countdownInterval);
+      enablePasswordField(passwordInput, submitButton);
+    }, RETRY_DELAY);
+  }
+
+  function enablePasswordField(passwordInput, submitButton) {
+    isPasswordDisabled = false;
+    
+    if (passwordInput) {
+      passwordInput.disabled = false;
       passwordInput.placeholder = "Introduce o contrasinal";
       passwordInput.style.borderColor = "";
-    }, 1500);
+      passwordInput.style.opacity = "1";
+      passwordInput.focus();
+    }
+    
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.style.opacity = "1";
+    }
   }
   
   // Mostrar mensaxe de éxito
