@@ -78,12 +78,12 @@
         {{- $host := cond $pc.PrivacyEnhanced "www.youtube-nocookie.com" "www.youtube.com" }}
         {{- $src := printf "https://%s/embed/%s" $host $id }}
         {{- $params := dict
-          "autoplay" $autoplay
-          "controls" $controls
-          "end" $end
-          "mute" $mute
-          "start" $start
-          "loop" $loop
+          "autoplay" (string $autoplay)
+          "controls" (string $controls)
+          "end" (string $end)
+          "mute" (string $mute)
+          "start" (string $start)
+          "loop" (string $loop)
         }}
         {{- if $loop }}
           {{- $params = merge $params (dict "playlist" $id) }}
