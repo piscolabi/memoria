@@ -1,6 +1,6 @@
 ---
 date: 2025-03-14
-title: Melloras para un deseño máis responsivo
+title: Deseño máis responsivo
 description: Correccións de formato de texto na pantalla de inicio
 tags:
   - commit

@@ -174,3 +174,8 @@ minify:
   disableSVG: false
   disableXML: false
   minifyOutput: true
+
+privacy:
+  youTube:
+    disable: false
+    privacyEnhanced: true

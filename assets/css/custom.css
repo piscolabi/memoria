@@ -313,3 +313,8 @@
   .sidebar-container [data-toggle-animation="show"] {
     display: none !important;
   }
+  .destacado {
+    box-shadow: 0 0 10px rgba(255, 238, 2, 0.849);
+    border-radius: 8px !important;
+    overflow: hidden;
+  }

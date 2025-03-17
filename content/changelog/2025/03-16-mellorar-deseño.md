@@ -1,13 +1,12 @@
 ---
 date: 2025-03-16
-title: Melloras na interface de usuario e sistema de autenticación
+title: Interface de usuario e autenticación
 description: Optimización do deseño responsivo e solución de problemas na verificación de contrasinais
 tags:
   - commit
   - frontend
   - autenticación
   - deseño
-  - corrección
 authors:
   - name: pisco
     link: https://github.com/piscolabi

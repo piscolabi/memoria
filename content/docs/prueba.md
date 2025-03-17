@@ -1,10 +1,12 @@
 ---
 date: '2025-03-08T00:27:25+01:00'
-weight: 1
+weight: 9
 draft: true
 title: 'prueba'
 toc: false
 math: true
+sidebar:
+  exclude: true
 ---
 
 

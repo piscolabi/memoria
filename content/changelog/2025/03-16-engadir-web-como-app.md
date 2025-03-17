@@ -1,6 +1,6 @@
 ---
 date: 2025-03-16
-title: Como crear un acceso directo á web dende móbil + notas de cambios
+title: Como crear un acceso directo á web dende móbil
 description: Creación dun manifest personalizado para permitir engadir a web como aplicación en dispositivos móbiles
 tags:
   - Móbil

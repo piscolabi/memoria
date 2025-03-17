@@ -1,13 +1,12 @@
 ---
 date: 2025-03-14
-title: Optimización de scripts e novo menu de info
+title: Optimización de scripts
 description: Refinamento do sistema de autenticación e interface de usuario
 tags:
   - commit
   - frontend
   - autenticación
   - deseño
-  - corrección
 authors:
   - name: pisco
     link: https://github.com/piscolabi

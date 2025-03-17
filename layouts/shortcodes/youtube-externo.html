@@ -1,0 +1,36 @@
+{{- $id := or (.Get "id") (.Get 0) -}}
+{{- $title := or (.Get "title") "YouTube video" -}}
+{{- $class := or (.Get "class") "" -}}
+{{- $start := or (.Get "start") 0 -}}
+{{- $maxWidth := or (.Get "maxWidth") "400px" -}}
+
+{{- /* Get thumbnail URL */ -}}
+{{- $thumbnailURL := printf "https://i3.ytimg.com/vi/%s/hqdefault.jpg" $id -}}
+{{- /* Create YouTube URL with start time if needed */ -}}
+{{- $youtubeURL := printf "https://www.youtube.com/watch?v=%s" $id -}}
+{{- if ne $start "0" -}}
+  {{- $youtubeURL = printf "%s&t=%ss" $youtubeURL $start -}}
+{{- end -}}
+
+<div{{ with $class }} class="{{ . }}"{{ else }} class="youtube-link"{{ end }} style="position: relative; max-width: {{ $maxWidth }}; margin: 1.5rem auto 1.5rem auto; width: 100%;"> <!-- css-ignore -->
+  <a href="{{ $youtubeURL }}" target="_blank" rel="noopener" title="{{ $title }}" style="display: block; text-decoration: none; border: none; overflow: hidden; border-radius: 8px;">
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px !important; background-color: #000;">
+      <img src="{{ $thumbnailURL }}" alt="{{ $title }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; padding: 0; border: none; border-radius: 8px !important;">
+      
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;">
+        <svg width="54" height="34" viewBox="0 0 68 48" style="display: block;">
+          <path d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z" fill="#f00"></path>
+          <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+        </svg>
+      </div>
+      
+      <div style="position: absolute; bottom: 0; left: 0; right: 0; text-align: center; color: white; font-size: 0.9rem; background-color: rgba(0, 0, 0, 0.7); padding: 8px; border-radius: 0 0 8px 8px !important; margin: 0;">
+        Fai clic para ver o vídeo en YouTube
+      </div>
+    </div>
+  </a>
+</div>
+
+
+<!-- Exemplo con todos os parámetros: -->
+<!-- {\{< youtube id="g54vURe47gM" title="Transistors: Field Effect Transistors (FETs)" start="30" maxWidth="500px" class="destacado" >}}  -->

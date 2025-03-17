@@ -1,6 +1,7 @@
 ---
 linkTitle: "Docs"
 title: "Índice xeral"
+next: /docs/estrutura-contidos
 toc: true
 ---
 

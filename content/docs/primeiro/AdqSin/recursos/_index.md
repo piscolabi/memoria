@@ -1,5 +1,5 @@
 ---
-linkTitle: "recursos"
+linkTitle: "Recursos"
 title: "Recursos de AdqSin"
 description: "Videos, enlaces..."
 geekdocCollapseSection: true
@@ -19,15 +19,18 @@ Unha completa colección de videos sobre circuítos electrónicos que abarca des
 
 Aquí presentamos algúns dos mellores videos da colección:
 
+<!-- <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" width="640" height="480" allow="autoplay"></iframe> -->
+
 #### Transistors: Field Effect Transistors (FETs)
 
-{{< youtube g54vURe47gM >}}
+{{< youtube id="g54vURe47gM" start="30" maxWidth="600px">}}
+{{< youtube-externo id="g54vURe47gM" title="Transistors: Field Effect Transistors (FETs)" start="30" maxWidth="400px" class="destacado" >}}
 
 Este video ofrece unha explicación clara e detallada sobre os transistores de efecto de campo (FETs), un compoñente fundamental na electrónica moderna. Aprenderás sobre a súa estrutura, funcionamento e aplicacións principais.
 
 #### Diode Applications
 
-{{< youtube joDlqsknn-w >}}
+<!-- {{< youtube joDlqsknn-w >}} -->
 
 Neste video explóranse as diversas aplicacións dos diodos en circuítos electrónicos. Cubre temas como rectificadores, limitadores, e circuítos de protección, con exemplos prácticos que mostran como se utilizan os diodos en deseños reais.
 

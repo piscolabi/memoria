@@ -2,6 +2,7 @@
 linkTitle: "Primeiro"
 title: "Índice de Asignaturas"
 toc: true
+weight: 2
 ---
 
 <div class="hx-mt-8"></div>
