@@ -3,9 +3,16 @@
 {{- $class := or (.Get "class") "" -}}
 {{- $start := or (.Get "start") 0 -}}
 {{- $maxWidth := or (.Get "maxWidth") "400px" -}}
+{{- $thumbnail := or (.Get "miniatura") "" -}}
 
 {{- /* Get thumbnail URL */ -}}
-{{- $thumbnailURL := printf "https://i3.ytimg.com/vi/%s/hqdefault.jpg" $id -}}
+{{- $thumbnailURL := "" -}}
+{{- if $thumbnail -}}
+  {{- $thumbnailURL = $thumbnail -}}
+{{- else -}}
+  {{- $thumbnailURL = printf "https://i3.ytimg.com/vi/%s/hqdefault.jpg" $id -}}
+{{- end -}}
+
 {{- /* Create YouTube URL with start time if needed */ -}}
 {{- $youtubeURL := printf "https://www.youtube.com/watch?v=%s" $id -}}
 {{- if ne $start "0" -}}
@@ -25,12 +32,12 @@
       </div>
       
       <div style="position: absolute; bottom: 0; left: 0; right: 0; text-align: center; color: white; font-size: 0.9rem; background-color: rgba(0, 0, 0, 0.7); padding: 8px; border-radius: 0 0 8px 8px !important; margin: 0;">
-        Fai clic para ver o vídeo en YouTube
+        Fai clic para ver o contido
       </div>
     </div>
   </a>
 </div>
 
-
 <!-- Exemplo con todos os parámetros: -->
 <!-- {\{< youtube id="g54vURe47gM" title="Transistors: Field Effect Transistors (FETs)" start="30" maxWidth="500px" class="destacado" >}}  -->
+<!-- engadido parametro de miniatura: miniatura="https://i.ytimg.com/vi/6o1kLNEE-d4/hqdefault.jpg" -->
