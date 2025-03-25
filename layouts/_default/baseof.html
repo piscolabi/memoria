@@ -2,44 +2,7 @@
 <html lang="{{ .Site.Language.Lang }}">
   <head>
     {{- partial "head.html" . -}}
-    
-    <!-- Estilo para ocultar o contido durante a carga da páxina -->
-    <style>
-      #site-content {
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-      .auth-loaded #site-content {
-        opacity: 1;
-      }
-    </style>
-    
-    <!-- Script inicial para ocultar contido se non está autenticado -->
-    <script>
-      (function() {
-        // Comprobar se a sesión expirou (24 horas)
-        const authTimestamp = localStorage.getItem('authTimestamp');
-        const SESSION_EXPIRATION = 24 * 60 * 60 * 1000;
-        
-        if (authTimestamp) {
-          const currentTime = Date.now();
-          if (currentTime - parseInt(authTimestamp) > SESSION_EXPIRATION) {
-            // A sesión expirou, eliminar datos
-            localStorage.removeItem('siteAuthenticated');
-            localStorage.removeItem('authTimestamp');
-            sessionStorage.removeItem('siteAuthenticated');
-            document.cookie = 'siteAuthenticated=; Max-Age=-99999999; path=/';
-          }
-        }
-        
-        // Comprobar autenticación
-        if (localStorage.getItem('siteAuthenticated') !== 'true') {
-          document.write('<style>#site-content{display:none;}</style>');
-          // Cambiar o título da páxina para ocultar información
-          document.title = "Acceso Protexido";
-        }
-      })();
-    </script>
+    {{- partial "custom-scripts.html" . -}}
   </head>
   <body dir="{{ .Site.Language.LanguageDirection | default `ltr` }}">
     <div id="site-content">
@@ -50,27 +13,6 @@
       {{ end }}
     </div>
     {{ partial "scripts.html" . }}
-    
-    <!-- Scripts de protección con contrasinal -->
-    <script src="/js/config.js"></script>
-    <script src="/js/auth-template.js"></script>
-    <script src="/js/protection.js"></script>
-    
-    <!-- Script para mostrar o contido cando está autenticado -->
-    <script>
-      (function() {
-        // Comprobar se está autenticado
-        if (localStorage.getItem('siteAuthenticated') === 'true') {
-          // Mostrar o contido con animación suave
-          document.body.classList.add('auth-loaded');
-          // Restaurar o título orixinal se foi cambiado
-          if (document.title === "Acceso Protexido") {
-            document.title = "{{ .Site.Title }}";
-          }
-        }
-      })();
-    </script>
-  <!-- Script para información do repositorio -->
-  <script src="/js/repo-info.js"></script>
+    {{- partial "custom-footer-scripts.html" . -}}
   </body>
 </html>

@@ -53,5 +53,10 @@
     <div class="static-text">IA</div>
   </div>
   
-  <script src="/js/animacion-ia.js"></script>
+  <!-- <script src="/js/animacion-ia.js"></script> -->
+  {{ $animacionJs := resources.Get "js/animacion-ia.js" }}
+  {{ if eq hugo.Environment "production" }}
+    {{ $animacionJs = $animacionJs | resources.Minify | resources.Fingerprint }}
+  {{ end }}
+  <script src="{{ $animacionJs.RelPermalink }}"></script>
 </div>

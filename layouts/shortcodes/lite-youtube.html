@@ -1,0 +1,65 @@
+{{ $id := .Get "id" }}
+{{ $title := .Get "title" | default "" }}
+{{ $playlabel := .Get "playlabel" | default "Reproducir vídeo" }}
+{{ $params := .Get "params" | default "" }}
+{{ $class := .Get "class" | default "mb-8 mx-auto" }}
+
+<div class="{{ $class }}">
+  <lite-youtube 
+    videoid="{{ $id }}" 
+    {{ if $title }}title="{{ $title }}"{{ end }}
+    {{ if $playlabel }}playlabel="{{ $playlabel }}"{{ end }}
+    {{ if $params }}params="{{ $params }}"{{ end }}
+    js-api
+    style="background-image: url('https://i.ytimg.com/vi/{{ $id }}/hqdefault.jpg');">
+    <button type="button" class="lyt-playbtn">
+      <span class="lyt-visually-hidden">{{ $playlabel }}</span>
+    </button>
+  </lite-youtube>
+</div>
+
+<!-- Script para forzar a recarga do compoñente en dispositivos móbiles problemáticos -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const liteYtElement = document.querySelector('lite-youtube[videoid="{{ $id }}"]');
+    if (liteYtElement) {
+      // Detectar dispositivos móbiles
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (isMobile) {
+        // Engadir listener especial para dispositivos móbiles
+        liteYtElement.addEventListener('click', function() {
+          // Pequeno atraso para asegurar que o evento click se procesa
+          setTimeout(function() {
+            // Comprobar se o iframe non se cargou correctamente
+            if (!liteYtElement.querySelector('iframe')) {
+              // Forzar a creación do iframe manualmente
+              const iframe = document.createElement('iframe');
+              iframe.width = 560;
+              iframe.height = 315;
+              iframe.title = liteYtElement.getAttribute('playlabel') || 'YouTube video';
+              iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+              iframe.allowFullscreen = true;
+              
+              // Construír URL con parámetros
+              let params = new URLSearchParams('autoplay=1&playsinline=1');
+              if (liteYtElement.getAttribute('params')) {
+                const customParams = new URLSearchParams(liteYtElement.getAttribute('params'));
+                customParams.forEach((value, key) => {
+                  params.append(key, value);
+                });
+              }
+              
+              iframe.src = `https://www.youtube-nocookie.com/embed/${liteYtElement.getAttribute('videoid')}?${params.toString()}`;
+              
+              // Eliminar o botón e engadir o iframe
+              const playBtn = liteYtElement.querySelector('.lyt-playbtn');
+              if (playBtn) playBtn.remove();
+              liteYtElement.classList.add('lyt-activated');
+              liteYtElement.appendChild(iframe);
+            }
+          }, 300);
+        });
+      }
+    }
+  });
+</script>

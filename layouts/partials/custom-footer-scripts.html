@@ -1,0 +1,51 @@
+{{ if eq hugo.Environment "production" }}
+  {{ $configJs := resources.Get "js/config.js" | resources.Minify | resources.Fingerprint }}
+  {{ $authTemplateJs := resources.Get "js/auth-template.js" | resources.Minify | resources.Fingerprint }}
+  {{ $protectionJs := resources.Get "js/protection.js" | resources.Minify | resources.Fingerprint }}
+  {{ $repoInfoJs := resources.Get "js/repo-info.js" | resources.Minify | resources.Fingerprint }}
+  {{ $animacionIaJs := resources.Get "js/animacion-ia.js" | resources.Minify | resources.Fingerprint }}
+  
+  <script src="{{ $configJs.RelPermalink }}"></script>
+  <script src="{{ $authTemplateJs.RelPermalink }}"></script>
+  <script src="{{ $protectionJs.RelPermalink }}"></script>
+  
+  <!-- Script para mostrar o contido cando está autenticado -->
+  <script>
+    (function() {
+      // Comprobar se está autenticado
+      if (localStorage.getItem('siteAuthenticated') === 'true') {
+        // Mostrar o contido con animación suave
+        document.body.classList.add('auth-loaded');
+        // Restaurar o título orixinal se foi cambiado
+        if (document.title === "Acceso Protexido") {
+          document.title = "{{ .Site.Title }}";
+        }
+      }
+    })();
+  </script>
+  
+  <script src="{{ $repoInfoJs.RelPermalink }}"></script>
+{{ else }}
+  <!-- Scripts de protección con contrasinal (modo desenvolvemento) -->
+  <script src="/js/config.js"></script>
+  <script src="/js/auth-template.js"></script>
+  <script src="/js/protection.js"></script>
+  
+  <!-- Script para mostrar o contido cando está autenticado -->
+  <script>
+    (function() {
+      // Comprobar se está autenticado
+      if (localStorage.getItem('siteAuthenticated') === 'true') {
+        // Mostrar o contido con animación suave
+        document.body.classList.add('auth-loaded');
+        // Restaurar o título orixinal se foi cambiado
+        if (document.title === "Acceso Protexido") {
+          document.title = "{{ .Site.Title }}";
+        }
+      }
+    })();
+  </script>
+  
+  <!-- Script para información do repositorio -->
+  <script src="/js/repo-info.js"></script>
+{{ end }}

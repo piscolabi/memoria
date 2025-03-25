@@ -1,0 +1,61 @@
+{{ $customCss := resources.Get "css/custom.css" }}
+{{ $liteYtCss := resources.Get "css/lite-yt-embed.css" }}
+
+{{ $allCss := slice $customCss $liteYtCss | resources.Concat "css/bundle.css" }}
+{{ $finalCss := $allCss }}
+
+{{ if eq hugo.Environment "production" }}
+  {{ $finalCss = $allCss | resources.Minify | resources.Fingerprint }}
+{{ end }}
+
+<link rel="stylesheet" href="{{ $finalCss.RelPermalink }}">
+
+{{ $liteYtJs := resources.Get "js/lite-yt-embed.js" | resources.Minify }}
+{{ $customJs := resources.Get "js/custom.js" | resources.Minify }}
+
+{{ if eq hugo.Environment "production" }}
+  {{ $liteYtJs = $liteYtJs | resources.Fingerprint }}
+  {{ $customJs = $customJs | resources.Fingerprint }}
+{{ end }}
+
+<!-- Cargar lite-yt-embed.js por separado para evitar conflitos -->
+<script src="{{ $liteYtJs.RelPermalink }}" defer></script>
+<script src="{{ $customJs.RelPermalink }}" defer></script>
+
+<!-- Estilo para ocultar o contido durante a carga da páxina -->
+<style>
+  #site-content {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .auth-loaded #site-content {
+    opacity: 1;
+  }
+</style>
+
+<!-- Script inicial para ocultar contido se non está autenticado -->
+<script>
+  (function() {
+    // Comprobar se a sesión expirou (24 horas)
+    const authTimestamp = localStorage.getItem('authTimestamp');
+    const SESSION_EXPIRATION = 24 * 60 * 60 * 1000;
+    
+    if (authTimestamp) {
+      const currentTime = Date.now();
+      if (currentTime - parseInt(authTimestamp) > SESSION_EXPIRATION) {
+        // A sesión expirou, eliminar datos
+        localStorage.removeItem('siteAuthenticated');
+        localStorage.removeItem('authTimestamp');
+        sessionStorage.removeItem('siteAuthenticated');
+        document.cookie = 'siteAuthenticated=; Max-Age=-99999999; path=/';
+      }
+    }
+    
+    // Comprobar autenticación
+    if (localStorage.getItem('siteAuthenticated') !== 'true') {
+      document.write('<style>#site-content{display:none;}</style>');
+      // Cambiar o título da páxina para ocultar información
+      document.title = "Acceso Protexido";
+    }
+  })();
+</script>
