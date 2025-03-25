@@ -15,6 +15,7 @@ toc: true
     icon="academic-cap"
     style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);"
   >}}
+<!-- 
   {{< hextra/feature-card
     title="Segundo Curso"
     subtitle="Profundización en modelos de IA e tecnoloxías da información"
@@ -35,7 +36,8 @@ toc: true
     link="/docs/cuarto/"
     icon="briefcase"
     style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(28, 26, 36, 0)); box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);"
-  >}}
+  >}} -->
+
 {{< /hextra/feature-grid >}}
 
 <div class="hx-mt-16"></div>

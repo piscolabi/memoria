@@ -23,7 +23,7 @@ Aquí presentamos algúns dos mellores videos da colección:
 
 #### Transistors: Field Effect Transistors (FETs)
 
-{{< youtube id="g54vURe47gM" start="30" maxWidth="600px">}}
+<!-- {{< youtube id="g54vURe47gM" start="30" maxWidth="600px">}} -->
 {{< youtube-externo id="g54vURe47gM" title="Transistors: Field Effect Transistors (FETs)" start="30" maxWidth="400px" class="destacado" >}}
 
 Este video ofrece unha explicación clara e detallada sobre os transistores de efecto de campo (FETs), un compoñente fundamental na electrónica moderna. Aprenderás sobre a súa estrutura, funcionamento e aplicacións principais.

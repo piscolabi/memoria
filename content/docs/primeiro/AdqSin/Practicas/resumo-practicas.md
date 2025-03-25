@@ -2,11 +2,13 @@
 linkTitle: "Resumo"
 title: ''
 description: "Guía con todos os conceptos e circuítos traballados nas prácticas de laboratorio"
-toc: false
+toc: true
 math: true
 sidebar:
   exclude: true
+
 ---
+{{< hide-sidebar >}}
 
 # Resumo global das prácticas de laboratorio
 
@@ -111,30 +113,19 @@ Este documento recolle de forma estruturada todos os conceptos, circuítos e pro
 - **Protoboard**: Para montaxe rápida de circuítos
 - **Compoñentes**: Resistencias, condensadores, diodos, amplificadores operacionais, temporizador 555
 
+## Práctica 7: Introdución a Arduino e LEDs
 
+### Conceptos clave
+- **Díodos LED**: Curva característica de corrente
+- **Arduino UNO**: Plataforma de prototipado electrónico
+- **Análise de sinais**: Observación de flancos de subida e baixada dos LEDs
+
+### Procedementos experimentais
+- Visualización do comportamento dos LEDs por primeira vez
+- Análise con PicoScope das curvas de carga e descarga dos díodos LED
+- Observación dos tempos de resposta (flancos de subida e baixada)
+- Realización de exercicios prácticos co IDE de Arduino
+- Montaxe de circuítos básicos con diversos compoñentes
 ---
 
 *Nota: Este documento é un resumo orientativo. Consulta os guións de prácticas e os teus apuntamentos para información máis detallada.*
-
-texto orixinal:
-P1 7F- ley de ohm, como actúan as resistencias cando pasa corrente \
-     LEIS DE KIRCHOFF, medicion de resistencias e tensión con polímetro para un circuito simple con 2 fontes de tension \
-     Teoremas Thevenin e Norton, circuitos equivalentes e como actúan as correntes en cortocircuito \
-     coller resistencias medir resistencias, medir correntes e o sumatorio tiña uqe ser 0, usar polimetro para medir todo, por nodos dsps por maias ...
-     con eses datos queda de deberes, medir teóricamente por nodos e maias as tensións que deberían dar e comparalas cos resultados experimentais
-
-P2 14F- (Comprobar teoremas thevv. e Norton, resistencias equivalentes, cortocircuitos, partidor de tension, ecuacion do partidor, polimetros,
-coller 5 resistencias - tensión de thevenin e comprobar que nos deran o mesmo (primeiro experimental e despois teoricamente as tensions e correntes)
- Introducir potenciómetro (100kohms) para facer un circuito equivalente ao feito na practica anterior, 
- montar circ. thevenin sen desmontar o anterior e comprobar que eran icrcuitos equivalentes, comprobar resistencia de carga que deran o mesmo
-para qué valor de R_l a potencia é máxima'?? <- medir potencias e tensións cambiandolle o valor ao potenciometro, (cúmplese que é máxima cando a derivada é 0, empezar unha tabla)
-
-P3 21F - Tª maxima potencia transferecial(fuerza de transmision);
-     Introdución alterna - partidor de tension con condensador - Introduccion diagramas de Bode (atenuación por dB e retardo por fases) , medir experimentalmente con Picoscope Amplitude de entrada e de saída, facer unha táboa e comprobar resultados cas fórmulas,
-
-P4 28F - O mismo que a P3 (repetimos todo) \
-    Introducción do diodo, rectificacion de media onda e onda completa, carga e descarga do condensador, <- Picoscope graficar a diferenza do canal A e B era a curva do diodo (canales matematicos)
-
-P5 7 M- Introduccion Superdiodos (rectificador de precisión), Operational amplifier ma741: en lazo cerrado, en lazo aberto, configuración inversora/non inversora, pins, como se comporta un circuito con superdiodo (curva característica de tension), semiciclos positivos e negativos, cortocircuito virtual <- Picoscope 2 circuitos un sin diodo outro con diodo
-
-P6 14 M- da clases Victor, circuito 555 astable, introdución ao monoestable pero non deu tempo <- Picoscope montar circuito 555
