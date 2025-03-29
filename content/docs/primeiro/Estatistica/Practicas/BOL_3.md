@@ -1920,3 +1920,884 @@ $\phantom{P(X = 4)} \approx 0.175467$
 
 La probabilidad de que el algoritmo cometa exactamente 4 errores en una transcripción de 5000 palabras es:  
 $P(X = 4) \approx 0.1755$
+
+## Exercicio 11
+### Probabilidad de cervezas retiradas
+#### **Enunciado**
+
+De 200 cervezas catadas, 25 no alcanzan el amargor requerido y deben ser retiradas. Se eligen 30 cervezas al azar para analizar su amargor mediante un algoritmo. Calculemos la probabilidad de que exactamente 2 de estas 30 cervezas deban ser retiradas bajo dos escenarios:  
+a) Con reemplazamiento.  
+b) Sin reemplazamiento.
+
+#### **Desarrollo**
+
+Definimos:  
+- $N = 200$: total de cervezas.  
+- $D = 25$: cervezas defectuosas (que deben ser retiradas).  
+- $S = 200 - 25 = 175$: cervezas no defectuosas.  
+- $n = 30$: número de cervezas seleccionadas.  
+- $X$: número de cervezas defectuosas en la muestra de 30.  
+
+Queremos calcular $P(X = 2)$ en ambos escenarios.
+
+**a) Con reemplazamiento**  
+
+En este caso, cada selección es independiente, ya que las cervezas se devuelven al conjunto tras ser elegidas. La probabilidad de elegir una cerveza defectuosa en cada selección es constante:  
+$p = \frac{D}{N} = \frac{25}{200} = 0.125$  
+$q = 1 - p = 1 - 0.125 = 0.875$  
+
+El número de cervezas defectuosas $X$ en las 30 selecciones sigue una distribución binomial:  
+$X \sim \text{Binomial}(n, p)$ con $n = 30$ y $p = 0.125$.  
+
+La probabilidad de que exactamente 2 cervezas sean defectuosas es:  
+$P(X = 2) = \binom{n}{x} p^x q^{n-x}$  
+$\phantom{P(X = 2)} = \binom{30}{2} (0.125)^2 (0.875)^{28}$  
+
+Calculamos cada término:  
+- $\binom{30}{2} = \frac{30 \cdot 29}{2} = 435$  
+- $(0.125)^2 = (0.125)^2 = 0.015625$  
+- $(0.875)^{28}$ (aproximamos usando calculadora o tablas): $(0.875)^{28} \approx 0.02378$  
+
+Entonces:  
+$P(X = 2) = 435 \cdot 0.015625 \cdot 0.02378 \approx 0.1616$
+
+**b) Sin reemplazamiento**  
+
+En este caso, las selecciones no son independientes, ya que una cerveza elegida no puede ser seleccionada nuevamente. El número de cervezas defectuosas $X$ en la muestra de 30 sigue una distribución hipergeométrica:  
+$X \sim \text{Hipergeométrica}(N, D, n)$ con $N = 200$, $D = 25$, $n = 30$.  
+
+La probabilidad de que exactamente 2 cervezas sean defectuosas es:  
+$$
+P(X = 2) = \frac{\binom{D}{x} \binom{S}{n-x}}{\binom{N}{n}}
+$$
+$$
+\phantom{P(X = 2)} = \frac{\binom{25}{2} \binom{175}{28}}{\binom{200}{30}}
+$$
+Calculamos cada término:  
+- $\binom{25}{2} = \frac{25 \cdot 24}{2} = 300$  
+- $\binom{175}{28}$ y $\binom{200}{30}$ son combinatorios grandes, pero podemos expresar la probabilidad directamente:  
+$P(X = 2) = \frac{\binom{25}{2} \binom{175}{28}}{\binom{200}{30}}$  
+
+Para calcularlo numéricamente, usamos la fórmula de la hipergeométrica en términos de probabilidades:  
+$$
+P(X = 2) = \frac{\frac{D!}{x!(D-x)!} \cdot \frac{S!}{(n-x)!(S-n+x)!}}{\frac{N!}{n!(N-n)!}}
+$$  
+
+Sin embargo, para mayor claridad, calculamos los combinatorios paso a paso. La expresión completa es:  
+$$
+P(X = 2) = \frac{\frac{25 \cdot 24}{2} \cdot \frac{175!}{28! \cdot 147!}}{\frac{200!}{30! \cdot 170!}}
+$$  
+
+
+Simplificamos:  
+$$
+P(X = 2) = \frac{300 \cdot \frac{175 \cdot 174 \cdot \ldots \cdot 148}{28 \cdot 27 \cdot \ldots \cdot 1}}{\frac{200 \cdot 199 \cdot \ldots \cdot 171}{30 \cdot 29 \cdot \ldots \cdot 1}}
+$$  
+
+Aunque este cálculo es complejo, usamos software o aproximaciones numéricas para obtener:  
+$P(X = 2) \approx 0.15636$
+
+### Resultado final
+
+a) $P(X = 2)$ con reemplazamiento $\approx 0.1616$  
+b) $P(X = 2)$ sin reemplazamiento $\approx 0.15636$
+
+## Exercicio 12
+### Probabilidad en una distribución binomial
+
+#### **Enunciado**
+
+Sea $X \sim \text{Binomial}(n, p)$ una variable aleatoria con media 20 y varianza 16. Calculemos la probabilidad de que $X$ tome el valor 25, es decir, $P(X = 25)$.
+
+#### **Desarrollo**
+
+Definimos los parámetros de la distribución binomial $X \sim \text{Binomial}(n, p)$:  
+- Media: $\mu = np = 20$  
+- Varianza: $\sigma^2 = np(1 - p) = 16$  
+
+Resolvemos el sistema de ecuaciones para encontrar $n$ y $p$:  
+$\left\{
+\begin{aligned}
+np &= 20 \\
+np(1 - p) &= 16
+\end{aligned}
+\right.$  
+
+De la primera ecuación: $np = 20 \implies p = \frac{20}{n}$  
+
+Sustituimos en la segunda ecuación:  
+$np(1 - p) = 16 \implies n \cdot \frac{20}{n} \cdot \left(1 - \frac{20}{n}\right) = 16$  
+$\phantom{np(1 - p) = 16} \implies 20 \cdot \left(1 - \frac{20}{n}\right) = 16$  
+$\phantom{np(1 - p) = 16} \implies 20 - \frac{400}{n} = 16$  
+$\phantom{np(1 - p) = 16} \implies \frac{400}{n} = 4$  
+$\phantom{np(1 - p) = 16} \implies n = 100$  
+
+Ahora, calculamos $p$:  
+$p = \frac{20}{n} = \frac{20}{100} = 0.2$  
+
+Verificamos la varianza:  
+$\sigma^2 = np(1 - p) = 100 \cdot 0.2 \cdot (1 - 0.2) = 100 \cdot 0.2 \cdot 0.8 = 16$  
+
+Los parámetros son correctos:  
+$X \sim \text{Binomial}(n = 100, p = 0.2)$  
+
+Queremos calcular $P(X = 25)$:  
+$P(X = x) = \binom{n}{x} p^x (1 - p)^{n - x}$  
+$\phantom{P(X = x)} = \binom{100}{25} (0.2)^{25} (0.8)^{75}$  
+
+La expresión completa es:  
+$P(X = 25) = \binom{100}{25} (0.2)^{25} (0.8)^{75}$  
+
+Para obtener un valor numérico, calculamos los términos (usando calculadora o software):  
+- $(0.2)^{25} \approx 3.355 \cdot 10^{-18}$  
+- $(0.8)^{75} \approx 5.392 \cdot 10^{-8}$ .  
+- $\binom{100}{25} \approx 2.425 \cdot 10^{23}$.  
+
+Entonces:  
+$P(X = 25) \approx 3.355 \cdot 10^{-18} \cdot 5.392 \cdot 10^{-8} \cdot 2.425 \cdot 10^{23}$  
+$\phantom{P(X = 25)} \approx 0.043869$  
+
+### Resultado final
+
+$P(X = 25) \approx 0.043869$
+
+## Exercicio 13
+### Distribución del número de personas que se suben a un autobús
+
+#### **Enunciado**
+
+Consideremos la variable $X = \text{número de personas que se suben a un autobús}$. Sea $Y_i$ la variable que codifica si la persona $i$-ésima se sube al autobús ($Y_i = 1$) o no ($Y_i = 0$), con $0 < p_i < 1$ la probabilidad de que la persona $i$-ésima se suba al autobús, es decir, $P(Y_i = 1) = p_i$ y $P(Y_i = 0) = 1 - p_i$. Si tenemos $n$ personas cuya decisión de subirse o no al autobús es independiente de las demás, se pide:  
+a) ¿Cómo se puede escribir la variable $X$ en función de las $Y_i$? Establece una condición que te permita obtener la distribución de $X$.  
+b) Calcula el valor esperado y la varianza de la variable $X$.
+
+#### **Desarrollo**
+
+**Definiciones iniciales**  
+- $Y_i$: Variable indicadora para la persona $i$, donde $Y_i = 1$ si la persona $i$ se sube al autobús y $Y_i = 0$ si no, con $P(Y_i = 1) = p_i$ y $P(Y_i = 0) = 1 - p_i$.  
+- $X$: Número total de personas que se suben al autobús.  
+- Hipótesis: Las decisiones de las $n$ personas son independientes, es decir, los $Y_i$ son independientes entre sí.
+
+**a) Expresión de $X$ en función de $Y_i$ y distribución de $X$**  
+$X$ representa el número total de personas que se suben al autobús, lo cual es la suma de los eventos individuales $Y_i$:  
+$X = Y_1 + Y_2 + \cdots + Y_n = \sum_{i=1}^n Y_i$  
+
+Para determinar la distribución de $X$, observamos que cada $Y_i$ es una variable de Bernoulli con parámetro $p_i$, es decir, $Y_i \sim \text{Bernoulli}(p_i)$. Dado que las $Y_i$ son independientes, $X$ es la suma de $n$ variables de Bernoulli independientes, pero con diferentes probabilidades $p_i$. Esto implica que $X$ sigue una **distribución de Poisson binomial**:  
+$X \sim \text{PoissonBinomial}(p_1, p_2, \ldots, p_n)$  
+
+Condición para una distribución más simple: Si todas las probabilidades fueran iguales, es decir, $p_i = p$ para todo $i$, entonces $X$ seguiría una distribución binomial:  
+$X \sim \text{Binomial}(n, p)$  
+Sin embargo, en el caso general con $p_i$ distintos, la distribución es de Poisson binomial.
+
+**b) Valor esperado y varianza de $X$**  
+Para calcular el valor esperado y la varianza de $X$, usamos la expresión $X = \sum_{i=1}^n Y_i$ y las propiedades de las $Y_i$ como variables de Bernoulli independientes.
+
+- **Valor esperado de $X$**  
+El valor esperado de una suma de variables aleatorias independientes es la suma de sus valores esperados:  
+$E(X) = E\left(\sum_{i=1}^n Y_i\right) = \sum_{i=1}^n E(Y_i)$  
+Para cada $Y_i \sim \text{Bernoulli}(p_i)$, el valor esperado es:  
+$E(Y_i) = 1 \cdot P(Y_i = 1) + 0 \cdot P(Y_i = 0) = p_i$  
+Por lo tanto:  
+$E(X) = \sum_{i=1}^n p_i$
+
+- **Varianza de $X$**  
+La varianza de una suma de variables aleatorias independientes es la suma de sus varianzas:  
+$\text{Var}(X) = \text{Var}\left(\sum_{i=1}^n Y_i\right) = \sum_{i=1}^n \text{Var}(Y_i)$  
+Para cada $Y_i \sim \text{Bernoulli}(p_i)$, la varianza es:  
+$\text{Var}(Y_i) = E(Y_i^2) - [E(Y_i)]^2 = p_i - p_i^2 = p_i(1 - p_i)$  
+Por lo tanto:  
+$\text{Var}(X) = \sum_{i=1}^n p_i(1 - p_i)$
+
+### Resultado final
+
+a) $X = \sum_{i=1}^n Y_i$. La distribución de $X$ es de Poisson binomial, $X \sim \text{PoissonBinomial}(p_1, p_2, \ldots, p_n)$. Si $p_i = p$ para todo $i$, entonces $X \sim \text{Binomial}(n, p)$.  
+b) $E(X) = \sum_{i=1}^n p_i$ y $\text{Var}(X) = \sum_{i=1}^n p_i(1 - p_i)$
+
+## Exercicio 14
+### Probabilidad de llegar tarde y hora media de llegada
+
+#### **Enunciado**
+
+Un alumno sale de casa todos los días en algún momento entre las 8:40 y las 8:50, camina a EmprendIA en 15 minutos, y la clase comienza a las 9:00. Se pide:  
+a) ¿Cuál es la probabilidad de que llegue tarde?  
+b) ¿Cuál es la hora media de llegada?
+
+#### **Desarrollo**
+
+**Definiciones iniciales**  
+- $T_s$: Hora de salida del alumno, en minutos, medida desde las 8:00 (es decir, 8:00 corresponde a $T_s = 0$).  
+- Intervalo de salida: Entre 8:40 y 8:50, lo que equivale a $T_s \in [40, 50]$.  
+- Tiempo de caminata: 15 minutos.  
+- $T_l$: Hora de llegada, en minutos desde las 8:00, dada por $T_l = T_s + 15$.  
+- Hora de inicio de clase: 9:00, lo que equivale a $T_l = 60$ minutos desde las 8:00.  
+- Hipótesis: La hora de salida $T_s$ es una variable aleatoria uniforme en el intervalo $[40, 50]$, es decir, $T_s \sim \text{Uniforme}(40, 50)$, ya que no se especifica ninguna preferencia dentro de ese intervalo.
+
+**Distribución de $T_s$ y $T_l$**  
+La densidad de $T_s \sim \text{Uniforme}(40, 50)$ es:  
+$f_{T_s}(t) = \frac{1}{50 - 40} = \frac{1}{10}, \quad 40 \leq t \leq 50$  
+
+La hora de llegada $T_l$ es una transformación lineal de $T_s$:  
+$T_l = T_s + 15$  
+Por lo tanto, $T_l$ también sigue una distribución uniforme en el intervalo transformado:  
+$T_l \sim \text{Uniforme}(40 + 15, 50 + 15) = \text{Uniforme}(55, 65)$  
+La densidad de $T_l$ es:  
+$f_{T_l}(t) = \frac{1}{65 - 55} = \frac{1}{10}, \quad 55 \leq t \leq 65$
+
+**a) Probabilidad de llegar tarde**  
+Llegar tarde significa que $T_l > 60$ (es decir, llega después de las 9:00). Calculamos:  
+$P(T_l > 60) = \int_{60}^{65} f_{T_l}(t) \, dt = \int_{60}^{65} \frac{1}{10} \, dt$  
+$\phantom{P(T_l > 60)} = \frac{1}{10} [t]_{60}^{65} = \frac{1}{10} (65 - 60) = \frac{1}{10} \cdot 5 = \frac{1}{2}$  
+
+Alternativamente, usando la distribución uniforme de $T_l \sim \text{Uniforme}(55, 65)$, la probabilidad es proporcional a la longitud del intervalo $[60, 65]$ respecto al intervalo total $[55, 65]$:  
+$P(T_l > 60) = \frac{65 - 60}{65 - 55} = \frac{5}{10} = \frac{1}{2}$
+
+**b) Hora media de llegada**  
+La hora media de llegada es el valor esperado de $T_l$, $E(T_l)$. Para una variable uniforme $T_l \sim \text{Uniforme}(a, b)$, el valor esperado es:  
+$E(T_l) = \frac{a + b}{2}$  
+Aquí, $a = 55$ y $b = 65$, por lo que:  
+$E(T_l) = \frac{55 + 65}{2} = \frac{120}{2} = 60$  
+
+Esto significa que la hora media de llegada es 60 minutos después de las 8:00, es decir, exactamente a las 9:00.  
+
+### Resultado final
+
+a) $P(\text{llegar tarde}) = \frac{1}{2}$  
+b) Hora media de llegada: 9:00
+
+## Exercicio 15
+### Proporciones bajo una distribución normal
+
+#### **Enunciado**
+
+La altura de los alumnos de Estadística sigue una distribución normal $X \sim N(\mu, \sigma^2)$. Se sabe que:  
+- El 5% de los alumnos supera los 180 cm, es decir, $P(X > 180) = 0.05$.  
+- El 6% no llega a 160 cm, es decir, $P(X < 160) = 0.06$.  
+
+Calculemos:  
+a) La proporción de alumnos que mide más de 190 cm, es decir, $P(X > 190)$.  
+b) La proporción de alumnos que mide entre 170 y 175 cm, es decir, $P(170 < X < 175)$.
+
+#### **Desarrollo**
+
+Definimos la variable:  
+$X \sim N(\mu, \sigma^2)$  
+$Z = \frac{X - \mu}{\sigma}, \quad Z \sim N(0, 1)$  
+
+**Paso 1: Determinar $\mu$ y $\sigma$ usando la información dada**  
+
+1. Condición 1: $P(X > 180) = 0.05$  
+$P(X > 180) = P\left(Z > \frac{180 - \mu}{\sigma}\right) = 0.05$  
+$\Rightarrow P\left(Z \leq \frac{180 - \mu}{\sigma}\right) = 1 - 0.05 = 0.95$  
+$\Rightarrow \frac{180 - \mu}{\sigma} = z_{0.95} \approx 1.645$ (valor crítico de la normal estándar)  
+$\Rightarrow 180 - \mu = 1.645 \sigma \quad (1)$  
+
+2. Condición 2: $P(X < 160) = 0.06$  
+$P(X < 160) = P\left(Z < \frac{160 - \mu}{\sigma}\right) = 0.06$  
+$\Rightarrow \frac{160 - \mu}{\sigma} = z_{0.06} \approx -1.555$ (valor crítico de la normal estándar, ya que $P(Z < -1.555) \approx 0.06$)  
+$\Rightarrow 160 - \mu = -1.555 \sigma \quad (2)$  
+
+Resolvemos el sistema de ecuaciones (1) y (2):  
+$\left\{
+\begin{aligned}
+180 - \mu &= 1.645 \sigma \quad (1) \\
+160 - \mu &= -1.555 \sigma \quad (2)
+\end{aligned}
+\right.$  
+
+Restamos (2) de (1) para eliminar $\mu$:  
+$(180 - \mu) - (160 - \mu) = 1.645 \sigma - (-1.555 \sigma)$  
+$\Rightarrow 20 = 3.2 \sigma$  
+$\Rightarrow \sigma = \frac{20}{3.2} = 6.25$  
+
+Sustituimos $\sigma = 6.25$ en (2):  
+$160 - \mu = -1.555 \cdot 6.25$  
+$\Rightarrow 160 - \mu = -9.71875$  
+$\Rightarrow \mu = 160 + 9.71875 = 169.71875$  
+
+Parámetros de la distribución:  
+$\mu \approx 169.72$  
+$\sigma \approx 6.25$  
+
+Aproximación:  
+$X \sim N(169.72, 6.25^2)$  
+$Z = \frac{X - 169.72}{6.25}, \quad Z \sim N(0, 1)$  
+
+**a) $P(X > 190)$**  
+$P(X > 190) = P\left(Z > \frac{190 - 169.72}{6.25}\right)$  
+$\phantom{P(X > 190)} = P\left(Z > \frac{20.28}{6.25}\right)$  
+$\phantom{P(X > 190)} = P(Z > 3.2448)$  
+$\phantom{P(X > 190)} = 1 - P(Z \leq 3.2448)$  
+$\phantom{P(X > 190)} \approx 1 - 0.9994 = 0.0006$ (usando tablas de la normal estándar, $P(Z \leq 3.24) \approx 0.9994$)  
+
+**b) $P(170 < X < 175)$**  
+$P(170 < X < 175) = P\left(\frac{170 - 169.72}{6.25} < Z < \frac{175 - 169.72}{6.25}\right)$  
+$\phantom{P(170 < X < 175)} = P\left(\frac{0.28}{6.25} < Z < \frac{5.28}{6.25}\right)$  
+$\phantom{P(170 < X < 175)} = P(0.0448 < Z < 0.8448)$  
+$\phantom{P(170 < X < 175)} = P(Z < 0.8448) - P(Z < 0.0448)$  
+$\phantom{P(170 < X < 175)} \approx P(Z < 0.84) - P(Z < 0.04)$ (aproximando a valores tabulados)  
+$\phantom{P(170 < X < 175)} \approx 0.7995 - 0.5160 = 0.2835$ (usando tablas de la normal estándar)  
+
+### Resultado final
+
+a) $P(X > 190) \approx 0.0006$  
+b) $P(170 < X < 175) \approx 0.2835$
+
+## Ejercicio 16
+### Distribución exponencial para la vida útil de bombillas
+
+#### **Enunciado**
+
+La vida útil de un tipo de bombillas tiene una media de 8 meses. Calculemos:  
+a) La probabilidad de que una bombilla dure entre 3 y 12 meses, es decir, $P(3 < X < 12)$.  
+b) La probabilidad de que una bombilla que ya ha durado 10 meses siga funcionando más de 25 meses, es decir, $P(X > 25 \mid X > 10)$.
+
+#### **Desarrollo**
+
+Definimos la variable:  
+$X = \text{vida útil de una bombilla (en meses)}$  
+
+Dado que la vida útil de las bombillas suele modelarse con una distribución exponencial y se proporciona la vida media, asumimos:  
+$X \sim \text{Exponencial}(\lambda)$  
+
+La media de una distribución exponencial es $E(X) = \frac{1}{\lambda}$. Se nos da que la vida media es 8 meses:  
+$E(X) = \frac{1}{\lambda} = 8$  
+$\Rightarrow \lambda = \frac{1}{8}$  
+
+La función de densidad de probabilidad es:  
+$f(x) = \lambda e^{-\lambda x} = \frac{1}{8} e^{-x/8}, \quad x > 0$  
+
+La función de distribución acumulada es:  
+$F(x) = P(X \leq x) = 1 - e^{-\lambda x} = 1 - e^{-x/8}, \quad x > 0$  
+
+**a) $P(3 < X < 12)$**  
+$P(3 < X < 12) = P(X < 12) - P(X < 3)$  
+$\phantom{P(3 < X < 12)} = F(12) - F(3)$  
+$\phantom{P(3 < X < 12)} = (1 - e^{-12/8}) - (1 - e^{-3/8})$  
+$\phantom{P(3 < X < 12)} = (1 - e^{-1.5}) - (1 - e^{-0.375})$  
+$\phantom{P(3 < X < 12)} = 1 - e^{-1.5} - 1 + e^{-0.375}$  
+$\phantom{P(3 < X < 12)} = e^{-0.375} - e^{-1.5}$  
+$\phantom{P(3 < X < 12)} \approx e^{-0.375} - e^{-1.5}$  
+$\phantom{P(3 < X < 12)} \approx 0.6873 - 0.2231$ (usando valores aproximados de $e^{-0.375} \approx 0.6873$ y $e^{-1.5} \approx 0.2231$)  
+$\phantom{P(3 < X < 12)} \approx 0.4642$  
+
+**b) $P(X > 25 \mid X > 10)$**  
+Usamos la propiedad de falta de memoria de la distribución exponencial:  
+$P(X > t + s \mid X > s) = P(X > t)$  
+En este caso, $s = 10$ y $t + s = 25$, por lo que $t = 15$. Entonces:  
+$P(X > 25 \mid X > 10) = P(X > 15)$  
+$\phantom{P(X > 25 \mid X > 10)} = 1 - P(X \leq 15)$  
+$\phantom{P(X > 25 \mid X > 10)} = 1 - F(15)$  
+$\phantom{P(X > 25 \mid X > 10)} = 1 - (1 - e^{-15/8})$  
+$\phantom{P(X > 25 \mid X > 10)} = e^{-15/8}$  
+$\phantom{P(X > 25 \mid X > 10)} \approx e^{-1.875}$  
+$\phantom{P(X > 25 \mid X > 10)} \approx 0.1533$ (usando el valor aproximado de $e^{-1.875} \approx 0.1533$)  
+
+### Resultado final
+
+a) $P(3 < X < 12) \approx 0.4642$  
+b) $P(X > 25 \mid X > 10) \approx 0.1533$
+
+## Ejercicio 17
+### Probabilidad con distribución normal
+
+#### **Enunciado**
+
+Un algoritmo asigna puntuaciones a imágenes por resonancia magnética de individuos sanos, siguiendo una distribución normal con media 100 y desviación típica 10. Calculemos:  
+a) $P(90 \leq X \leq 115)$  
+b) La puntuación $x$ tal que el 10 % de las imágenes tienen puntuaciones mayores a $x$  
+c) El valor $c$ tal que $P(85 \leq X \leq c) = 0.90$
+
+#### **Desarrollo**
+
+Definimos la variable aleatoria:  
+$X = \text{puntuación asignada por el algoritmo}$  
+$X \sim N(\mu, \sigma^2)$ con:  
+$\mu = 100$  
+$\sigma = 10$  
+
+Estandarizamos:  
+$Z = \frac{X - \mu}{\sigma} = \frac{X - 100}{10}, \quad Z \sim N(0, 1)$  
+
+Usamos la tabla de la distribución normal estándar $N(0, 1)$ para los cálculos de probabilidad.
+
+**a) $P(90 \leq X \leq 115)$**  
+$P(90 \leq X \leq 115) = P\left(\frac{90 - 100}{10} \leq Z \leq \frac{115 - 100}{10}\right)$  
+$\phantom{P(90 \leq X \leq 115)} = P(-1 \leq Z \leq 1.5)$  
+$\phantom{P(90 \leq X \leq 115)} = P(Z \leq 1.5) - P(Z \leq -1)$  
+$\phantom{P(90 \leq X \leq 115)} = P(Z \leq 1.5) - (1 - P(Z \leq 1))$  
+$\phantom{P(90 \leq X \leq 115)} \approx 0.9332 - (1 - 0.8413)$  
+$\phantom{P(90 \leq X \leq 115)} = 0.9332 - 0.1587$  
+$\phantom{P(90 \leq X \leq 115)} \approx 0.7745$  
+
+**b) Puntuación $x$ tal que $P(X > x) = 0.10$**  
+$P(X > x) = 0.10 \implies P(X \leq x) = 1 - 0.10 = 0.90$  
+Buscamos $z$ tal que $P(Z \leq z) = 0.90$:  
+$\phantom{P(X > x) = 0.10} z \approx 1.28 \quad (\text{de la tabla de } N(0, 1))$  
+Estandarizamos:  
+$\phantom{P(X > x) = 0.10} z = \frac{x - 100}{10} = 1.28$  
+$\phantom{P(X > x) = 0.10} x - 100 = 1.28 \cdot 10$  
+$\phantom{P(X > x) = 0.10} x = 100 + 12.8$  
+$\phantom{P(X > x) = 0.10} x = 112.8$  
+
+**c) Valor $c$ tal que $P(85 \leq X \leq c) = 0.90$**  
+$P(85 \leq X \leq c) = 0.90 \implies P\left(\frac{85 - 100}{10} \leq Z \leq \frac{c - 100}{10}\right) = 0.90$  
+$\phantom{P(85 \leq X \leq c) = 0.90} = P(-1.5 \leq Z \leq z) = 0.90$  
+$\phantom{P(85 \leq X \leq c) = 0.90} = P(Z \leq z) - P(Z \leq -1.5) = 0.90$  
+$\phantom{P(85 \leq X \leq c) = 0.90} = P(Z \leq z) - (1 - P(Z \leq 1.5)) = 0.90$  
+$\phantom{P(85 \leq X \leq c) = 0.90} \approx P(Z \leq z) - (1 - 0.9332) = 0.90$  
+$\phantom{P(85 \leq X \leq c) = 0.90} = P(Z \leq z) - 0.0668 = 0.90$  
+$\phantom{P(85 \leq X \leq c) = 0.90} P(Z \leq z) = 0.90 + 0.0668 = 0.9668$  
+Buscamos $z$ tal que $P(Z \leq z) = 0.9668$:  
+$\phantom{P(85 \leq X \leq c) = 0.90} z \approx 1.84 \quad (\text{de la tabla de } N(0, 1))$  
+Estandarizamos:  
+$\phantom{P(85 \leq X \leq c) = 0.90} z = \frac{c - 100}{10} = 1.84$  
+$\phantom{P(85 \leq X \leq c) = 0.90} c - 100 = 1.84 \cdot 10$  
+$\phantom{P(85 \leq X \leq c) = 0.90} c = 100 + 18.4$  
+$\phantom{P(85 \leq X \leq c) = 0.90} c = 118.4$  
+
+### Resultado final
+
+a) $P(90 \leq X \leq 115) \approx 0.7745$  
+b) $x = 112.8$  
+c) $c = 118.4$
+
+
+# Sin revisar
+
+Agora do 18 ao 23 inda non tiven tempo de revisalos, pero como guía están ben seguro
+## Exercicio 18
+{{% details title="Exercicio 18 paso a paso" closed="true" %}}
+### Proceso de Poisson y distribución exponencial
+
+#### **Enunciado**
+
+La media de llegadas de coches a un parking es de 3 por minuto. Calculemos:  
+a) $P(\text{esperar más de 1 minuto hasta el primer coche})$  
+b) $P(\text{esperar más de 1 minuto hasta el siguiente coche, dado que ya ha aparcado uno})$  
+c) $P(\text{esperar más de 30 minutos hasta el vigésimo coche})$  
+d) $P(\text{al menos 5 coches lleguen en 2 minutos})$  
+e) $P(\text{más de 200 coches lleguen en una hora})$  
+
+#### **Desarrollo**
+
+Definimos la variable aleatoria:  
+$X = \text{número de coches que llegan en un intervalo de tiempo } t \text{ (en minutos)}$  
+Dado que las llegadas tienen una tasa media de 3 coches por minuto, el proceso sigue un proceso de Poisson con:  
+$\lambda = 3 \text{ coches por minuto}$  
+$X \sim \text{Poisson}(\lambda t)$  
+
+Para tiempos de espera entre llegadas, definimos:  
+$T = \text{tiempo hasta la próxima llegada (en minutos)}$  
+$T \sim \text{Exponencial}(\lambda)$ con $\lambda = 3$, y su función de densidad es $f(t) = \lambda e^{-\lambda t}$, $t > 0$.  
+La función de distribución acumulada es $F(t) = P(T \leq t) = 1 - e^{-\lambda t}$, y $P(T > t) = e^{-\lambda t}$.  
+
+Para tiempos hasta la $k$-ésima llegada, usamos la distribución Gamma:  
+$T_k = \text{tiempo hasta la } k\text{-ésima llegada}$  
+$T_k \sim \text{Gamma}(k, \lambda)$ con $k$ entero (equivalente a una suma de $k$ exponenciales).  
+
+**a) $P(\text{esperar más de 1 minuto hasta el primer coche})$**  
+El tiempo hasta el primer coche es $T \sim \text{Exponencial}(\lambda)$ con $\lambda = 3$.  
+$P(T > 1) = e^{-\lambda \cdot 1} = e^{-3 \cdot 1} = e^{-3} \approx 0.0498$  
+
+**b) $P(\text{esperar más de 1 minuto hasta el siguiente coche, dado que ya ha aparcado uno})$**  
+Por la propiedad de falta de memoria de la distribución exponencial, el tiempo hasta la próxima llegada no depende del tiempo transcurrido desde la última llegada.  
+$P(T > 1) = e^{-\lambda \cdot 1} = e^{-3 \cdot 1} = e^{-3} \approx 0.0498$  
+
+**c) $P(\text{esperar más de 30 minutos hasta el vigésimo coche})$**  
+El tiempo hasta la vigésima llegada es $T_{20} \sim \text{Gamma}(20, \lambda)$ con $\lambda = 3$.  
+$P(T_{20} > 30) = 1 - P(T_{20} \leq 30)$  
+$\phantom{P(T_{20} > 30)} = 1 - F_{T_{20}}(30)$  
+La función de distribución acumulada de una $\text{Gamma}(k, \lambda)$ es:  
+$\phantom{P(T_{20} > 30)} F_{T_{20}}(t) = \int_0^t \frac{\lambda^k x^{k-1} e^{-\lambda x}}{\Gamma(k)} \, dx$  
+Para $k$ entero, esto equivale a $1 - \sum_{j=0}^{k-1} \frac{(\lambda t)^j e^{-\lambda t}}{j!}$.  
+Aquí, $k = 20$, $\lambda = 3$, $t = 30$, y $\lambda t = 3 \cdot 30 = 90$.  
+$\phantom{P(T_{20} > 30)} P(T_{20} \leq 30) = 1 - \sum_{j=0}^{19} \frac{(90)^j e^{-90}}{j!}$  
+$\phantom{P(T_{20} > 30)} P(T_{20} > 30) = \sum_{j=0}^{19} \frac{(90)^j e^{-90}}{j!}$  
+Esto es equivalente a $P(Y \leq 19)$, donde $Y \sim \text{Poisson}(90)$.  
+Aproximamos $Y \sim \text{Poisson}(90)$ con una normal, ya que $\lambda = 90$ es grande:  
+$\mu = \lambda = 90$  
+$\sigma = \sqrt{\lambda} = \sqrt{90} \approx 9.486$  
+$\phantom{P(T_{20} > 30)} P(Y \leq 19) \approx P\left(Z \leq \frac{19.5 - 90}{9.486}\right)$ (con corrección de continuidad)  
+$\phantom{P(T_{20} > 30)} = P(Z \leq -7.43)$  
+$\phantom{P(T_{20} > 30)} \approx 0 \quad (\text{ya que } P(Z \leq -7.43) \text{ es negligible})$  
+
+**d) $P(\text{al menos 5 coches lleguen en 2 minutos})$**  
+$X \sim \text{Poisson}(\lambda t)$ con $\lambda = 3$ y $t = 2$, por lo que $\lambda t = 6$.  
+$P(X \geq 5) = 1 - P(X \leq 4)$  
+$\phantom{P(X \geq 5)} = 1 - \sum_{k=0}^{4} \frac{6^k e^{-6}}{k!}$  
+$\phantom{P(X \geq 5)} = 1 - \left( \frac{6^0 e^{-6}}{0!} + \frac{6^1 e^{-6}}{1!} + \frac{6^2 e^{-6}}{2!} + \frac{6^3 e^{-6}}{3!} + \frac{6^4 e^{-6}}{4!} \right)$  
+$\phantom{P(X \geq 5)} = 1 - e^{-6} (1 + 6 + 18 + 36 + 54)$  
+$\phantom{P(X \geq 5)} = 1 - e^{-6} \cdot 115$  
+$\phantom{P(X \geq 5)} \approx 1 - 0.00248 \cdot 115$  
+$\phantom{P(X \geq 5)} \approx 1 - 0.2852$  
+$\phantom{P(X \geq 5)} \approx 0.7148$  
+
+**e) $P(\text{más de 200 coches lleguen en una hora})$**  
+$X \sim \text{Poisson}(\lambda t)$ con $\lambda = 3$ y $t = 60$ (1 hora = 60 minutos), por lo que $\lambda t = 180$.  
+$P(X > 200) = 1 - P(X \leq 200)$  
+Dado que $\lambda t = 180$ es grande, aproximamos con una normal:  
+$\mu = \lambda t = 180$  
+$\sigma = \sqrt{\lambda t} = \sqrt{180} \approx 13.416$  
+$\phantom{P(X > 200)} P(X > 200) \approx P\left(Z > \frac{200.5 - 180}{13.416}\right)$ (con corrección de continuidad)  
+$\phantom{P(X > 200)} = P(Z > 1.53)$  
+$\phantom{P(X > 200)} = 1 - P(Z \leq 1.53)$  
+$\phantom{P(X > 200)} \approx 1 - 0.9370$  
+$\phantom{P(X > 200)} \approx 0.0630$  
+
+### Resultado final
+
+a) $P(T > 1) \approx 0.0498$  
+b) $P(T > 1) \approx 0.0498$  
+c) $P(T_{20} > 30) \approx 0$  
+d) $P(X \geq 5) \approx 0.7148$  
+e) $P(X > 200) \approx 0.0630$
+{{% /details %}}
+
+## Exercicio 19
+{{% details title="Exercicio 19 paso a paso" closed="true" %}}
+### Probabilidad con distribución normal
+
+#### **Enunciado**
+
+El tiempo que tarda una persona promedio en completar una prueba de estadística sigue una distribución normal con media 40 minutos y desviación típica 8 minutos. Calculemos:  
+a) $P(\text{tardar más de 50 minutos})$  
+b) El tiempo $x$ tal que el 99 % de los alumnos tardan menos de $x$ minutos  
+c) La media $\mu$ tal que, con $\sigma = 8$, el 99 % de los alumnos tardan menos de 50 minutos  
+
+#### **Desarrollo**
+
+Definimos la variable aleatoria:  
+$X = \text{tiempo (en minutos) que tarda una persona en completar la prueba}$  
+$X \sim N(\mu, \sigma^2)$ con:  
+$\mu = 40$  
+$\sigma = 8$  
+
+Estandarizamos:  
+$Z = \frac{X - \mu}{\sigma} = \frac{X - 40}{8}, \quad Z \sim N(0, 1)$  
+
+Usamos la tabla de la distribución normal estándar $N(0, 1)$ para los cálculos de probabilidad.
+
+**a) $P(\text{tardar más de 50 minutos})$**  
+$P(X > 50) = P\left(Z > \frac{50 - 40}{8}\right)$  
+$\phantom{P(X > 50)} = P(Z > 1.25)$  
+$\phantom{P(X > 50)} = 1 - P(Z \leq 1.25)$  
+$\phantom{P(X > 50)} \approx 1 - 0.8944$  
+$\phantom{P(X > 50)} \approx 0.1056$  
+
+**b) Tiempo $x$ tal que $P(X < x) = 0.99$**  
+Buscamos $x$ tal que $P(X \leq x) = 0.99$.  
+Estandarizamos:  
+$\phantom{P(X \leq x) = 0.99} P\left(Z \leq \frac{x - 40}{8}\right) = 0.99$  
+Buscamos $z$ tal que $P(Z \leq z) = 0.99$:  
+$\phantom{P(X \leq x) = 0.99} z \approx 2.33 \quad (\text{de la tabla de } N(0, 1))$  
+$\phantom{P(X \leq x) = 0.99} \frac{x - 40}{8} = 2.33$  
+$\phantom{P(X \leq x) = 0.99} x - 40 = 2.33 \cdot 8$  
+$\phantom{P(X \leq x) = 0.99} x = 40 + 18.64$  
+$\phantom{P(X \leq x) = 0.99} x \approx 58.64$  
+
+**c) Media $\mu$ tal que $P(X < 50) = 0.99$ con $\sigma = 8$**  
+Queremos $P(X < 50) = 0.99$ con $X \sim N(\mu, 8^2)$.  
+Estandarizamos:  
+$\phantom{P(X < 50) = 0.99} P\left(Z < \frac{50 - \mu}{8}\right) = 0.99$  
+Buscamos $z$ tal que $P(Z < z) = 0.99$:  
+$\phantom{P(X < 50) = 0.99} z \approx 2.33 \quad (\text{de la tabla de } N(0, 1))$  
+$\phantom{P(X < 50) = 0.99} \frac{50 - \mu}{8} = 2.33$  
+$\phantom{P(X < 50) = 0.99} 50 - \mu = 2.33 \cdot 8$  
+$\phantom{P(X < 50) = 0.99} 50 - \mu = 18.64$  
+$\phantom{P(X < 50) = 0.99} \mu = 50 - 18.64$  
+$\phantom{P(X < 50) = 0.99} \mu \approx 31.36$  
+
+### Resultado final
+
+a) $P(X > 50) \approx 0.1056$  
+b) $x \approx 58.64$  
+c) $\mu \approx 31.36$
+{{% /details %}}
+
+## Exercicio 20
+{{% details title="Exercicio 20 paso a paso" closed="true" %}}
+### Proceso de Poisson y distribución exponencial
+
+#### **Enunciado**
+
+El número de fallos de acceso a un servidor sigue una distribución de Poisson con media 5 fallos cada 10 minutos. Calculemos:  
+a) $P(\text{al menos 1 fallo en 2 minutos})$  
+b) $P(\text{el tiempo entre dos fallos consecutivos sea inferior a 30 segundos})$  
+c) $P(\text{más de 2 horas para tener 50 fallos})$  
+
+#### **Desarrollo**
+
+Definimos la variable aleatoria:  
+$X = \text{número de fallos en un intervalo de tiempo } t \text{ (en minutos)}$  
+Dado que la media es 5 fallos cada 10 minutos, el proceso sigue un proceso de Poisson con:  
+$\lambda = \frac{5}{10} = 0.5 \text{ fallos por minuto}$  
+$X \sim \text{Poisson}(\lambda t)$  
+
+Para tiempos de espera entre fallos consecutivos, definimos:  
+$T = \text{tiempo entre dos fallos consecutivos (en minutos)}$  
+$T \sim \text{Exponencial}(\lambda)$ con $\lambda = 0.5$, y su función de densidad es $f(t) = \lambda e^{-\lambda t}$, $t > 0$.  
+La función de distribución acumulada es $F(t) = P(T \leq t) = 1 - e^{-\lambda t}$, y $P(T > t) = e^{-\lambda t}$.  
+
+Para tiempos hasta el $k$-ésimo fallo, usamos la distribución Gamma:  
+$T_k = \text{tiempo hasta el } k\text{-ésimo fallo}$  
+$T_k \sim \text{Gamma}(k, \lambda)$ con $k$ entero (equivalente a una suma de $k$ exponenciales).  
+
+**a) $P(\text{al menos 1 fallo en 2 minutos})$**  
+$X \sim \text{Poisson}(\lambda t)$ con $\lambda = 0.5$ y $t = 2$, por lo que $\lambda t = 0.5 \cdot 2 = 1$.  
+$P(X \geq 1) = 1 - P(X = 0)$  
+$\phantom{P(X \geq 1)} = 1 - e^{-\lambda t} \cdot \frac{(\lambda t)^0}{0!}$  
+$\phantom{P(X \geq 1)} = 1 - e^{-1}$  
+$\phantom{P(X \geq 1)} \approx 1 - 0.3679$  
+$\phantom{P(X \geq 1)} \approx 0.6321$  
+
+**b) $P(\text{el tiempo entre dos fallos consecutivos sea inferior a 30 segundos})$**  
+El tiempo entre fallos consecutivos es $T \sim \text{Exponencial}(\lambda)$ con $\lambda = 0.5$ fallos por minuto.  
+Convertimos 30 segundos a minutos: $30 \text{ segundos} = \frac{30}{60} = 0.5 \text{ minutos}$.  
+$P(T < 0.5) = 1 - P(T > 0.5)$  
+$\phantom{P(T < 0.5)} = 1 - e^{-\lambda \cdot 0.5}$  
+$\phantom{P(T < 0.5)} = 1 - e^{-0.5 \cdot 0.5}$  
+$\phantom{P(T < 0.5)} = 1 - e^{-0.25}$  
+$\phantom{P(T < 0.5)} \approx 1 - 0.7788$  
+$\phantom{P(T < 0.5)} \approx 0.2212$  
+
+**c) $P(\text{más de 2 horas para tener 50 fallos})$**  
+El tiempo hasta el quincuagésimo fallo es $T_{50} \sim \text{Gamma}(50, \lambda)$ con $\lambda = 0.5$.  
+Convertimos 2 horas a minutos: $2 \text{ horas} = 120 \text{ minutos}$.  
+$P(T_{50} > 120) = 1 - P(T_{50} \leq 120)$  
+$\phantom{P(T_{50} > 120)} = 1 - F_{T_{50}}(120)$  
+La función de distribución acumulada de una $\text{Gamma}(k, \lambda)$ es:  
+$\phantom{P(T_{50} > 120)} F_{T_{50}}(t) = \int_0^t \frac{\lambda^k x^{k-1} e^{-\lambda x}}{\Gamma(k)} \, dx$  
+Para $k$ entero, esto equivale a $1 - \sum_{j=0}^{k-1} \frac{(\lambda t)^j e^{-\lambda t}}{j!}$.  
+Aquí, $k = 50$, $\lambda = 0.5$, $t = 120$, y $\lambda t = 0.5 \cdot 120 = 60$.  
+$\phantom{P(T_{50} > 120)} P(T_{50} \leq 120) = 1 - \sum_{j=0}^{49} \frac{(60)^j e^{-60}}{j!}$  
+$\phantom{P(T_{50} > 120)} P(T_{50} > 120) = \sum_{j=0}^{49} \frac{(60)^j e^{-60}}{j!}$  
+Esto es equivalente a $P(Y \leq 49)$, donde $Y \sim \text{Poisson}(60)$.  
+Aproximamos $Y \sim \text{Poisson}(60)$ con una normal, ya que $\lambda = 60$ es grande:  
+$\mu = \lambda = 60$  
+$\sigma = \sqrt{\lambda} = \sqrt{60} \approx 7.746$  
+$\phantom{P(T_{50} > 120)} P(Y \leq 49) \approx P\left(Z \leq \frac{49.5 - 60}{7.746}\right)$ (con corrección de continuidad)  
+$\phantom{P(T_{50} > 120)} = P(Z \leq -1.36)$  
+$\phantom{P(T_{50} > 120)} \approx 1 - P(Z \leq 1.36)$  
+$\phantom{P(T_{50} > 120)} \approx 1 - 0.9131$  
+$\phantom{P(T_{50} > 120)} \approx 0.0869$  
+
+### Resultado final
+
+a) $P(X \geq 1) \approx 0.6321$  
+b) $P(T < 0.5) \approx 0.2212$  
+c) $P(T_{50} > 120) \approx 0.0869$
+{{% /details %}}
+
+## Exercicio 21
+{{% details title="Exercicio 21 paso a paso" closed="true" %}}
+### Distribución normal para tiempo de duración de productos
+
+#### **Enunciado**
+
+El tiempo de duración de un producto sigue una distribución normal con media y desviación típica de 10 y 3.5 años, respectivamente. El fabricante reemplaza los productos que fallan durante el período de garantía. Calculemos:  
+a) ¿Qué porcentaje de productos tendrá que reemplazar si la garantía es de 3 años?  
+b) Si no tiene intención de reemplazar más del 4% de los productos, ¿cuál es el máximo período de garantía que puede fijar?
+
+#### **Desarrollo**
+
+Definimos la variable aleatoria:  
+$X = \text{tiempo de duración del producto (en años)}$  
+$X \sim N(\mu, \sigma^2)$ con:  
+$\mu = 10$  
+$\sigma = 3.5$  
+
+Estandarizamos para usar la distribución normal estándar:  
+$Z = \frac{X - \mu}{\sigma} = \frac{X - 10}{3.5}, \quad Z \sim N(0, 1)$  
+
+**a) Porcentaje de productos a reemplazar si la garantía es de 3 años**  
+Un producto falla durante el período de garantía si $X < 3$. Calculamos la probabilidad:  
+$P(X < 3) = P\left(Z < \frac{3 - 10}{3.5}\right) = P(Z < -2)$  
+$\phantom{P(X < 3)} = 1 - P(Z < 2)$  
+$\phantom{P(X < 3)} \approx 1 - 0.9772 = 0.0228$  
+
+El porcentaje de productos a reemplazar es:  
+$0.0228 \cdot 100 = 2.28\%$  
+
+**b) Máximo período de garantía para reemplazar no más del 4%**  
+Queremos encontrar el tiempo $T$ tal que $P(X < T) = 0.04$. Estandarizamos:  
+$P(X < T) = P\left(Z < \frac{T - 10}{3.5}\right) = 0.04$  
+
+Buscamos $z$ tal que $P(Z < z) = 0.04$. Como $z$ es negativo (ya que $T$ está a la izquierda de la media), consideramos:  
+$P(Z < z) = 0.04 \implies P(Z > -z) = 0.04 \implies P(Z < -z) = 0.96$  
+De la tabla de la normal estándar, $P(Z < 1.75) \approx 0.9599$ y $P(Z < 1.76) \approx 0.9608$, por lo que $-z \approx -1.75$. Entonces:  
+$z \approx -1.75$  
+
+Resolvemos para $T$:  
+$\frac{T - 10}{3.5} = -1.75$  
+$\phantom{\frac{T - 10}{3.5}} T - 10 = -1.75 \cdot 3.5 = -6.125$  
+$\phantom{\frac{T - 10}{3.5}} T = 10 - 6.125 = 3.875$  
+
+Por lo tanto, el máximo período de garantía es $T \approx 3.875$ años.
+
+### Resultado final
+
+a) El porcentaje de productos a reemplazar es $2.28\%$.  
+b) El máximo período de garantía es $3.875$ años.
+{{% /details %}}
+
+## Exercicio 22
+{{% details title="Exercicio 22 paso a paso" closed="true" %}}
+### Distribución de Poisson y exponencial para consultas de un chatbot
+
+#### **Enunciado**
+
+Un chatbot recibe, en promedio, 6 consultas cada cuarto de hora. Calculemos:  
+a) La probabilidad de que en una hora se reciba más de 20 consultas.  
+b) La probabilidad de que haya que esperar menos de 1 minuto entre dos consultas consecutivas.  
+c) El tiempo medio de espera hasta recibir 40 consultas.
+
+#### **Desarrollo**
+
+Definimos la variable aleatoria para el número de consultas:  
+$X = \text{número de consultas en un intervalo de tiempo}$  
+Dado que las consultas ocurren a una tasa constante y son eventos independientes, $X$ sigue una distribución de Poisson con parámetro $\lambda$ (tasa media de consultas por unidad de tiempo).  
+
+**Tasa de consultas por unidad de tiempo**  
+La tasa es de 6 consultas por cuarto de hora (15 minutos). Convertimos la tasa a diferentes unidades de tiempo:  
+- Por hora: $\lambda_h = 6 \cdot 4 = 24$ consultas por hora (ya que hay 4 cuartos de hora en una hora).  
+- Por minuto: $\lambda_m = 6 \div 15 = 0.4$ consultas por minuto (ya que un cuarto de hora son 15 minutos).  
+
+**a) Probabilidad de que en una hora se reciba más de 20 consultas**  
+Definimos $X_h = \text{número de consultas en una hora}$. Entonces:  
+$X_h \sim \text{Poisson}(\lambda_h = 24)$  
+
+Calculamos $P(X_h > 20)$:  
+$P(X_h > 20) = 1 - P(X_h \leq 20)$  
+
+Para $X_h \sim \text{Poisson}(24)$, la probabilidad acumulada $P(X_h \leq k)$ se calcula como:  
+$P(X_h \leq k) = \sum_{i=0}^{k} e^{-\lambda_h} \frac{\lambda_h^i}{i!}$  
+Sin embargo, dado que $\lambda_h = 24$ es grande, usamos la aproximación normal para simplificar:  
+- Media: $\mu = \lambda_h = 24$  
+- Desviación estándar: $\sigma = \sqrt{\lambda_h} = \sqrt{24} \approx 4.899$  
+
+Aproximamos $X_h \approx Y$, donde $Y \sim N(24, 24)$. Estandarizamos:  
+$Z = \frac{Y - 24}{4.899}, \quad Z \sim N(0, 1)$  
+
+Ajustamos por continuidad, ya que $X_h$ es discreta y $Y$ es continua:  
+$P(X_h > 20) \approx P(Y > 20.5) = P\left(Z > \frac{20.5 - 24}{4.899}\right)$  
+$\phantom{P(X_h > 20)} = P(Z > -0.714) = 1 - P(Z \leq -0.714)$  
+$\phantom{P(X_h > 20)} = 1 - (1 - P(Z \leq 0.714)) = P(Z \leq 0.714)$  
+$\phantom{P(X_h > 20)} \approx 0.7611$ (usando tablas de la normal estándar, donde $P(Z \leq 0.71) \approx 0.7611$).  
+
+**b) Probabilidad de que haya que esperar menos de 1 minuto entre dos consultas consecutivas**  
+El tiempo entre consultas consecutivas sigue una distribución exponencial. Definimos:  
+$T = \text{tiempo de espera (en minutos) entre dos consultas consecutivas}$  
+$T \sim \text{Exponencial}(\lambda_m)$, donde $\lambda_m = 0.4$ consultas por minuto (tasa calculada anteriormente).  
+
+La función de densidad de $T$ es:  
+$f(t) = \lambda_m e^{-\lambda_m t}, \quad t > 0$  
+
+La probabilidad de que el tiempo de espera sea menor a 1 minuto es:  
+$P(T < 1) = \int_0^1 \lambda_m e^{-\lambda_m t} \, dt$  
+$\phantom{P(T < 1)} = \int_0^1 0.4 e^{-0.4 t} \, dt = \left[ -e^{-0.4 t} \right]_0^1$  
+$\phantom{P(T < 1)} = -e^{-0.4} + e^0 = 1 - e^{-0.4}$  
+$\phantom{P(T < 1)} \approx 1 - 0.6703 = 0.3297$  
+
+**c) Tiempo medio de espera hasta recibir 40 consultas**  
+El tiempo hasta recibir la $k$-ésima consulta sigue una distribución de Erlang (o Gamma) con parámetros $k$ y $\lambda$. Definimos:  
+$W = \text{tiempo de espera (en minutos) hasta recibir 40 consultas}$  
+$W \sim \text{Erlang}(k = 40, \lambda_m = 0.4)$  
+
+El tiempo medio de espera es la esperanza de $W$:  
+$E[W] = \frac{k}{\lambda_m} = \frac{40}{0.4} = 100$ minutos  
+
+Convertimos a horas (opcional, para interpretación):  
+$E[W] = 100 \div 60 \approx 1.667$ horas  
+
+### Resultado final
+
+a) $P(X_h > 20) \approx 0.7611$  
+b) $P(T < 1) \approx 0.3297$  
+c) $E[W] = 100$ minutos (o aproximadamente $1.667$ horas)
+{{% /details %}}
+
+## Exercicio 23
+{{% details title="Exercicio 23 paso a paso" closed="true" %}}
+### Variables aleatorias y optimización de parámetros
+
+#### **Enunciado**
+
+Sean $X$ e $Y$ dos variables aleatorias con $E(X) = E(Y) = E(XY) = 1$ y $\text{Var}(X) = \text{Var}(Y) = 1$. Definimos $W = bX + cY$. ¿Qué valores deben tomar $b$ y $c$ para que $E(W) = \text{Var}(W) = 1$?
+
+#### **Desarrollo**
+
+Definimos las variables y parámetros dados:  
+$X, Y$: variables aleatorias con:  
+$E(X) = 1$  
+$E(Y) = 1$  
+$E(XY) = 1$  
+$\text{Var}(X) = 1$  
+$\text{Var}(Y) = 1$  
+
+Además, definimos la covarianza entre $X$ e $Y$:  
+$\text{Cov}(X, Y) = E(XY) - E(X)E(Y) = 1 - 1 \cdot 1 = 0$  
+
+Esto implica que $X$ e $Y$ son incorrelacionadas (aunque no necesariamente independientes, ya que solo se nos da información sobre momentos de primer y segundo orden).
+
+Definimos la variable aleatoria $W$:  
+$W = bX + cY$  
+
+**Condición 1: $E(W) = 1$**  
+Calculamos la esperanza de $W$:  
+$E(W) = E(bX + cY) = bE(X) + cE(Y) = b \cdot 1 + c \cdot 1 = b + c$  
+
+Para que $E(W) = 1$, debe cumplirse:  
+$b + c = 1$  
+
+**Condición 2: $\text{Var}(W) = 1$**  
+Calculamos la varianza de $W$:  
+$\text{Var}(W) = \text{Var}(bX + cY) = b^2 \text{Var}(X) + c^2 \text{Var}(Y) + 2bc \text{Cov}(X, Y)$  
+$\phantom{\text{Var}(W)} = b^2 \cdot 1 + c^2 \cdot 1 + 2bc \cdot 0 = b^2 + c^2$  
+
+Para que $\text{Var}(W) = 1$, debe cumplirse:  
+$b^2 + c^2 = 1$  
+
+**Sistema de ecuaciones**  
+Tenemos el siguiente sistema de ecuaciones para $b$ y $c$:  
+$\left\{
+\begin{aligned}
+b + c &= 1 \\
+b^2 + c^2 &= 1
+\end{aligned}
+\right.$  
+
+De la primera ecuación, despejamos $c$:  
+$c = 1 - b$  
+
+Sustituimos en la segunda ecuación:  
+$b^2 + (1 - b)^2 = 1$  
+$\phantom{b^2 + (1 - b)^2} = b^2 + (1 - 2b + b^2) = 2b^2 - 2b + 1 = 1$  
+$\phantom{b^2 + (1 - b)^2} = 2b^2 - 2b = 0$  
+$\phantom{b^2 + (1 - b)^2} = 2b(b - 1) = 0$  
+
+Las soluciones son:  
+$b = 0 \quad \text{o} \quad b = 1$  
+
+- Si $b = 0$, entonces $c = 1 - b = 1$.  
+- Si $b = 1$, entonces $c = 1 - b = 0$.  
+
+**Verificación de las soluciones**  
+- Para $b = 0$, $c = 1$:  
+  $W = 0 \cdot X + 1 \cdot Y = Y$  
+  $E(W) = E(Y) = 1$  
+  $\text{Var}(W) = \text{Var}(Y) = 1$  
+  Ambas condiciones se cumplen.  
+
+- Para $b = 1$, $c = 0$:  
+  $W = 1 \cdot X + 0 \cdot Y = X$  
+  $E(W) = E(X) = 1$  
+  $\text{Var}(W) = \text{Var}(X) = 1$  
+  Ambas condiciones se cumplen.  
+
+Por lo tanto, hay dos soluciones válidas para $b$ y $c$.
+
+### Resultado final
+
+Los valores de $b$ y $c$ que satisfacen $E(W) = \text{Var}(W) = 1$ son:  
+a) $b = 0, \ c = 1$  
+b) $b = 1, \ c = 0$
+{{% /details %}}
