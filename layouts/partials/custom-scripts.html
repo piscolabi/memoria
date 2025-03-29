@@ -10,12 +10,12 @@
 
 <link rel="stylesheet" href="{{ $finalCss.RelPermalink }}">
 
-{{ $liteYtJs := resources.Get "js/lite-yt-embed.js" | resources.Minify }}
-{{ $customJs := resources.Get "js/custom.js" | resources.Minify }}
+{{ $liteYtJs := resources.Get "js/lite-yt-embed.js" }}
+{{ $customJs := resources.Get "js/custom.js" }}
 
 {{ if eq hugo.Environment "production" }}
-  {{ $liteYtJs = $liteYtJs | resources.Fingerprint }}
-  {{ $customJs = $customJs | resources.Fingerprint }}
+  {{ $liteYtJs = $liteYtJs | resources.Minify | resources.Fingerprint }}
+  {{ $customJs = $customJs | resources.Minify | resources.Fingerprint }}
 {{ end }}
 
 <!-- Cargar lite-yt-embed.js por separado para evitar conflitos -->
