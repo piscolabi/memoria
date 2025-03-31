@@ -1,7 +1,7 @@
 ---
 linkTitle: "Boletín 3"
 title: ''
-description: "Guía con todos os conceptos e circuítos traballados nas prácticas de laboratorio"
+description: "Guía de exercicios de estadística resoltos Tema 3 - Variables aleatorias"
 toc: true
 math: true
 sidebar:
