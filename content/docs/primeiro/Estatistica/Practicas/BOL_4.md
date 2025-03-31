@@ -4,7 +4,6 @@ title: ''
 description: "Guía de exercicios de estadística resoltos Tema 4 - Inferencia estadística"
 toc: true
 math: true
-layout: wide
 sidebar:
   exclude: true
   hide: true
@@ -200,16 +199,17 @@ $X = \text{"número de clientes dispuestos a comprar el programa"}$
 $X \sim \text{Binomial}(n, p)$, donde:  
 $n = 100$ (tamaño de la muestra)  
 $\hat{p} = \frac{X}{n} = \frac{30}{100} = 0.3$ (proporción muestral)  
-$p$ = proporción real (desconocida en a), conocida como $p = 0.4$ en b))  
+$p$ = proporción real (desconocida en a), conocida como $p = 0.4$ en (b)  
 
 Aproximación normal para proporciones:  
 La proporción muestral $\hat{p}$ sigue aproximadamente una distribución normal si:  
-$\left\{
+$$\left\{
 \begin{aligned}
 np &\geq 5 \\
 n(1 - p) &\geq 5
 \end{aligned}
-\right.$  
+\right.
+$$  
 
 Media y desviación estándar de $\hat{p}$:  
 $E(\hat{p}) = p$  
@@ -227,12 +227,13 @@ $\hat{p} = 0.3$
 $\hat{q} = 1 - \hat{p} = 0.7$  
 
 Verificación de la aproximación normal:  
-$\left\{
+$$\left\{
 \begin{aligned}
 n\hat{p} &= 100 \cdot 0.3 = 30 \geq 5 \\
 n\hat{q} &= 100 \cdot 0.7 = 70 \geq 5
 \end{aligned}
-\right.$  
+\right.
+$$  
 
 Parámetros de la normal:  
 $\mu_{\hat{p}} = \hat{p} = 0.3$  
@@ -284,12 +285,13 @@ Como $n$ debe ser un entero, tomamos el siguiente entero mayor:
 $n = 93$  
 
 Verificación de la aproximación normal:  
-$\left\{
+$$\left\{
 \begin{aligned}
 np &= 93 \cdot 0.4 = 37.2 \geq 5 \\
 nq &= 93 \cdot 0.6 = 55.8 \geq 5
 \end{aligned}
-\right.$  
+\right.
+$$ 
 
 ### Resultado final
 
@@ -438,7 +440,9 @@ $s = \sqrt{\frac{\sum (x_i - \bar{x})^2}{n - 1}}$
 
 Primero, calculamos $\sum (x_i - \bar{x})^2$:  
 $\bar{x} = 4.64$  
-$\left\{
+
+$$
+\left\{
 \begin{aligned}
 (x_1 - \bar{x})^2 &= (2.9 - 4.64)^2 = (-1.74)^2 = 3.0276 \\
 (x_2 - \bar{x})^2 &= (6.2 - 4.64)^2 = (1.56)^2 = 2.4336 \\
@@ -446,7 +450,8 @@ $\left\{
 (x_4 - \bar{x})^2 &= (5.7 - 4.64)^2 = (1.06)^2 = 1.1236 \\
 (x_5 - \bar{x})^2 &= (2.9 - 4.64)^2 = (-1.74)^2 = 3.0276
 \end{aligned}
-\right.$  
+\right.
+$$
 
 Sumamos:  
 $\sum (x_i - \bar{x})^2 = 3.0276 + 2.4336 + 0.7396 + 1.1236 + 3.0276 = 10.352$  
@@ -577,21 +582,34 @@ b) Dado que la desviación típica muestral es $s = 1.2$, construir un intervalo
 Definimos:  
 - Tamaño de la muestra: $n = 10$  
 - Grados de libertad: $n - 1 = 9$  
-- $s^2 = \frac{\sum (x_i - \bar{x})^2}{n - 1}$ (varianza muestral)  
+- $s^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \bar{X})^2$ (varianza muestral)  
 - $\sigma^2$ (varianza poblacional, desconocida)  
 
-Sabemos que, bajo la hipótesis de normalidad de $X$, la estadística:  
-$\frac{(n - 1) s^2}{\sigma^2} \sim \chi^2_{n-1}$  
+Sabemos que, cuando las muestras siguen una distribución normal, por el teorema de Cochran, $s^2$ tiene la distribución chi-cuadrado:  
+$$\frac{n s^2}{\sigma^2} \sim \chi^2_{n-1}$$
+
+donde la varianza muestral era:
+$$s^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \bar{X})^2$$
+
+> [!CAUTION]
+> Cuidao con confundir s minúscula con S mayúscula pq cambian las formulas, en clase usamos s minúscula que es *varianza muestral*, pero con chatgpt usa S mayúscula que es *cuasivarianza*, así que ojo porque no es lo mismo $\frac{n s^2}{\sigma^2}$ que $\frac{(n-1) s^2}{\sigma^2}$, esto está por la página 21 del pdf de presentaciones del Tema4
 
 Queremos:  
-$P(s^2 > \sigma^2) = P\left(\frac{(n - 1) s^2}{\sigma^2} > \frac{(n - 1) \sigma^2}{\sigma^2}\right)$  
-$\phantom{P(s^2 > \sigma^2)} = P\left(\frac{(n - 1) s^2}{\sigma^2} > n - 1\right)$  
-$\phantom{P(s^2 > \sigma^2)} = P(\chi^2_{9} > 9)$  
+$$
+\begin{align*}
+P(s^2 > \sigma^2) &= P\left(\frac{s^2}{\sigma^2} > \frac{\sigma^2}{\sigma^2}\right) \\
+                  &= P\left(\frac{s^2}{\sigma^2} > 1\right) \\
+                  &= P\left(\frac{n s^2}{\sigma^2} > n\right) \\
+                  &= P\left(\chi^2_{n-1} > n\right) \\
+                  &= P\left(\chi^2_{10-1} > 10\right) \\
+                  &= P\left(\chi^2_{9} > 10\right)
+\end{align*}
+$$
 
-Calculamos esta probabilidad usando la distribución $\chi^2$ con 9 grados de libertad. La media de una $\chi^2_{k}$ es $k$, por lo que $E[\chi^2_{9}] = 9$. Dado que la distribución $\chi^2$ es asimétrica a la derecha, la probabilidad de que $\chi^2_{9}$ sea mayor que su media no es exactamente 0.5, sino ligeramente menor.  
+Consultamos tablas de la distribución $\chi^2$ (o usamos software estadístico) para $P(\chi^2_{9} > 10)$:  
+$P(\chi^2_{9} > 10) \in [0.25, 0.5]$  
 
-Consultamos tablas de la distribución $\chi^2$ (o usamos software estadístico) para $P(\chi^2_{9} > 9)$. Aproximadamente:  
-$P(\chi^2_{9} > 9) \approx 0.46$  
+Esto es lo unico que se puede sacar con la tabla, porque con R sacas que `1 - pchisq(10, df = 9) = 0.35` que sería lo correcto pero en el examen es sin R jeje
 
 **b) Intervalo de confianza al 95 % para $\sigma^2$**  
 
@@ -602,29 +620,39 @@ Datos muestrales:
 - Varianza muestral: $s^2 = (1.2)^2 = 1.44$  
 
 Definimos:  
-- Nivel de confianza: 95 % $\Rightarrow \alpha = 0.05$, $\frac{\alpha}{2} = 0.025$  
-- Valores críticos de la distribución $\chi^2_{n-1}$:  
-  - $\chi^2_{1 - \frac{\alpha}{2}, n-1}$ tal que $P(\chi^2_{9} > \chi^2_{1 - \frac{\alpha}{2}, 9}) = 0.025$  
-    $\Rightarrow \chi^2_{0.975, 9} \approx 19.023$ (de tablas de la distribución $\chi^2$)  
-  - $\chi^2_{\frac{\alpha}{2}, n-1}$ tal que $P(\chi^2_{9} > \chi^2_{\frac{\alpha}{2}, 9}) = 0.975$  
-    $\Rightarrow \chi^2_{0.025, 9} \approx 2.700$ (de tablas de la distribución $\chi^2$)  
+Nivel de confianza: 95 %  $\Rightarrow 1 - \alpha = 0.95$  
+$\alpha = 1 - 0.95 = 0.05$  
+$\frac{\alpha}{2} = 0.025$  
+$1 - \frac{\alpha}{2} = 1 - 0.025 = 0.975$
+
+Esto del $\alpha$ hace falta pa despues sacar el intervalo de confianza, y al calcularlo al principio despues vas chill
+
+Valores críticos de la distribución $\chi^2_{n-1}$:  
+$\chi^2_{n-1, 1 - \frac{\alpha}{2}}$ tal que $P(\chi^2_{9} > \chi^2_{9,  1 - \frac{\alpha}{2}}) = 0.025$  
+$\Rightarrow \chi^2_{9, 0.975} \approx 19$ (de tablas de la distribución $\chi^2$)  
+
+$\chi^2_{n-1, \frac{\alpha}{2}}$ tal que $P(\chi^2_{9} > \chi^2_{9,  \frac{\alpha}{2}}) = 0.975$  
+$\Rightarrow \chi^2_{9, 0.025} \approx 2.7$ (de tablas de la distribución $\chi^2$)  
 
 Sabemos que:  
-$\frac{(n - 1) s^2}{\sigma^2} \sim \chi^2_{n-1}$  
+$$\frac{n s^2}{\sigma^2} \sim \chi^2_{n-1}$$  
 
 El intervalo de confianza al 95 % para $\sigma^2$ se construye como:  
-$\left( \frac{(n - 1) s^2}{\chi^2_{1 - \frac{\alpha}{2}, n-1}}, \frac{(n - 1) s^2}{\chi^2_{\frac{\alpha}{2}, n-1}} \right)$  
+$$
+\begin{align*}
+&\left( \frac{n s^2}{\chi^2_{n-1, 1 - \frac{\alpha}{2}}}, \frac{n s^2}{\chi^2_{n-1, \frac{\alpha}{2}}} \right) \\
+&=\left( \frac{10 \cdot 1.44}{\chi^2_{9, 0.975}}, \frac{10 \cdot 1.44}{\chi^2_{9, 0.025}} \right) \\
+&= \left( \frac{14.4}{19}, \frac{14.4}{2.7} \right) \\
+&= \left( 0.75789, 5.3333 \right)
+\end{align*}
+$$
 
-Sustituimos:  
-$\left( \frac{(n - 1) s^2}{\chi^2_{0.975, 9}}, \frac{(n - 1) s^2}{\chi^2_{0.025, 9}} \right) = \left( \frac{9 \cdot 1.44}{19.023}, \frac{9 \cdot 1.44}{2.700} \right)$  
-$\phantom{\left( \frac{(n - 1) s^2}{\chi^2_{0.975, 9}}, \frac{(n - 1) s^2}{\chi^2_{0.025, 9}} \right)} = \left( \frac{12.96}{19.023}, \frac{12.96}{2.700} \right)$  
-$\phantom{\left( \frac{(n - 1) s^2}{\chi^2_{0.975, 9}}, \frac{(n - 1) s^2}{\chi^2_{0.025, 9}} \right)} \approx (0.681, 4.800)$  
-
-Intervalo de confianza al 95 % para $\sigma^2$: $(0.681, 4.800)$  
+Intervalo de confianza al 95 % para $\sigma^2$ es aproximadamente: $(0.76, 5.33)$  
 
 ### Resultado final
 
-a) $P(s^2 > \sigma^2) \approx 0.46$  
+a)$P(s^2 > \sigma^2) \approx P(\chi^2_{9} > 10) \in [0.25, 0.5]$  
+a) Con R:  $P(s^2 > \sigma^2) \approx 0.35$  
 
-b) Intervalo de confianza al 95 % para $\sigma^2$: $(0.681, 4.800)$
+b) Intervalo de confianza al 95 % para $\sigma^2$ es aproximadamente: $(0.76, 5.33)$  
 {{% /details %}}
