@@ -14,5 +14,7 @@ geekdocCollapseSection: true
     {{< card link="P5" title="P5 - Amplificadores operacionais" icon="lightning-bolt">}}
     {{< card link="P6" title="P6 - Temporizador 555" icon="clock">}}
     {{< card link="P7" title="P7 - Circuitos con Arduino UNO" icon="chip">}}
-    {{< card link="P8" title="P8 - sabe dios" icon="question-mark-circle">}}
+    {{< card link="P8" title="P8 - Control de aforo con Arduino" icon="chip">}}
+    {{< card link="P9" title="P9 - Creación de un nodo IoT" icon="search-circle">}}
+    {{< card link="P10" title="P10 - sabe dios" icon="question-mark-circle">}}
 {{< /cards >}}

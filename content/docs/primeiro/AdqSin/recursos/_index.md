@@ -5,15 +5,21 @@ description: "Videos, enlaces..."
 geekdocCollapseSection: true
 ---
 
-## Videos educativos
-
-Nesta sección atoparás unha colección de videos educativos sobre electrónica e circuítos, organizados por temas para facilitar a túa aprendizaxe.
+## Videos
 
 ### Playlist: Electronic Circuits
 
 Unha completa colección de videos sobre circuítos electrónicos que abarca desde conceptos básicos ata temas avanzados.
+Este tipo explica todo perfecto dando exemplos e exercicios, con videos moi concretos de circuitos e cousas q vimos en clase.
 
-[Electronic Circuits - Playlist completa](https://www.youtube.com/playlist?list=PL0o_zxa4K1BV9E-N8tSExU1djL6slnjbL)
+{{< youtube-externo 
+id="uXr4lXYjXuU?list=PL0o_zxa4K1BV9E-N8tSExU1djL6slnjbL" 
+title="Electronic Circuits" 
+maxWidth="400px" 
+miniatura="https://i.ytimg.com/vi/08YugQce9OA/hqdefault.jpg" 
+class="destacado" >}}
+
+[Enlace á lista completa](https://www.youtube.com/playlist?list=PL0o_zxa4K1BV9E-N8tSExU1djL6slnjbL)
 
 ### Videos destacados
 
@@ -25,11 +31,11 @@ Aquí presentamos algúns dos mellores videos da colección:
 
 <!-- {{< lite-youtube id="g54vURe47gM" title="non che sei none" >}}
 {{< lite-youtube id="g54vURe47gM" title="Rick Astley - Never Gonna Give You Up" playlabel="Reproducir" params="start=30&cc_load_policy=1" >}} -->
-{{< lite-youtube id="g54vURe47gM" title="O meu vídeo" >}}
+<!-- {{< lite-youtube id="g54vURe47gM" title="O meu vídeo" >}} -->
 
 {{< lite-youtube 
   id="g54vURe47gM" 
-  title="O meu vídeo" 
+  title="Transistores" 
   playlabel="Ver agora" 
   params="start=30&cc_load_policy=1" 
   class="mb-10 mx-auto max-w-2xl" 
@@ -42,7 +48,7 @@ Este video ofrece unha explicación clara e detallada sobre os transistores de e
 
 #### Diode Applications
 
-<!-- {{< youtube joDlqsknn-w >}} -->
+{{< lite-youtube id="joDlqsknn-w" title="Diodos" >}}
 
 Neste video explóranse as diversas aplicacións dos diodos en circuítos electrónicos. Cubre temas como rectificadores, limitadores, e circuítos de protección, con exemplos prácticos que mostran como se utilizan os diodos en deseños reais.
 
@@ -57,6 +63,7 @@ Neste video explóranse as diversas aplicacións dos diodos en circuítos electr
 ### Ferramentas de simulación
 
 - **LTspice** - Simulador de circuítos gratuíto
+- **Tinkerkad** - Simulador de circuítos máis limitado pero moi visual
 - **Multisim** - Ferramenta de deseño e simulación de circuítos
 - **Proteus** - Software para simulación de circuítos e deseño de PCB
 
@@ -64,21 +71,3 @@ Neste video explóranse as diversas aplicacións dos diodos en circuítos electr
 
 - [All About Circuits](https://www.allaboutcircuits.com/) - Comunidade online con tutoriais, proxectos e foros sobre electrónica
 - [Electronics Tutorials](https://www.electronics-tutorials.ws/) - Recursos educativos sobre electrónica básica e avanzada
-
-{{< cards cols="3">}}
-  {{< card link="exame-calculo-2022-2023.pdf" title="Libro \"Computer Systems\" IntComp" icon="download" >}}
-  {{< card link="exame-calculo-2023-2024.pdf" title="Exame Cálculo 2023/2024" icon="download" >}}
-  {{< card link="exame-calculo-2024-2025.pdf" title="Exame Cálculo 2024/2025" icon="download" >}}
-{{< /cards >}}
-
-{{< cards cols="3">}}
-  {{< card link="exame-calculo-extraordinario-2022-2023.pdf" title="Exame Discreta Ordinaria 2024/2025" icon="download" >}}
-  {{< card link="exame-calculo-extraordinario-2023-2024.pdf" title="Parcial Discreta 3 2024/2025" icon="download" >}}
-  {{< card link="exame-calculo-extraordinario-2024-2025.pdf" title="Exame Extraordinario 2024/2025" icon="download" >}}
-{{< /cards >}}
-
-{{< cards cols="3">}}
-  {{< card link="exame-calculo-parcial1-2022-2023.pdf" title="Parcial 2 Álxebra 2024/2025" icon="download" >}}
-  {{< card link="exame-calculo-parcial1-2023-2024.pdf" title="Apuntes Discreta T3 - Algoritmos e números" icon="download" >}}
-  {{< card link="exame-calculo-parcial1-2024-2025.pdf" title="Parcial 1 Cálculo 2024/2025" icon="download" >}}
-{{< /cards >}}
