@@ -305,64 +305,86 @@ b) $n = 93$
 
 #### **Enunciado**
 
-Sabemos que el tiempo que los alumnos de una escuela pasan al día conectados a internet sigue una distribución normal con desviación típica poblacional $\sigma = 3$ horas. En una muestra de $n$ alumnos, calcular:  
-1. La probabilidad de que la varianza muestral $S^2$ sea mayor que $\frac{3}{4}$ de la varianza poblacional, para $n = 10$.  
-2. Lo mismo, pero para $n = 50$.
+El tiempo que los alumnos de una escuela pasan al día conectados a internet sigue una distribución normal con desviación típica poblacional $\sigma = 3$ horas. En una muestra de $n$ alumnos, se pide calcular:  
+a) La probabilidad de que la varianza muestral $s^2$ sea mayor que $\frac{3}{4}$ de la varianza poblacional $\sigma^2$, para $n = 10$.  
+b) Lo mismo, pero para $n = 50$.
 
 #### **Desarrollo**
 
-Definimos las variables y parámetros:  
-$X_i \sim N(\mu, \sigma^2)$: tiempo diario conectado a internet de cada alumno, con $\mu$ desconocida y $\sigma = 3$.  
-$\sigma^2 = 3^2 = 9$: varianza poblacional.  
-$S^2$: varianza muestral de una muestra de tamaño $n$, definida como $S^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2$, donde $\bar{X}$ es la media muestral.  
+**Definiciones iniciales**  
+- $X \sim N(\mu, \sigma^2)$, donde $X$ es el tiempo diario conectado a internet.  
+- $\sigma = 3$, por lo que la varianza poblacional es $\sigma^2 = 3^2 = 9$.  
+- $s^2$ es la varianza muestral de una muestra de tamaño $n$.  
+- Se sabe que, para una muestra aleatoria de una población normal, la estadística $\frac{n s^2}{\sigma^2}$ sigue una distribución chi-cuadrado con $n-1$ grados de libertad:  
+  $\boxed{\frac{n s^2}{\sigma^2} \sim \chi^2_{n-1}}$
 
-Sabemos que, para muestras de una población normal, la estadística:  
-$\frac{(n-1)S^2}{\sigma^2} \sim \chi^2_{n-1}$  
-sigue una distribución chi-cuadrado con $n-1$ grados de libertad.  
+**Objetivo general**  
+Calcular $P\left(s^2 > \frac{3}{4} \sigma^2\right)$ para $n = 10$ y $n = 50$.  
+- Sustituyendo $\sigma^2 = 9$, tenemos $\frac{3}{4} \sigma^2 = \frac{3}{4} \cdot 9 = \frac{27}{4}$.  
+- Por lo tanto, necesitamos $P\left(s^2 > \frac{27}{4}\right)$.
 
-Queremos calcular:  
-$P\left(S^2 > \frac{3}{4} \sigma^2\right)$  
+**Transformación a chi-cuadrado**  
+Partimos de la probabilidad deseada:  
+$P\left(s^2 > \frac{3}{4} \sigma^2\right) = P\left(s^2 > \frac{27}{4}\right)$  
+Multiplicamos ambos lados de la desigualdad por $\frac{n}{\sigma^2}$ (que es positivo, por lo que la desigualdad se mantiene):  
+$P\left(s^2 > \frac{27}{4}\right) = P\left(\frac{n s^2}{\sigma^2} > \frac{n \cdot \frac{27}{4}}{\sigma^2}\right)$  
 Sustituimos $\sigma^2 = 9$:  
-$\frac{3}{4} \sigma^2 = \frac{3}{4} \cdot 9 = \frac{27}{4} = 6.75$  
-Entonces:  
-$P\left(S^2 > \frac{3}{4} \sigma^2\right) = P(S^2 > 6.75)$  
-
-Expresamos en términos de la distribución chi-cuadrado:  
-$P(S^2 > 6.75) = P\left(\frac{(n-1)S^2}{\sigma^2} > \frac{(n-1) \cdot 6.75}{\sigma^2}\right)$  
-$\phantom{P(S^2 > 6.75)} = P\left(\frac{(n-1)S^2}{\sigma^2} > \frac{(n-1) \cdot 6.75}{9}\right)$  
-$\phantom{P(S^2 > 6.75)} = P\left(\chi^2_{n-1} > \frac{(n-1) \cdot 6.75}{9}\right)$  
-
-Simplificamos la constante:  
-$\frac{6.75}{9} = \frac{27/4}{9} = \frac{27}{36} = \frac{3}{4}$  
-Entonces:  
-$P(S^2 > 6.75) = P\left(\chi^2_{n-1} > \frac{3}{4} (n-1)\right)$  
+$\phantom{P\left(s^2 > \frac{27}{4}\right)} = P\left(\frac{n s^2}{\sigma^2} > \frac{n \cdot \frac{27}{4}}{9}\right)$  
+$\phantom{P\left(s^2 > \frac{27}{4}\right)} = P\left(\frac{n s^2}{\sigma^2} > \frac{n \cdot 27}{4 \cdot 9}\right) = P\left(\frac{n s^2}{\sigma^2} > \frac{n \cdot 27}{36}\right) = P\left(\frac{n s^2}{\sigma^2} > \frac{n \cdot 3}{4}\right)$  
+Dado que $\frac{n s^2}{\sigma^2} \sim \chi^2_{n-1}$, la probabilidad queda:  
+$\phantom{P\left(s^2 > \frac{27}{4}\right)} = P\left(\chi^2_{n-1} > \frac{3n}{4}\right)$
 
 **a) Para $n = 10$**  
-Grados de libertad: $n-1 = 10-1 = 9$  
-Calculamos:  
-$P(S^2 > 6.75) = P\left(\chi^2_9 > \frac{3}{4} \cdot 9\right)$  
-$\phantom{P(S^2 > 6.75)} = P\left(\chi^2_9 > \frac{27}{4}\right)$  
-$\phantom{P(S^2 > 6.75)} = P(\chi^2_9 > 6.75)$  
+- Grados de libertad: $n-1 = 10-1 = 9$.  
+- Sustituimos $n = 10$ en la expresión:  
+  $P\left(s^2 > \frac{27}{4}\right) = P\left(\chi^2_{9} > \frac{3 \cdot 10}{4}\right) = P\left(\chi^2_{9} > \frac{30}{4}\right) = P\left(\chi^2_{9} > 7.5\right)$ $\in [0.5, 0.75]$ 
 
-Usamos tablas de la distribución chi-cuadrado (o software) para encontrar $P(\chi^2_9 > 6.75)$.  
-Sabemos que la media de una $\chi^2_9$ es $9$ y su varianza es $2 \cdot 9 = 18$, por lo que $6.75$ está por debajo de la media, lo que sugiere una probabilidad mayor a 0.5. Consultando tablas (o calculando con software):  
-$P(\chi^2_9 > 6.75) \approx 0.658$  
+- Usando la tabla esta es la máxima información que podemos sacar: $P\left(\chi^2_{9} > 7.5\right) \in [0.5, 0.75]$  
+
+<br>
+
+Si se tiene acceso a software como R:
+
+- Usamos la distribución chi-cuadrado con 9 grados de libertad. La probabilidad es:  
+  $\phantom{P\left(s^2 > \frac{27}{4}\right)} = 1 - P\left(\chi^2_{9} \leq 7.5\right)$  
+-  Usando R: $P\left(\chi^2_{9} \leq 7.5\right) \approx 0.4147912$.  
+- Entonces:  
+  $\phantom{P\left(s^2 > \frac{27}{4}\right)} = 1 - P\left(\chi^2_{9} \leq 7.5\right) \approx 1 - 0.4147912 = 0.5852088$
+```R
+1 - pchisq(7.5, df = 9)
+ # 0.5852088
+```
 
 **b) Para $n = 50$**  
-Grados de libertad: $n-1 = 50-1 = 49$  
-Calculamos:  
-$P(S^2 > 6.75) = P\left(\chi^2_{49} > \frac{3}{4} \cdot 49\right)$  
-$\phantom{P(S^2 > 6.75)} = P\left(\chi^2_{49} > \frac{147}{4}\right)$  
-$\phantom{P(S^2 > 6.75)} = P(\chi^2_{49} > 36.75)$  
+- Grados de libertad: $n-1 = 50-1 = 49$.  
+- Sustituimos $n = 50$ en la expresión:  
+  $P\left(s^2 > \frac{27}{4}\right) = P\left(\chi^2_{49} > \frac{3 \cdot 50}{4}\right) = P\left(\chi^2_{49} > \frac{150}{4}\right) = P\left(\chi^2_{49} > 37.5\right)$  
 
-Usamos tablas de la distribución chi-cuadrado para encontrar $P(\chi^2_{49} > 36.75)$.  
-La media de una $\chi^2_{49}$ es $49$ y su varianza es $2 \cdot 49 = 98$, por lo que $36.75$ está por debajo de la media, lo que nuevamente sugiere una probabilidad mayor a 0.5. Consultando tablas (o calculando con software):  
-$P(\chi^2_{49} > 36.75) \approx 0.891$  
+- Usando la tabla esta es la máxima información que podemos sacar: $P\left(\chi^2_{49} > 37.5\right) \in [0.9, 0.95]$  
+
+<br>
+
+Si se tiene acceso a software como R:
+
+
+- Usamos la distribución chi-cuadrado con 49 grados de libertad. La probabilidad es:  
+  $\phantom{P\left(s^2 > \frac{27}{4}\right)} = 1 - P\left(\chi^2_{49} \leq 37.5\right)$  
+- Entonces:  
+  $\phantom{P\left(s^2 > \frac{27}{4}\right)} = 1 - P\left(\chi^2_{49} \leq 37.5\right) \approx 1 - 0.1153325 = 0.8846675$
+```r
+1 - pchisq(37.5, df = 49)
+ # 0.8846675
+```
+
+Se puede ver que el resultado real no está dentro de [0.9, 0.95], esto es porque para sacar ese rango consultamos la tabla para 50 grados de libertad, porque no está para 49 pero se ve q es un poquito menos logo ta tudo bem
 
 ### Resultado final
 
-a) Para $n = 10$: $P\left(S^2 > \frac{3}{4} \sigma^2\right) \approx 0.658$  
-b) Para $n = 50$: $P\left(S^2 > \frac{3}{4} \sigma^2\right) \approx 0.891$
+a) Para $n = 10$: $P\left(s^2 > \frac{3}{4} \sigma^2\right) \approx P\left(\chi^2_{9} > 7.5\right) \in [0.5, 0.75]$ \
+a) Si tienes R:  $P\left(s^2 > \frac{3}{4} \sigma^2\right) \approx  0.5852$
+
+b) Para $n = 50$: $P\left(s^2 > \frac{3}{4} \sigma^2\right) \approx P\left(\chi^2_{49} > 37.5\right) \in [0.9, 0.95]$\
+b) Si tienes R:  $P\left(s^2 > \frac{3}{4} \sigma^2\right) \approx 0.8847$ 
 {{% /details %}}
 
 ## Exercicio 5
