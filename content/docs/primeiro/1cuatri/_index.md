@@ -1,14 +1,16 @@
 ---
-linkTitle: "1º cuatri"
+linkTitle: "1º cuatri exames"
 title: "Primeiro cuadrimestre"
 description: ""
 geekdocCollapseSection: true
 sidebar:
-  exclude: true
+  exclude: false
+cascade:
+  type: boletin
 ---
 
 {{< cards >}}
-    {{< card link="alxebra/exames" title="Álxebra" icon="calculator">}}
-    {{< card link="discreta" title="Discreta" icon="cube">}}
-    {{< card link="intcomp" title="Introdución á Computación" icon="desktop-computer">}}
+    {{< card link="ex_alxebra" title="Álxebra" icon="calculator">}}
+    {{< card link="discreta" title="Discreta (non dispoñible)" icon="cube">}}
+    {{< card link="intcomp" title="Introdución á Computación (non dispoñible)" icon="desktop-computer">}}
 {{< /cards >}}

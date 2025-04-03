@@ -9,6 +9,10 @@ sidebar:
   hide: true
 ---
 
+# Boletín 4
+
+Guías de exercicios, recomendo mirar o [exercicio 7](#exercicio-7)
+
 ## Exercicio 1
 {{% details title="Exercicio 1 paso a paso" closed="true" %}}
 ### Distribuciones normales y medias muestrales

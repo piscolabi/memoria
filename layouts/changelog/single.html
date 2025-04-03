@@ -1,7 +1,6 @@
 {{ define "main" }}
   {{- $effectiveOn := (T "effectiveOn") | default "Engadido o " -}} {{/* i18n for strings */}}
   <div class="hx-mx-auto hx-max-w-screen-xl">
-    <!-- Eliminamos o sidebar e o TOC ou facemos que non ocupen espazo -->
     <article class="hx-w-full hx-break-words hx-min-h-[calc(100vh-var(--navbar-height))] hx-flex hx-justify-center hx-pb-8">
       <main class="hx-w-full hx-max-w-4xl hx-px-6 hx-pt-4 hx-md:px-12 hx-mx-auto">
         {{ partial "breadcrumb.html" . }}

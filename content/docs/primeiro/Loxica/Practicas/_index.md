@@ -4,6 +4,8 @@ title: "Prácticas de Lóxica"
 description: ""
 toc: false
 geekdocCollapseSection: true
+# cascade:
+#   type: boletin
 ---
 
 ## Tema 1 Lóxica proposicional

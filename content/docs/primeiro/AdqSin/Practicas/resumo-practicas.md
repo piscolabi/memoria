@@ -6,9 +6,10 @@ toc: true
 math: true
 sidebar:
   exclude: true
-
+  hide: true
+# cascade:
+#   type: boletin
 ---
-{{< hide-sidebar >}}
 
 # Resumo global das prácticas de laboratorio
 

@@ -1,5 +1,5 @@
 ---
-linkTitle: "Exames"
+linkTitle: "Exames álxebra"
 title: "Exames de Álxebra"
 description: ""
 geekdocCollapseSection: true
@@ -67,6 +67,7 @@ Este exame avalía as habilidades básicas de análise de datos usando R, centr�
   title="12-18 Final 2023 - resolto" 
   icon="download" >}}
 {{< /cards >}}
+
 
 <div style="margin-top: 8rem;">
   <blockquote style="font-size: 0.7rem; color: #777; border-left: 3px solid #ccc; padding-left: 1rem; line-height: 1.2;">

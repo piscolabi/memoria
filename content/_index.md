@@ -42,9 +42,9 @@ layout: hextra-home
 </style>
 
 <div class="badge-container">
-{{< hextra/hero-badge link="/changelog/" >}}
+{{< hextra/hero-badge link="/changelog/2025/updates/" >}}
   <div class="hx-w-2 hx-h-2 hx-rounded-full hx-bg-primary-400"></div>
-  <span>En desenvolvemento</span>
+  <span>Últimas actualizacións</span>
   {{< icon name="arrow-circle-right" attributes="height=14 class=hx-text-purple-500 style=fill:transparent!important;" >}}
 {{< /hextra/hero-badge >}}
 </div>

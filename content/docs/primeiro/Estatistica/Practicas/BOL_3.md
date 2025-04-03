@@ -9,10 +9,6 @@ sidebar:
   hide: true
 ---
 
-<!-- 
-<div style="overflow-x: auto; max-width: 100%; padding: 0.5em 0;">
-</div> 
--->
 # Boletín 3
 
 A partir do exercicio 6 están mellor resoltos, pero para guiarse e ir entendendo están todas ben
@@ -1452,7 +1448,9 @@ $$
 $$
 {{% /details %}}
 
+
 ## Exercicio 7
+{{% details title="Exercicio 7 paso a paso" closed="true" %}}
 ### Distribución de Poisson y distribución exponencial
 
 #### **Enunciado**
@@ -1525,6 +1523,7 @@ $\phantom{P(T < 15)} = 1 - 0.22313 \approx 0.77687$
 
 a) $P(X > 3) \approx 0.6577$  
 b) $P(T < 15) \approx 0.7769$
+{{% /details %}}
 
 ## Exercicio 7 pero aproximando á normal
 {{% details title="Exercicio 7 resolto pero por Aproximación normal" closed="true" %}}
@@ -1578,11 +1577,10 @@ En el ejercicio 7, calculamos manualmente $P(X > 3) \approx 0.6577$. La diferenc
 - Si $\lambda > 10$, la aproximación es muy buena.
 - Si $5 < \lambda < 10$, la aproximación es razonable, pero puede haber errores como el que vimos.
 - Si $\lambda < 5$, es mejor evitar esta aproximación y calcular manualmente o usar otra estrategia.
-
-
 {{% /details %}}
 
 ## Exercicio 8
+{{% details title="Exercicio 8 paso a paso" closed="true" %}}
 ### Distribución binomial y aproximación normal
 
 #### **Enunciado**
@@ -1659,8 +1657,10 @@ Esto indica que la probabilidad de que más de 40 trabajadores suban al autobús
 a) La distribución de $X$ es $X \sim \text{Binomial}(140, 0.15)$. El número esperado de trabajadores que suben al autobús es $E(X) = 21$.  
 b) $P(X = 21) \approx 0.0956$  
 c) $P(X > 40) \approx 0$
+{{% /details %}}
 
 ## Exercicio 9
+{{% details title="Exercicio 9 paso a paso" closed="true" %}}
 ### Probabilidad con distribución hipergeométrica
 
 #### **Enunciado**
@@ -1746,12 +1746,10 @@ $\phantom{P(X \geq 7)} \approx 0.03647$
 
 La probabilidad de que al menos 7 de las 10 imágenes seleccionadas sean de la categoría “perros” es:  
 $P(X \geq 7) \approx 0.03647$
-
+{{% /details %}}
 
 ## Exercicio 9 pero aproximando á normal
-
 {{% details title="Ex 9 resolto pero por Aproximación normal da distribución hipergeométrica " closed="true" %}}
-
 
 ### Aproximación de la distribución hipergeométrica a la distribución normal
 
@@ -1868,6 +1866,7 @@ En casos como el ejercicio 9, donde $N = 50$ y $n = 10$, la aproximación normal
 {{% /details %}}
 
 ## Exercicio 10 
+{{% details title="Exercicio 10 paso a paso" closed="true" %}}
 
 ### Probabilidad con distribución de Poisson
 
@@ -1920,8 +1919,10 @@ $\phantom{P(X = 4)} \approx 0.175467$
 
 La probabilidad de que el algoritmo cometa exactamente 4 errores en una transcripción de 5000 palabras es:  
 $P(X = 4) \approx 0.1755$
+{{% /details %}}
 
 ## Exercicio 11
+{{% details title="Exercicio 11 paso a paso" closed="true" %}}
 ### Probabilidad de cervezas retiradas
 #### **Enunciado**
 
@@ -2001,8 +2002,10 @@ $P(X = 2) \approx 0.15636$
 
 a) $P(X = 2)$ con reemplazamiento $\approx 0.1616$  
 b) $P(X = 2)$ sin reemplazamiento $\approx 0.15636$
+{{% /details %}}
 
 ## Exercicio 12
+{{% details title="Exercicio 12 paso a paso" closed="true" %}}
 ### Probabilidad en una distribución binomial
 
 #### **Enunciado**
@@ -2060,8 +2063,10 @@ $\phantom{P(X = 25)} \approx 0.043869$
 ### Resultado final
 
 $P(X = 25) \approx 0.043869$
+{{% /details %}}
 
 ## Exercicio 13
+{{% details title="Exercicio 13 paso a paso" closed="true" %}}
 ### Distribución del número de personas que se suben a un autobús
 
 #### **Enunciado**
@@ -2111,8 +2116,10 @@ $\text{Var}(X) = \sum_{i=1}^n p_i(1 - p_i)$
 
 a) $X = \sum_{i=1}^n Y_i$. La distribución de $X$ es de Poisson binomial, $X \sim \text{PoissonBinomial}(p_1, p_2, \ldots, p_n)$. Si $p_i = p$ para todo $i$, entonces $X \sim \text{Binomial}(n, p)$.  
 b) $E(X) = \sum_{i=1}^n p_i$ y $\text{Var}(X) = \sum_{i=1}^n p_i(1 - p_i)$
+{{% /details %}}
 
 ## Exercicio 14
+{{% details title="Exercicio 14 paso a paso" closed="true" %}}
 ### Probabilidad de llegar tarde y hora media de llegada
 
 #### **Enunciado**
@@ -2162,8 +2169,10 @@ Esto significa que la hora media de llegada es 60 minutos después de las 8:00, 
 
 a) $P(\text{llegar tarde}) = \frac{1}{2}$  
 b) Hora media de llegada: 9:00
+{{% /details %}}
 
 ## Exercicio 15
+{{% details title="Exercicio 15 paso a paso" closed="true" %}}
 ### Proporciones bajo una distribución normal
 
 #### **Enunciado**
@@ -2240,8 +2249,10 @@ $\phantom{P(170 < X < 175)} \approx 0.7995 - 0.5160 = 0.2835$ (usando tablas de 
 
 a) $P(X > 190) \approx 0.0006$  
 b) $P(170 < X < 175) \approx 0.2835$
+{{% /details %}}
 
-## Ejercicio 16
+## Exercicio 16
+{{% details title="Exercicio 16 paso a paso" closed="true" %}}
 ### Distribución exponencial para la vida útil de bombillas
 
 #### **Enunciado**
@@ -2295,8 +2306,10 @@ $\phantom{P(X > 25 \mid X > 10)} \approx 0.1533$ (usando el valor aproximado de 
 
 a) $P(3 < X < 12) \approx 0.4642$  
 b) $P(X > 25 \mid X > 10) \approx 0.1533$
+{{% /details %}}
 
-## Ejercicio 17
+## Exercicio 17
+{{% details title="Exercicio 17 paso a paso" closed="true" %}}
 ### Probabilidad con distribución normal
 
 #### **Enunciado**
@@ -2359,11 +2372,8 @@ $\phantom{P(85 \leq X \leq c) = 0.90} c = 118.4$
 a) $P(90 \leq X \leq 115) \approx 0.7745$  
 b) $x = 112.8$  
 c) $c = 118.4$
+{{% /details %}}
 
-
-# Sin revisar
-
-Agora do 18 ao 23 inda non tiven tempo de revisalos, pero como guía están ben seguro
 ## Exercicio 18
 {{% details title="Exercicio 18 paso a paso" closed="true" %}}
 ### Proceso de Poisson y distribución exponencial

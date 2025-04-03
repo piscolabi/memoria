@@ -1,0 +1,42 @@
+{{ define "main" }}
+  <div class='hx-mx-auto hx-max-w-screen-xl hx-relative'>
+    <!-- Sidebar con posición absoluta para que non afecte ao layout -->
+    <div class="sidebar-wrapper hx-absolute hx-left-0 hx-top-0 md:hx-hidden">
+      {{ partial "sidebar.html" (dict "context" .) }}
+    </div>
+    
+    <article class="hx-w-full hx-break-words hx-flex hx-min-h-[calc(100vh-var(--navbar-height))] hx-min-w-0 hx-justify-center hx-pb-8 hx-pr-[calc(env(safe-area-inset-right)-1rem)]">
+      <main class="hx-w-full hx-min-w-0 hx-max-w-4xl hx-px-6 hx-pt-4 hx-md:px-12 hx-mx-auto">
+        {{ partial "breadcrumb.html" . }}
+        <h1 class="hx-mt-2 hx-text-4xl hx-font-bold hx-tracking-tight hx-text-slate-900 dark:hx-text-slate-100 hx-text-center">{{ .Title }}</h1>
+        
+        <div class="content hx-text-left">
+          {{ .Content }}
+        </div>
+        {{ partial "components/last-updated.html" . }}
+        {{ partial "components/pager.html" . }}
+        {{ partial "components/comments.html" . }}
+      </main>
+    </article>
+    {{ partial "toc.html" . }}
+  </div>
+  
+  <style>
+    /* En pantallas medianas e grandes, asegúrase de que o sidebar non ocupe espazo */
+    @media (min-width: 768px) {
+      .sidebar-wrapper {
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+    
+    /* En pantallas pequenas, permítese que o sidebar funcione normalmente */
+    @media (max-width: 767px) {
+      .sidebar-wrapper {
+        position: static !important; /* Anula a posición absoluta */
+        visibility: visible;
+        pointer-events: auto;
+      }
+    }
+  </style>
+{{ end }}

@@ -5,8 +5,9 @@ description: "Contidos e apuntes para a dedución natural"
 toc: true
 math: true
 width: full
+sidebar:
+  hide: true
 ---
-{{< hide-sidebar >}}
 
 ### Resumo de regras de dedución
 
