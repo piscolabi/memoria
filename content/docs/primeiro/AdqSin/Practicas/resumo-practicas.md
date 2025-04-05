@@ -128,7 +128,7 @@ Este documento recolle de forma estruturada todos os conceptos, circuítos e pro
 - Realización de exercicios prácticos co IDE de Arduino
 - Montaxe de circuítos básicos con diversos componentes
 
-## Práctica 8: Contador de parking con Arduino e temporizador 555
+## Práctica 8: Contador con Arduino e temporizador 555
 
 ### Conceptos clave
 - **Arduino UNO**:
