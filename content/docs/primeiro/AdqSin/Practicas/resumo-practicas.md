@@ -112,7 +112,7 @@ Este documento recolle de forma estruturada todos os conceptos, circuítos e pro
 - **Fonte de alimentación**: Para proporcionar tensión continua
 - **Xerador de funcións**: Para sinais de corrente alterna
 - **Protoboard**: Para montaxe rápida de circuítos
-- **Compoñentes**: Resistencias, condensadores, diodos, amplificadores operacionais, temporizador 555
+- **Componentes**: Resistencias, condensadores, diodos, amplificadores operacionais, temporizador 555
 
 ## Práctica 7: Introdución a Arduino e LEDs
 
@@ -126,7 +126,44 @@ Este documento recolle de forma estruturada todos os conceptos, circuítos e pro
 - Análise con PicoScope das curvas de carga e descarga dos díodos LED
 - Observación dos tempos de resposta (flancos de subida e baixada)
 - Realización de exercicios prácticos co IDE de Arduino
-- Montaxe de circuítos básicos con diversos compoñentes
+- Montaxe de circuítos básicos con diversos componentes
+
+## Práctica 8: Contador de parking con Arduino e temporizador 555
+
+### Conceptos clave
+- **Arduino UNO**:
+  - Programación no IDE de Arduino
+  - Uso de entradas e saídas dixitais
+  - Control de LEDs como indicadores
+- **Circuíto integrado 555**:
+  - Configuración monoestable
+  - Xeración de ondas cadradas
+  - Interacción entre Arduino e o temporizador 555
+- **Análise de sinais**:
+  - Visualización de formas de onda con PicoScope
+  - Medición de sinais de entrada e saída
+
+### Procedementos experimentais
+#### Parte 1: Contador de parking con Arduino
+- Montaxe dun circuíto con Arduino para simular un contador de parking
+- Programación no IDE de Arduino para:
+  - Contar vehículos ata un máximo de 10
+  - Acender un LED verde cando o reconto está entre 0 e 9 (parking dispoñible)
+  - Acender un LED vermello cando o reconto chega a 10 (parking completo)
+- Probas e verificación do funcionamento do circuíto
+
+#### Parte 2: Temporizador 555 en modo monoestable
+- Montaxe dun circuíto co temporizador 555 en configuración monoestable
+- Xeración dunha sinal de disparo (trigger) desde Arduino, controlada mediante programación
+- Conexión do circuíto ao PicoScope para medir e visualizar as formas de onda
+- Análise das ondas cadradas xeradas:
+  - Sinal de entrada de 5 V ao activar o pin de disparo
+  - Observación da sinal de saída do temporizador 555
+
+## Equipamento utilizado
+- **Arduino UNO**: Plataforma de prototipado electrónico
+- **PicoScope**: Osciloscopio dixital para visualización de formas de onda
+- **Componentes**: Resistencias, condensadores, LEDs, temporizador 555
 ---
 
 *Nota: Este documento é un resumo orientativo. Consulta os guións de prácticas e os teus apuntamentos para información máis detallada.*

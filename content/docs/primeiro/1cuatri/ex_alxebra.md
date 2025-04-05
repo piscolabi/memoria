@@ -29,6 +29,10 @@ Durante o curso, houbo un total de 4 formularios con preguntas teóricas sobre o
       title="Quiz 4"
       icon="download" 
   >}}
+{{< /cards >}}
+
+{{< cards >}}
+   
   {{< card-drive
       driveId=""
       title="Solucións dos 4 Quiz"
@@ -37,6 +41,7 @@ Durante o curso, houbo un total de 4 formularios con preguntas teóricas sobre o
       tagType="warning" 
   >}}
 {{< /cards >}}
+
 
 ## Parcial 1 - 28 Oct 2024
 
