@@ -1,5 +1,5 @@
 ---
-date: 2025-04-03
+date: 2025-04-06
 title: Rexistro de cambios e características
 description: Listado de funcionalidades e contidos implementados ou en proceso
 tags:
@@ -17,12 +17,14 @@ sidebar:
 
 ## Cambios recentes
 
+- [x] Aportación: engadido [glosario](../../../docs/primeiro/1cuatri/intcomp/#glosario) de definicións de IntComp 
 
-- [x] Exercicios explicados do [boletín 5][estat_BOL_5] de estatística
-- [x] Exame parcial estadística [Tema1-Tema4][estat_T1-T4] correxido
-- [x] Cambiado o formato das páxinas de exercicios correxidos 
-- [x] Arreglado o problema de que non funcionaba o sidebar en pantallas pequenas (polo uso dun [shortcode](../../2025/04-03-novo-layout-boletins/#shortcode-para-ocultar-sidebar))
-- [x] Engadido este documento de actualizacións do proxecto
+#### Resumen de [Prácticas adq](../../../docs/primeiro/adqsin/practicas)
+- [x] P1-P4 (xa non lle meto máis, os vídeos están moi ben)
+- [ ] P5 OpAmp, queda por ver
+- [ ] P6 555
+- [ ] P7 Arduino
+- [ ] P8 Arduino + 555
 
 
 ## TODO:
@@ -37,6 +39,15 @@ sidebar:
 {{% details title="Clic para ver os cambios anteriores" closed="true" %}}
 
 ### abril 2024
+#### 04-06
+
+
+#### anterior
+- [x] Exercicios explicados do [boletín 5][estat_BOL_5] de estatística
+- [x] Exame parcial estadística [Tema1-Tema4][estat_T1-T4] correxido
+- [x] Cambiado o formato das páxinas de exercicios correxidos 
+- [x] Arreglado o problema de que non funcionaba o sidebar en pantallas pequenas (polo uso dun [shortcode](../../2025/04-03-novo-layout-boletins/#shortcode-para-ocultar-sidebar))
+- [x] Engadido este documento de actualizacións do proxecto
 
 
 ### marzo 2024

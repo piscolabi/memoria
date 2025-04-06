@@ -14,7 +14,7 @@ geekdocCollapseSection: true
 
 ## Introducción a circuitos electrónicos
 {{< cards cols="2">}}
-    {{< card link="P1-P4/#practica-1" title="P1 - Leis fundamentais de circuítos" icon="lightning-bolt">}}
+    {{< card link="P1-P4" title="P1 - Leis fundamentais de circuítos" icon="lightning-bolt">}}
     {{< card link="P1-P4/#practica-2" title="P2 - Teoremas de Thevenin e Norton" icon="adjustments">}}
     {{< card link="P1-P4/#practica-3" title="P3 - Introdución á corrente alterna" icon="chart-bar">}}
     {{< card link="P1-P4/#practica-4" title="P4 - Diodos e rectificación" icon="refresh">}}

@@ -1,5 +1,5 @@
 ---
-linkTitle: "1º cuatri exames"
+linkTitle: "1º cuatri"
 title: "Primeiro cuadrimestre"
 description: ""
 geekdocCollapseSection: true
