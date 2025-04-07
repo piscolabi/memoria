@@ -16,20 +16,23 @@
         {{ partial "components/last-updated.html" . }}
         {{ partial "components/pager.html" . }}
         {{ partial "components/comments.html" . }}
+        
+        <!-- TOC para pantallas pequenas e medianas (oculto en pantallas grandes) -->
+        <div class="normal-toc xxl:hx-hidden hx-mt-6">
+          <div class="hextra-toc-override">
+            {{ partial "toc.html" . }}
+          </div>
+        </div>
       </main>
     </article>
-    {{ partial "toc.html" . }}
+    
+    <!-- TOC para pantallas grandes (oculto en pantallas pequenas e medianas) -->
+    <div class="desktop-toc hx-hidden xxl:hx-block">
+      {{ partial "toc.html" . }}
+    </div>
   </div>
   
   <style>
-    /* En pantallas medianas e grandes, asegúrase de que o sidebar non ocupe espazo */
-    @media (min-width: 768px) {
-      .sidebar-wrapper {
-        visibility: hidden;
-        pointer-events: none;
-      }
-    }
-    
     /* En pantallas pequenas, permítese que o sidebar funcione normalmente */
     @media (max-width: 767px) {
       .sidebar-wrapper {
@@ -38,5 +41,79 @@
         pointer-events: auto;
       }
     }
+    
+    /* Definimos a media query para pantallas extra grandes */
+    @media (min-width: 1800px) {
+      :root {
+        --xxl-screen: 1800px;
+      }
+      
+      .xxl\:hx-hidden {
+        display: none !important;
+      }
+      
+      .xxl\:hx-block {
+        display: block !important;
+      }
+      
+      /* Mantememos os estilos orixinais do TOC, pero posicionámolo fixo á dereita */
+      .desktop-toc {
+        position: fixed;
+        top: calc(var(--navbar-height) + 2rem);
+        right: 2rem;
+        width: 16rem;
+        max-height: calc(100vh - var(--navbar-height) - 4rem);
+        overflow-y: auto;
+      }
+    }
+    
+    /* Anulamos os estilos que poderían estar ocultando o TOC normal */
+    .normal-toc .hextra-toc-override nav.hextra-toc {
+      display: block !important;
+      position: static !important;
+      width: 100% !important;
+      order: initial !important;
+    }
+    
+    /* Aseguramos que o contido do TOC normal sexa visible */
+    .normal-toc .hextra-toc-override .hextra-scrollbar {
+      position: static !important;
+      max-height: none !important;
+      display: block !important;
+    }
+    
+    /* Corriximos calquera clase que poida estar ocultando o TOC en certos tamaños de pantalla */
+    @media (max-width: 1279px) {
+      .normal-toc .hextra-toc-override nav.hextra-toc {
+        display: block !important;
+      }
+    }
   </style>
+  
+  <script>
+    // Asegúrase de que o script de "Volver ao topo" funcione
+    document.addEventListener('DOMContentLoaded', function() {
+      // Función para facer scroll ata arriba
+      window.scrollUp = function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      };
+      
+      // Mostrar/ocultar o botón "Volver ao topo" baseado na posición de scroll
+      window.addEventListener('scroll', function() {
+        const backToTopButtons = document.querySelectorAll('#backToTop');
+        backToTopButtons.forEach(button => {
+          if (window.scrollY > 300) {
+            button.classList.remove('hx-opacity-0');
+            button.classList.add('hx-opacity-100');
+          } else {
+            button.classList.remove('hx-opacity-100');
+            button.classList.add('hx-opacity-0');
+          }
+        });
+      });
+    });
+  </script>
 {{ end }}
