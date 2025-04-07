@@ -1,6 +1,5 @@
 {{ define "main" }}
   <div class='hx-mx-auto hx-max-w-screen-xl hx-relative'>
-    <!-- Sidebar con posición absoluta para que non afecte ao layout -->
     <div class="sidebar-wrapper hx-absolute hx-left-0 hx-top-0 md:hx-hidden">
       {{ partial "sidebar.html" (dict "context" .) }}
     </div>
@@ -10,14 +9,11 @@
         {{ partial "breadcrumb.html" . }}
         <h1 class="hx-mt-2 hx-text-4xl hx-font-bold hx-tracking-tight hx-text-slate-900 dark:hx-text-slate-100 hx-text-center">{{ .Title }}</h1>
         
-        <div class="content hx-text-left">
-          {{ .Content }}
-        </div>
+        <div class="content hx-text-left">{{ .Content }}</div>
         {{ partial "components/last-updated.html" . }}
         {{ partial "components/pager.html" . }}
         {{ partial "components/comments.html" . }}
         
-        <!-- TOC para pantallas pequenas e medianas (oculto en pantallas grandes) -->
         <div class="normal-toc xxl:hx-hidden hx-mt-6">
           <div class="hextra-toc-override">
             {{ partial "toc.html" . }}
@@ -26,37 +22,24 @@
       </main>
     </article>
     
-    <!-- TOC para pantallas grandes (oculto en pantallas pequenas e medianas) -->
     <div class="desktop-toc hx-hidden xxl:hx-block">
       {{ partial "toc.html" . }}
     </div>
   </div>
   
   <style>
-    /* En pantallas pequenas, permítese que o sidebar funcione normalmente */
     @media (max-width: 767px) {
       .sidebar-wrapper {
-        position: static !important; /* Anula a posición absoluta */
+        position: static !important;
         visibility: visible;
         pointer-events: auto;
       }
     }
     
-    /* Definimos a media query para pantallas extra grandes */
     @media (min-width: 1800px) {
-      :root {
-        --xxl-screen: 1800px;
-      }
+      .xxl\:hx-hidden { display: none !important; }
+      .xxl\:hx-block { display: block !important; }
       
-      .xxl\:hx-hidden {
-        display: none !important;
-      }
-      
-      .xxl\:hx-block {
-        display: block !important;
-      }
-      
-      /* Mantememos os estilos orixinais do TOC, pero posicionámolo fixo á dereita */
       .desktop-toc {
         position: fixed;
         top: calc(var(--navbar-height) + 2rem);
@@ -67,53 +50,29 @@
       }
     }
     
-    /* Anulamos os estilos que poderían estar ocultando o TOC normal */
-    .normal-toc .hextra-toc-override nav.hextra-toc {
+    .normal-toc .hextra-toc-override nav.hextra-toc,
+    .normal-toc .hextra-toc-override .hextra-scrollbar {
       display: block !important;
       position: static !important;
       width: 100% !important;
-      order: initial !important;
-    }
-    
-    /* Aseguramos que o contido do TOC normal sexa visible */
-    .normal-toc .hextra-toc-override .hextra-scrollbar {
-      position: static !important;
       max-height: none !important;
-      display: block !important;
-    }
-    
-    /* Corriximos calquera clase que poida estar ocultando o TOC en certos tamaños de pantalla */
-    @media (max-width: 1279px) {
-      .normal-toc .hextra-toc-override nav.hextra-toc {
-        display: block !important;
-      }
+      order: initial !important;
     }
   </style>
   
   <script>
-    // Asegúrase de que o script de "Volver ao topo" funcione
     document.addEventListener('DOMContentLoaded', function() {
-      // Función para facer scroll ata arriba
-      window.scrollUp = function() {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
+      window.scrollUp = () => window.scrollTo({top: 0, behavior: 'smooth'});
+      
+      const handleScroll = () => {
+        document.querySelectorAll('#backToTop').forEach(b => {
+          b.classList.toggle('hx-opacity-0', window.scrollY <= 300);
+          b.classList.toggle('hx-opacity-100', window.scrollY > 300);
         });
       };
       
-      // Mostrar/ocultar o botón "Volver ao topo" baseado na posición de scroll
-      window.addEventListener('scroll', function() {
-        const backToTopButtons = document.querySelectorAll('#backToTop');
-        backToTopButtons.forEach(button => {
-          if (window.scrollY > 300) {
-            button.classList.remove('hx-opacity-0');
-            button.classList.add('hx-opacity-100');
-          } else {
-            button.classList.remove('hx-opacity-100');
-            button.classList.add('hx-opacity-0');
-          }
-        });
-      });
+      window.addEventListener('scroll', handleScroll);
+      handleScroll();
     });
   </script>
 {{ end }}
