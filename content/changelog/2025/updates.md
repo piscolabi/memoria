@@ -22,7 +22,7 @@ sidebar:
 #### Resumen de [Prácticas adq](../../../docs/primeiro/adqsin/practicas)
 - [x] P1-P4 (xa non lle meto máis, os vídeos están moi ben)
 - [ ] P5 OpAmp, queda por ver
-- [ ] P6 555
+- [x] P6 555
 - [ ] P7 Arduino
 - [ ] P8 Arduino + 555
 

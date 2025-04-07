@@ -3,8 +3,8 @@ linkTitle: "Practicas"
 title: "Prácticas de AdqSin"
 description: ""
 geekdocCollapseSection: true
-# cascade:
-#   type: boletin
+cascade:
+  type: boletin
 ---
 
 {{< cards cols="1">}}
