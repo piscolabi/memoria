@@ -24,13 +24,7 @@ sidebar:
 - [ ] P5 OpAmp, queda por ver
 - [x] P6 555
 - [ ] P7 Arduino
-- [ ] P8 Arduino + 555
-
-
-## TODO:
-
-- [ ] Revisar todos os exercicios do [boletín 5][estat_BOL_5] de estatística
-- [ ] Subir contidos de álxebra
+- [x] P8 Arduino + 555
 
 <br><br>
 
@@ -38,9 +32,7 @@ sidebar:
 
 {{% details title="Clic para ver os cambios anteriores" closed="true" %}}
 
-### abril 2024
-#### 04-06
-
+### abril 2025
 
 #### anterior
 - [x] Exercicios explicados do [boletín 5][estat_BOL_5] de estatística
@@ -50,7 +42,7 @@ sidebar:
 - [x] Engadido este documento de actualizacións do proxecto
 
 
-### marzo 2024
+### marzo 2025
 - [x] Implementación da protección con contrasinal
 - [x] Configuración inicial do tema Hextra
 - [x] Creación do manifest para instalación en móbiles
