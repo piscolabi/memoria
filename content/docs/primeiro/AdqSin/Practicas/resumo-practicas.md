@@ -164,6 +164,54 @@ Este documento recolle de forma estruturada todos os conceptos, circuítos e pro
 - **Arduino UNO**: Plataforma de prototipado electrónico
 - **PicoScope**: Osciloscopio dixital para visualización de formas de onda
 - **Componentes**: Resistencias, condensadores, LEDs, temporizador 555
+
+
+Claro! Aquí tes o resumo da práctica do **11 de abril** redactado en galego seguindo o estilo e estrutura da plantilla que me proporcionaches:
+
+---
+
+## Práctica 9: Sensor de movemento PIR e control con relé
+
+### Conceptos clave
+- **Sensor PIR (Passive Infrared Sensor)**:
+  - Sensor infravermello que detecta cambios na radiación térmica (movemento)
+  - Saída dixital (HIGH/LOW) en función da detección de movemento
+
+- **Relé**:
+  - Dispositivo electromecánico que permite controlar cargas máis grandes desde sinais de baixo consumo (como os de Arduino)
+  - Aislamento eléctrico entre o circuíto de control e o circuíto de potencia
+
+- **Arduino UNO**:
+  - Lectura de sinais dixitais dende sensores
+  - Control de saídas dixitais (LED/Relé)
+
+### Procedementos experimentais
+
+#### Parte 1: Detección de movemento con LED
+- Montaxe dun circuíto conectando un sensor PIR ao Arduino
+- Programación no IDE de Arduino para:
+  - Ler a saída dixital do sensor PIR
+  - Acender un LED cando se detecta movemento
+- Probas de detección de movemento e comprobación do funcionamento do LED
+
+#### Parte 2: Control dun relé con Arduino
+- Reconstrución do circuíto anterior substituíndo o LED por un relé
+- Conexión da saída do Arduino á entrada de control do relé
+- Programación para activar o relé cando o sensor PIR detecta movemento
+- Conexión dun LED ao relé para que se acenda só cando o relé se activa
+- Observación do comportamento do sistema fronte á detección de movemento
+
+### Duración da práctica
+- A práctica tivo unha duración aproximada de **1 hora e 30 minutos**
+
+## Equipamento utilizado
+- **Arduino UNO**: Plataforma de prototipado electrónico
+- **Sensor PIR**: Sensor infravermello pasivo para detección de movemento
+- **Relé**: Módulo de relé de 5V para control de cargas
+- **Protoboard**: Para montaxe dos circuítos
+- **LEDs e resistencias**: Para indicar visualmente o funcionamento
+- **Cables de conexión**: Para realizar o cableado entre compoñentes
+
 ---
 
 *Nota: Este documento é un resumo orientativo. Consulta os guións de prácticas e os teus apuntamentos para información máis detallada.*

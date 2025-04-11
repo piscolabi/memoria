@@ -32,6 +32,6 @@ cascade:
 
 ## Programación de microprocesadores
 {{< cards cols="3">}}
-    {{< card link="P9" title="P9 - Creación de un nodo IoT" icon="search-circle">}}
-    {{< card link="P10" title="P10 - sabe dios" icon="question-mark-circle">}}
+    {{< card link="P9" title="P9 - Sensor de movimiento PIR e control con Relé" icon="search-circle">}}
+    {{< card link="P10" title="P10 - Creación de un nodo IoT" icon="question-mark-circle">}}
 {{< /cards >}}
