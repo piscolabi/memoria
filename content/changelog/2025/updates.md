@@ -17,8 +17,6 @@ sidebar:
 
 ## Cambios recentes
 
-- [x] Aportación: engadido [glosario](../../../docs/primeiro/1cuatri/intcomp/#glosario) de definicións de IntComp 
-- [x] Engadido [exercicio](../../../docs/primeiro/adqsin/apuntes/LoRa-exercicio) feito en AdqSin o 8 de abril
 
 
 #### Resumen de [Prácticas adq](../../../docs/primeiro/adqsin/practicas)
@@ -36,6 +34,9 @@ sidebar:
 {{% details title="Clic para ver os cambios anteriores" closed="true" %}}
 
 ### abril 2025
+- [x] Aportación: engadido [glosario](../../../docs/primeiro/1cuatri/intcomp/#glosario) de definicións de IntComp 
+- [x] Engadido [exercicio](../../../docs/primeiro/adqsin/apuntes/LoRa-exercicio) feito en AdqSin o 8 de abril
+
 
 #### anterior
 - [x] Exercicios explicados do [boletín 5](../../../docs/primeiro/Estatistica/Practicas/BOL_5) de estatística
