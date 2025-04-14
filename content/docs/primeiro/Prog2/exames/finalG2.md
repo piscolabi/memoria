@@ -11,7 +11,6 @@ toc: true
 ---
 
 {{% details title="Exame sen formato" closed="true" %}}
-
 Grupo 2 - Curso 2023-2024
 
 EJERCICIO 1 (7 PUNTOS)
@@ -23,8 +22,6 @@ La información se presenta en dos archivos de texto:
 - propuestas.txt con las siguientes cabeceras: nombre, asistentes, beneficio, tipo (sala/festival/evento), provincia, fecha. S
 
 - costes.txt con las siguientes cabeceras: nombre, coste_viaje, coste_concierto, / coste_camerino, coste_alojamiento, coste_montaje.
-
-
 
 Crea un programa utilizando Programación Orientada a Objetos que lea la información de los archivos proporcionados y cree instancias de las clases pertinentes. Es obligatorio el uso de herencia y composición en la implementación de las clases. Fíjate que existen algunos costes propios del tipo de artista (sala-coste_concierto, festival-coste_montaje, evento-coste_camerino), es decir, si alguno de estos valores aparece con valor O en el archivo, no existe ese coste para esa propuesta.
 
@@ -39,7 +36,6 @@ valoración_concierto = beneficio- (coste_viaje+coste_alojameinto) * asistentes
 Escribe el resultado en un fichero de salida con todos los valores obtenidos.
 
 Para la gestión inicial de los objetos no se puede utilizar las listas de Python, habrá que escoger una de las estructuras vistas en clase (cola, pila, lista enlazada, árbol binario, etc.) que mejor se adapte. Si se podrán utilizar para cálculos intermedios.
-
 {{% /details %}}
 
 

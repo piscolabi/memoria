@@ -11,7 +11,6 @@ toc: true
 ---
 
 {{% details title="Exame sen formato" closed="true" %}}
-
 Grupo 3-Curso 2023-2024
 
 EJERCICIO 1 (7 PUNTOS)
@@ -37,7 +36,6 @@ impacto_artista duracion_show*asistentes_concierto / coste_total
 Escribe el resultado en un fichero de salida con todos los valores obtenidos.
 
 Para la gestión inicial de los objetos no se puede utilizar las listas de Python, habrá que escoger una de las estructuras vistas en clase (cola, pila, lista enlazada, árbol binario, etc.) que mejor se adapte. Si se podrán utilizar para cálculos intermedios.
-
 {{% /details %}}
 
 
