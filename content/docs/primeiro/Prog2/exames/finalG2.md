@@ -8,6 +8,7 @@ sidebar:
   exclude: true
   hide: true
 toc: true
+weight: 2
 ---
 
 {{% details title="Exame sen formato" closed="true" %}}
@@ -19,11 +20,11 @@ The Rapants (grupo gallego de música indie afincados en Muros) van a girar todo
 
 La información se presenta en dos archivos de texto:
 
-- propuestas.txt con las siguientes cabeceras: nombre, asistentes, beneficio, tipo (sala/festival/evento), provincia, fecha. S
+- propuestas.txt con las siguientes cabeceras: nombre, asistentes, beneficio, tipo (sala/festival/evento), provincia, fecha.
 
-- costes.txt con las siguientes cabeceras: nombre, coste_viaje, coste_concierto, / coste_camerino, coste_alojamiento, coste_montaje.
+- costes.txt con las siguientes cabeceras: nombre, coste_viaje, coste_concierto, coste_camerino, coste_alojamiento, coste_montaje.
 
-Crea un programa utilizando Programación Orientada a Objetos que lea la información de los archivos proporcionados y cree instancias de las clases pertinentes. Es obligatorio el uso de herencia y composición en la implementación de las clases. Fíjate que existen algunos costes propios del tipo de artista (sala-coste_concierto, festival-coste_montaje, evento-coste_camerino), es decir, si alguno de estos valores aparece con valor O en el archivo, no existe ese coste para esa propuesta.
+Crea un programa utilizando Programación Orientada a Objetos que lea la información de los archivos proporcionados y cree instancias de las clases pertinentes. Es obligatorio el uso de herencia y composición en la implementación de las clases. Fíjate que existen algunos costes propios del tipo de artista (sala-coste_concierto, festival-coste_montaje, evento-coste_camerino), es decir, si alguno de estos valores aparece con valor 0 en el archivo, no existe ese coste para esa propuesta.
 
 El programa debe implementar una funcionalidad que permita saber cuáles son los conciertos que pueden ofrecer el grupo. Para ello debe haber un numero equilibrado de conciertos en salas, festivales y eventos (máxima diferencia de 2 entre ellos) y el beneficio neto debe ser positivo y mayor a 1000€.
 
@@ -31,7 +32,7 @@ EJERCICIO 2 (3 PUNTOS)
 
 El grupo ha visto los resultados y no les acaba de convencer del todo. Modifica el programa anterior para que muestre una lista de ordenada de propuestas dependiendo de la valoración completa del concierto, que se calcula de la siguiente forma:
 
-valoración_concierto = beneficio- (coste_viaje+coste_alojameinto) * asistentes
+valoración_concierto = beneficio-(coste_viaje+coste_alojameinto) * asistentes
 
 Escribe el resultado en un fichero de salida con todos los valores obtenidos.
 
@@ -72,7 +73,6 @@ Crea un programa con **Programación Orientada a Objetos (POO)** que:
 
 > Nota: Si alguno de estos valores aparece con valor 0 en el archivo, no existe ese coste para esa propuesta.
 
----
 
 #### Funcionalidad requerida:
 
@@ -87,28 +87,22 @@ El programa debe implementar una funcionalidad que permita saber cuáles son los
 
 ### EJERCICIO 2 (3 PUNTOS)
 
-El grupo ha visto los resultados y no les acaba de convencer del todo. Modifica el programa anterior para que muestre una lista ordenada de propuestas dependiendo de la valoración completa del concierto.
+El grupo ha visto los resultados y no les acaba de convencer del todo. Modifica el programa anterior para que muestre una lista ordenada de propuestas dependiendo de la valoración completa del concierto, que se calcula de la siguiente forma:
 
----
-
-#### Fórmula de valoración:
-
-La ordenación de las propuestas se calculará en base a la siguiente fórmula:
-
+<div style="overflow-x: auto; max-width: 100%; padding: 0.5em 0;">
 $$
 \text{valoración\_concierto} = \text{beneficio} - (\text{coste\_viaje} + \text{coste\_alojamiento}) \times \text{asistentes}
 $$
+</div> 
 
----
-
-#### Requisito adicional
+#### Requisito adicional:
 
 Escribe el resultado en un fichero de salida con todos los valores obtenidos.
 
-> **Importante:**  
+---
+> [!Note] Nota
 > Para la **gestión inicial** de los objetos **no se puede utilizar listas de Python**.  
 > Habrá que escoger una de las estructuras vistas en clase (**cola, pila, lista enlazada, árbol binario, etc.**) que mejor se adapte.  
 >  
 > **Sí se podrán usar listas para cálculos intermedios.**
-
 ---

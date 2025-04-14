@@ -8,6 +8,7 @@ sidebar:
   exclude: true
   hide: true
 toc: true
+weight: 1
 ---
 
 
@@ -24,7 +25,7 @@ La información del equipo se presenta en dos archivos de texto diferentes.
 
 2) Estadísticas.txt con los siguientes campos: nombre, puntos_partido, minutos_en_pista, rebotes, asistencias, porcentaje_triples, sueldo.
 
-Crea un programa con Programación Orientada a Objetos que lea la información de los archivos proporcionados y cree instancias de las clases que propongas. Es obligatorio el uso de herencia y composición en la implementación de las clases. Fijate que existen algunas estadísticas propias de cada posición (bases-asistencias, aleros-% de triples, pivots-rebotes), es decir, si aparecen con valor O en el archivo, no existe esa estadística para ese jugador.
+Crea un programa con Programación Orientada a Objetos que lea la información de los archivos proporcionados y cree instancias de las clases que propongas. Es obligatorio el uso de herencia y composición en la implementación de las clases. Fijate que existen algunas estadísticas propias de cada posición (bases-asistencias, aleros-% de triples, pivots-rebotes), es decir, si aparecen con valor 0 en el archivo, no existe esa estadística para ese jugador.
 
 El programa debe implementar una funcionalidad que nos diga cuales son los jugadores jóvenes (<25 años) que más puntos anotan por partido con un sueldo bajo (<555000).
 
@@ -72,9 +73,10 @@ Crea un programa con **Programación Orientada a Objetos (POO)** que:
   - Aleros → porcentaje de triples
   - Pívots → rebotes
 
-> Nota: Si alguna estadística no aplica a la posición, su valor será `0` en el archivo.
+> Nota: Si alguna estadística no aplica a la posición, su valor será `0` en el archivo \
+> Al revés igual, si aparecen con valor 0 en el archivo, no existe esa estadística para ese jugador.
 
----
+<br>
 
 #### Funcionalidad requerida:
 
@@ -82,36 +84,33 @@ El programa debe implementar una funcionalidad que indique:
 
 ¿Cuáles son los jugadores jóvenes (<25 años) que más puntos anotan por partido con un sueldo bajo (<555000)?
 
+<br>
+
 ---
 
-<br>
 
 ### EJERCICIO 2 (3 PUNTOS)
 
 Ha llegado el final de la temporada y el director deportivo y el entrenador deben conformar la plantilla de la temporada siguiente. Para ello deben **ordenar a los jugadores de mejor a peor**, teniendo en cuenta su rendimiento de la temporada, para saber si pueden renovarlos o no.
 
----
-
-#### Fórmula de valoración:
-
 La ordenación de los jugadores se calculará en base a la siguiente fórmula:
 
+<div style="overflow-x: auto; max-width: 100%; padding: 0.5em 0;">
 $$
 \text{Valor\_jugador} = \frac{\text{puntos\_partido}}{\text{sueldo}} + \text{minutos\_en\_pista} \times \text{edad}
 $$
+</div> 
 
 > Cuanto **mayor** sea la valoración, **más importante** debe ser ese jugador.
 
----
-
-#### Requisito adicional
+#### Requisito adicional:
 
 Imprime los jugadores **de más valorados a menos valorados**.
 
-> **Importante:**  
+---
+> [!Note] Nota
 > Para la **gestión inicial** de los objetos **no se puede utilizar listas de Python**.  
 > Habrá que escoger una de las estructuras vistas en clase (**cola, pila, lista enlazada, árbol binario, etc.**) que mejor se adapte.  
 >  
 > **Sí se podrán usar listas para cálculos intermedios.**
-
 ---
