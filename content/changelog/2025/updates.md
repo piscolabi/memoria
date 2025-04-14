@@ -1,5 +1,5 @@
 ---
-date: 2025-04-08
+date: 2025-04-14
 title: Rexistro de cambios e características
 description: Listado de funcionalidades e contidos implementados ou en proceso
 tags:
@@ -17,7 +17,7 @@ sidebar:
 
 ## Cambios recentes
 
-
+- [X] Engadidos os [enunciados dos exames](../../../docs/primeiro/prog2/exames) de prácticas de Programación II de 2024
 
 #### Resumen de [Prácticas adq](../../../docs/primeiro/adqsin/practicas)
 - [x] P1-P4 (xa non lle meto máis, os vídeos están moi ben)
