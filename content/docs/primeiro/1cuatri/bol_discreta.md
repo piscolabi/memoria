@@ -3052,6 +3052,103 @@ $$
 
 {{% /details %}}
 
+{{% details title="apartado b sen chartrand" closed="true" %}}
+Claro, aquí tes a resolución do apartado (b) utilizando un método alternativo que non depende do teorema de Chartrand.
+
+### (b) Demostración
+
+A afirmación é: Se a conectividade por vértices dun grafo é 4 e é diferente á conectividade por arestas, entón o grafo ten orde polo menos 8.
+
+**Definicións**
+$$
+\begin{aligned}
+G = (V, E) & \quad \text{un grafo.} \\
+n = |V| & \quad \text{A orde do grafo.} \\
+\kappa(G) & \quad \text{A conectividade por vértices.} \\
+\lambda(G) & \quad \text{A conectividade por arestas.} \\
+\delta(G) & \quad \text{O grao mínimo do grafo.}
+\end{aligned}
+$$
+**Hipóteses**
+$$
+\begin{aligned}
+\kappa(G) &= 4 \\
+\kappa(G) &\neq \lambda(G)
+\end{aligned}
+$$
+
+**Proba**
+
+Primeiro, utilizamos a desigualdade de Whitney, que relaciona as conectividades e o grao mínimo.
+
+$$
+\begin{aligned}
+\kappa(G) &\le \lambda(G) \le \delta(G) \\
+\text{Substituíndo as hipóteses:} \quad 4 = \kappa(G) &< \lambda(G) \le \delta(G)
+\end{aligned}
+$$
+Desta cadea de desigualdades, concluímos que o grao mínimo do grafo debe ser estritamente maior que 4.
+
+$$
+\delta(G) \ge 5
+$$
+Por definición de conectividade por vértices, existe un conxunto de vértices $S \subset V$ tal que $|S| = \kappa(G) = 4$ e o grafo $G-S$ é non conexo.
+
+Sexa $C$ unha compoñente conexa calquera do grafo $G-S$. Sexa $v$ un vértice calquera que pertence ao conxunto de vértices de $C$, é dicir, $v \in V(C)$.
+Pola nosa conclusión anterior, o grao deste vértice $v$ no grafo orixinal $G$ debe satisfacer:
+
+$$
+\deg_G(v) \ge \delta(G) \ge 5
+$$
+Os veciños de $v$ no grafo $G$ só poden estar noutros vértices da súa mesma compoñente $C$ ou no conxunto de corte $S$. Polo tanto, o grao de $v$ está limitado superiormente polo número de outros vértices en $C$ máis o número de vértices en $S$.
+
+$$
+\deg_G(v) \le (|V(C)| - 1) + |S|
+$$
+Substituíndo $|S|=4$:
+
+$$
+\deg_G(v) \le |V(C)| - 1 + 4 = |V(C)| + 3
+$$
+Agora combinamos a cota inferior e superior para o grao de $v$:
+
+$$
+5 \le \deg_G(v) \le |V(C)| + 3
+$$
+Isto implica que o número de vértices en calquera compoñente $C$ de $G-S$ debe ser polo menos 2.
+
+$$
+5 \le |V(C)| + 3 \implies |V(C)| \ge 2
+$$
+Como o grafo $G-S$ é non conexo, debe ter polo menos dúas compoñentes conexas. Chamemos a dúas destas compoñentes $C_1$ e $C_2$. Polo razoamento anterior, cada unha debe ter polo menos 2 vértices.
+
+$$
+|V(C_1)| \ge 2 \quad \text{e} \quad |V(C_2)| \ge 2
+$$
+A orde total do grafo, $n$, é a suma das ordes das súas partes disxuntas: o conxunto de corte $S$ e todas as compoñentes de $G-S$. Como mínimo, temos $S$, $C_1$ e $C_2$.
+
+$$
+\begin{aligned}
+n = |V| &= |S| + |V(G-S)| \\
+&= |S| + \sum_i |V(C_i)| \\
+&\ge |S| + |V(C_1)| + |V(C_2)| \\
+&\ge 4 + 2 + 2 \\
+&\ge 8
+\end{aligned}
+$$
+Polo tanto, a orde do grafo é polo menos 8.
+
+### Resultado final
+
+$$
+\begin{aligned}
+\text{(b)} & \quad \text{Se } \kappa(G)=4 \text{ e } \kappa(G) \neq \lambda(G)\text{, entón } \delta(G) \ge 5. \text{ Un conxunto de corte } S \text{ de tamaño 4} \\
+& \quad \text{divide o grafo en compoñentes, cada unha de tamaño polo menos 2. Como hai} \\
+& \quad \text{polo menos dúas compoñentes, a orde total } n \ge |S| + |C_1| + |C_2| \ge 4+2+2=8.
+\end{aligned}
+$$
+{{% /details %}}
+
 ## Exercicio 20
 {{% details title="Exercicio " closed="true" %}}
 
